@@ -34,8 +34,8 @@ An ultra-minimalist, responsive, and accessible landing page built for the **Buf
 
 ### 1. Cloning the Repository
 ```bash
-git clone https://github.com/buffalobacklabs/landing-page.git
-cd landing-page
+git clone https://github.com/pi-bbl-maker/bbc-website.git
+cd bbc-website
 ```
 
 ### 2. Local Development & Preview
