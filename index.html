@@ -240,8 +240,20 @@
   <main class="flex-grow">
     
     <!-- Hero Section -->
-    <section id="aboutSection" class="relative bg-white py-24 sm:py-32 border-b border-neutral-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="aboutSection" class="relative bg-white py-24 sm:py-32 border-b border-neutral-100 overflow-hidden">
+      <!-- Botanical Watermark -->
+      <div class="absolute top-10 right-0 lg:right-10 w-72 h-72 pointer-events-none opacity-20 lg:opacity-30">
+        <svg viewBox="0 0 100 100" class="w-full h-full text-neutral-300 stroke-current" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20,80 Q40,60 50,20 Q60,60 80,80" />
+          <path d="M50,20 Q35,25 35,40 Q45,35 50,20" />
+          <path d="M50,20 Q65,25 65,40 Q55,35 50,20" />
+          <path d="M42,48 Q25,50 25,65 Q37,60 42,48" />
+          <path d="M58,48 Q75,50 75,65 Q63,60 58,48" />
+          <path d="M35,66 Q15,70 15,85 Q28,80 35,66" />
+          <path d="M65,66 Q85,70 85,85 Q72,80 65,66" />
+        </svg>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-3xl fade-in-up text-left">
           
           <!-- Badge -->
@@ -318,8 +330,17 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           
           <!-- Pillar 1: Consumer Federation (Accent Green Top) -->
-          <article class="border-t-2 border-accentGreen pt-6 flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full">
             <div>
+              <div class="mb-4">
+                <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#3B6E4C]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12,22 C12,22 12,14 12,10" />
+                  <path d="M12,12 C9.5,9.5 7,10 7,6 C7,2 12,5 12,5" />
+                  <path d="M12,12 C14.5,9.5 17,10 17,6 C17,2 12,5 12,5" />
+                  <circle cx="12" cy="18" r="1.5" />
+                </svg>
+              </div>
+              <div class="h-0.5 w-full bg-accentGreen mb-6"></div>
               <h3 data-i18n="pillar1Title" class="text-base font-bold text-charcoal font-heading mb-1">Buffalo Back Consumer Federation</h3>
               <p data-i18n="pillar1Sub" class="text-[10px] font-bold tracking-wider text-accentGreen uppercase mb-3">Research, Outreach & Fair-Price Food Networks</p>
               <p data-i18n="pillar1Body" class="text-xs text-neutral-500 leading-relaxed font-light mb-6">
@@ -333,8 +354,16 @@
           </article>
 
           <!-- Pillar 2: Bio-Regional Living Lab (Accent Brown Top) -->
-          <article class="border-t-2 border-accentBrown pt-6 flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full">
             <div>
+              <div class="mb-4">
+                <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#8C5A4A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2,20 Q7,15 12,18 T22,14" />
+                  <path d="M12,3 Q16,8 16,12 Q12,16 8,12 Q8,8 12,3 Z" />
+                  <path d="M12,3 V15" />
+                </svg>
+              </div>
+              <div class="h-0.5 w-full bg-accentBrown mb-6"></div>
               <h3 data-i18n="pillar2Title" class="text-base font-bold text-charcoal font-heading mb-1">Bio-Regional Living Lab (Ragihalli)</h3>
               <p data-i18n="pillar2Sub" class="text-[10px] font-bold tracking-wider text-accentBrown uppercase mb-3">Place-Based Groundwork & Circular Systems</p>
               <p data-i18n="pillar2Body" class="text-xs text-neutral-500 leading-relaxed font-light mb-6">
@@ -348,8 +377,16 @@
           </article>
 
           <!-- Pillar 3: Community Enterprises (Accent Pink Top) -->
-          <article class="border-t-2 border-accentPink pt-6 flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full">
             <div>
+              <div class="mb-4">
+                <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#D98A8A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="9" r="4" />
+                  <circle cx="8" cy="15" r="4" />
+                  <circle cx="16" cy="15" r="4" />
+                </svg>
+              </div>
+              <div class="h-0.5 w-full bg-accentPink mb-6"></div>
               <h3 data-i18n="pillar3Title" class="text-base font-bold text-charcoal font-heading mb-1">Community Enterprises</h3>
               <p data-i18n="pillar3Sub" class="text-[10px] font-bold tracking-wider text-accentPink uppercase mb-3">Grassroots Incubations & Livelihood Units</p>
               <p class="text-xs text-neutral-500 leading-relaxed font-light mb-4" data-i18n="pillar3Body">
@@ -374,8 +411,26 @@
           </article>
 
           <!-- Pillar 4: BB Labs (Accent Yellow Top) -->
-          <article class="border-t-2 border-accentYellow pt-6 flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full">
             <div>
+              <div class="mb-4">
+                <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#D8A24A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="6" cy="6" r="2" />
+                  <circle cx="18" cy="6" r="2" />
+                  <circle cx="18" cy="18" r="2" />
+                  <circle cx="6" cy="18" r="2" />
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M8,6 H16" />
+                  <path d="M18,8 V16" />
+                  <path d="M8,18 H16" />
+                  <path d="M6,8 V16" />
+                  <path d="M7.4,7.4 L10.6,10.6" />
+                  <path d="M16.6,7.4 L13.4,10.6" />
+                  <path d="M16.6,16.6 L13.4,13.4" />
+                  <path d="M7.4,16.6 L10.6,13.4" />
+                </svg>
+              </div>
+              <div class="h-0.5 w-full bg-accentYellow mb-6"></div>
               <h3 data-i18n="pillar4Title" class="text-base font-bold text-charcoal font-heading mb-1">Ecosystem Systems & Solutions (Buffalo Back Labs)</h3>
               <p data-i18n="pillar4Sub" class="text-[10px] font-bold tracking-wider text-accentYellow uppercase mb-3">AgTech, Data & Scalable Value Chains</p>
               <p data-i18n="pillar4Body" class="text-xs text-neutral-500 leading-relaxed font-light mb-6">
@@ -405,58 +460,82 @@
           </p>
         </div>
 
-        <div class="divide-y divide-neutral-100">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
           
-          <!-- Principle 1 -->
-          <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12">
-            <div class="sm:w-1/4 flex items-center gap-3">
-              <span class="h-2 w-2 rounded-full bg-accentGreen flex-shrink-0" aria-hidden="true"></span>
-              <h3 data-i18n="principle1Title" class="text-base font-bold text-charcoal font-heading">Agroecology First</h3>
+          <!-- Horizontal Row List -->
+          <div class="lg:col-span-2 divide-y divide-neutral-100">
+            <!-- Principle 1 -->
+            <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+              <div class="sm:w-1/3 flex items-center gap-3">
+                <span class="h-2 w-2 rounded-full bg-accentGreen flex-shrink-0" aria-hidden="true"></span>
+                <h3 data-i18n="principle1Title" class="text-base font-bold text-charcoal font-heading">Agroecology First</h3>
+              </div>
+              <div class="sm:w-2/3">
+                <p data-i18n="principle1Body" class="text-sm text-neutral-500 font-light leading-relaxed">
+                  Soil health, biodiversity, and native seeds over industrial yields.
+                </p>
+              </div>
             </div>
-            <div class="sm:w-3/4">
-              <p data-i18n="principle1Body" class="text-sm text-neutral-500 font-light leading-relaxed">
-                Soil health, biodiversity, and native seeds over industrial yields.
-              </p>
+
+            <!-- Principle 2 -->
+            <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+              <div class="sm:w-1/3 flex items-center gap-3">
+                <span class="h-2 w-2 rounded-full bg-accentBrown flex-shrink-0" aria-hidden="true"></span>
+                <h3 data-i18n="principle2Title" class="text-base font-bold text-charcoal font-heading">Fair Price Models</h3>
+              </div>
+              <div class="sm:w-2/3">
+                <p data-i18n="principle2Body" class="text-sm text-neutral-500 font-light leading-relaxed">
+                  Transparent pricing for farmer livelihoods and consumer value.
+                </p>
+              </div>
+            </div>
+
+            <!-- Principle 3 -->
+            <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+              <div class="sm:w-1/3 flex items-center gap-3">
+                <span class="h-2 w-2 rounded-full bg-accentPink flex-shrink-0" aria-hidden="true"></span>
+                <h3 data-i18n="principle3Title" class="text-base font-bold text-charcoal font-heading">Women-Led Growth</h3>
+              </div>
+              <div class="sm:w-2/3">
+                <p data-i18n="principle3Body" class="text-sm text-neutral-500 font-light leading-relaxed">
+                  Centering local decision-making and enterprise ownership with women.
+                </p>
+              </div>
+            </div>
+
+            <!-- Principle 4 -->
+            <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+              <div class="sm:w-1/3 flex items-center gap-3">
+                <span class="h-2 w-2 rounded-full bg-accentYellow flex-shrink-0" aria-hidden="true"></span>
+                <h3 data-i18n="principle4Title" class="text-base font-bold text-charcoal font-heading">Tech with Intent</h3>
+              </div>
+              <div class="sm:w-2/3">
+                <p data-i18n="principle4Body" class="text-sm text-neutral-500 font-light leading-relaxed">
+                  Digital tools designed to serve human networks and natural ecosystems.
+                </p>
+              </div>
             </div>
           </div>
 
-          <!-- Principle 2 -->
-          <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12">
-            <div class="sm:w-1/4 flex items-center gap-3">
-              <span class="h-2 w-2 rounded-full bg-accentBrown flex-shrink-0" aria-hidden="true"></span>
-              <h3 data-i18n="principle2Title" class="text-base font-bold text-charcoal font-heading">Fair Price Models</h3>
-            </div>
-            <div class="sm:w-3/4">
-              <p data-i18n="principle2Body" class="text-sm text-neutral-500 font-light leading-relaxed">
-                Transparent pricing for farmer livelihoods and consumer value.
-              </p>
-            </div>
-          </div>
+          <!-- Circular Loop Diagram (Light Stroke) -->
+          <div class="lg:col-span-1 flex justify-center py-6 border-t border-neutral-100 lg:border-t-0 lg:border-l lg:pl-12 border-neutral-100">
+            <svg viewBox="0 0 200 200" class="w-full max-w-[180px] text-neutral-300 stroke-current" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <!-- Three circular flow arrows representing a closed loop ecosystem -->
+              <path d="M100,30 A70,70 0 0,1 160.6,135" />
+              <path d="M160.6,135 L153,130 M160.6,135 L164,127" stroke-width="1.5" />
+              
+              <path d="M160.6,135 A70,70 0 0,1 39.4,135" />
+              <path d="M39.4,135 L47,130 M39.4,135 L36,127" stroke-width="1.5" />
+              
+              <path d="M39.4,135 A70,70 0 0,1 100,30" />
+              <path d="M100,30 L95,38 M100,30 L105,38" stroke-width="1.5" />
 
-          <!-- Principle 3 -->
-          <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12">
-            <div class="sm:w-1/4 flex items-center gap-3">
-              <span class="h-2 w-2 rounded-full bg-accentPink flex-shrink-0" aria-hidden="true"></span>
-              <h3 data-i18n="principle3Title" class="text-base font-bold text-charcoal font-heading">Women-Led Growth</h3>
-            </div>
-            <div class="sm:w-3/4">
-              <p data-i18n="principle3Body" class="text-sm text-neutral-500 font-light leading-relaxed">
-                Centering local decision-making and enterprise ownership with women.
-              </p>
-            </div>
-          </div>
-
-          <!-- Principle 4 -->
-          <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-12">
-            <div class="sm:w-1/4 flex items-center gap-3">
-              <span class="h-2 w-2 rounded-full bg-accentYellow flex-shrink-0" aria-hidden="true"></span>
-              <h3 data-i18n="principle4Title" class="text-base font-bold text-charcoal font-heading">Tech with Intent</h3>
-            </div>
-            <div class="sm:w-3/4">
-              <p data-i18n="principle4Body" class="text-sm text-neutral-500 font-light leading-relaxed">
-                Digital tools designed to serve human networks and natural ecosystems.
-              </p>
-            </div>
+              <!-- Center organic seed/motif -->
+              <circle cx="100" cy="100" r="10" />
+              <path d="M100,90 Q90,75 80,95 Q100,100 100,90" />
+              <path d="M100,90 Q110,75 120,95 Q100,100 100,90" />
+              <path d="M100,110 V140" />
+            </svg>
           </div>
 
         </div>
