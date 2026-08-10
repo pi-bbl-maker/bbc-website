@@ -1,7 +1,13 @@
 {
-  "name": "buffalo-back-landing-page",
+  "name": "@buffalobacklabs/landing-page",
   "version": "1.0.0",
   "description": "Buffalo Back Collective Landing Page",
+  "author": "bbl-maker <preethy@buffaloback.in>",
+  "maintainer": "bbl-maker <preethy@buffaloback.in>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buffalobacklabs/landing-page.git"
+  },
   "scripts": {
     "build": "echo 'Static landing page build check passed successfully'"
   }

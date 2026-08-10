@@ -1,23 +1,16 @@
 # Buffalo Back Collective Landing Page
 
-A fully responsive, modern, accessible, and high-performance landing page built for the **Buffalo Back Collective**. It integrates the collective's four key pillars, agricultural principles, and grassroots initiatives into a sleek, organic visual theme.
+An ultra-minimalist, responsive, and accessible landing page built for the **Buffalo Back Collective**. This project is formally owned, engineered, and maintained by **Buffalo Back Labs (BBL)** under the technical oversight of **bbl-maker**.
 
 ---
 
 ## 🌟 Key Features
 
-* **Organic Premium Aesthetics:** Implements a warm, structured, and earthy palette:
-  * Warm Forest Green (`#1C382B`)
-  * Moss (`#2D4A3E`)
-  * Terracotta (`#C86D51`)
-  * Sand (`#F7F4EE`)
-  * Warm Cream background (`#FAF7F2`)
-  * Dark Charcoal text (`#222222`)
-* **Responsive Layout:** Engineered with fluid margins, flexbox, and CSS grids, collapsing seamlessly from wide desktop monitors (up to `1440px`) to narrow mobile screens (`375px`).
-* **Internationalization (i18n):** Translates all UI assets dynamically between **English** and **Kannada** via isolated language dictionaries.
-* **Authentication and Role-Based Access Control (RBAC):** Simulated authentication flows (User/Admin roles) utilizing `localStorage` and client-side session states out of the box.
-* **Consent Gate Compliance:** First-time login blocks dashboard access until the user signs a compliance data consent modal overlay, generating timestamped audit log trails.
-* **Service Worker (PWA):** Registered service worker caching static resources with immediate cache takeover controls.
+* **Minimalist Aesthetics:** Implements a strict white background (`#FFFFFF`) with geometric headings (Nunito) and Lato body fonts, using micro-accent visual cues.
+* **Fine-line SVG Art:** Handcrafted vector illustrations for the Hero background, Pillars, and circular loop diagrams.
+* **Internationalization (i18n):** Translates all UI assets dynamically between English and Kannada.
+* **Simulated RBAC Authentication:** Local session storage managing User and Admin dashboards, telemetry panels, and compliance logging.
+* **Automated CI/CD:** Integrated GitHub Actions pipeline for automated static site deployment to GitHub Pages.
 
 ---
 
@@ -25,33 +18,35 @@ A fully responsive, modern, accessible, and high-performance landing page built 
 
 ```
 .
-├── index.html          # Main HTML5 Structure & Page Components
-├── locales.js          # Translation Dictionaries (EN & KN)
-├── app.js              # Application Logic (Auth, i18n, DOM Events)
-├── sw.js               # Service Worker (PWA Caching & Offline Support)
+├── .github/workflows/
+│   └── deploy.yml      # CI/CD GitHub Actions Pages Pipeline
+├── index.html          # Main HTML5 structure with inline SVG artwork
+├── locales.js          # Translation dictionaries (EN/KN)
+├── app.js              # State logic (Auth, i18n, audits)
+├── sw.js               # Service Worker caching schema
 ├── manifest.json       # PWA Application Metadata
-└── buffalo_back_icon.jpg # Brand logo icon
+└── package.json        # Project manifest & build configuration
 ```
 
 ---
 
-## 🚀 Execution & Local Development
+## ⚙️ Operations Guide for BBL Team Members
 
-No compilation or build runner is required. Simply serve the workspace directory using any local development server (e.g., Python's HTTP server, VS Code Live Server, or `http-server`).
-
-### Serve using python:
+### 1. Cloning the Repository
 ```bash
-python3 -m http-server 8080
+git clone https://github.com/buffalobacklabs/landing-page.git
+cd landing-page
 ```
-Then open [http://localhost:8080](http://localhost:8080) in your browser.
 
----
+### 2. Local Development & Preview
+To run the server locally:
+```bash
+python3 -m http.server 8080
+```
+Then open [http://localhost:8080](http://localhost:8080) in your browser. All assets are loaded with relative paths (`./`) to support smooth subpath serving.
 
-## 🔐 Credentials for Dashboard Testing
-
-* **User Role:**
-  * **Email:** `user@buffaloback.in`
-  * **Password:** (Any string)
-* **Admin Role:**
-  * **Email:** `admin@buffaloback.in`
-  * **Password:** (Any string)
+### 3. CI/CD & Verification of Deployments
+The repository deploys automatically to **GitHub Pages** on every push to the `main` or `master` branches:
+- **Pipeline Config:** Located at `.github/workflows/deploy.yml`.
+- **Status Check:** Check progress on the GitHub repository page under the **Actions** tab.
+- **Handshake Verification:** Ensure the PWA service worker cache compiles cleanly without console warnings.
