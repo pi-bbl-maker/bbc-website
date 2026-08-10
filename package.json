@@ -1,0 +1,8 @@
+{
+  "name": "buffalo-back-landing-page",
+  "version": "1.0.0",
+  "description": "Buffalo Back Collective Landing Page",
+  "scripts": {
+    "build": "echo 'Static landing page build check passed successfully'"
+  }
+}

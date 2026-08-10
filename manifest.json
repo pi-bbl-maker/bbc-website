@@ -1,0 +1,16 @@
+{
+  "name": "Buffalo Back Collective",
+  "short_name": "Buffalo Back",
+  "description": "An integrated ecosystem dedicated to agroecology, bio-regional resilience, grassroots enterprises, and transparent supply chains.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#1C382B",
+  "icons": [
+    {
+      "src": "./buffalo_back_icon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

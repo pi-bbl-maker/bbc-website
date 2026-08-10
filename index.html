@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buffalo Back Collective — Rooted in Earth. Powered by Community.</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Buffalo Back Collective is an integrated ecosystem dedicated to agroecology, bio-regional resilience, grassroots enterprises, and transparent supply chains.">
+  <meta name="keywords" content="agroecology, organic food, fair trade, community enterprises, bio-regional living lab, local seeds, women empowerment">
+  
+  <!-- Favicon / Brand Icon -->
+  <link rel="shortcut icon" href="./buffalo_back_icon.jpg" type="image/jpeg">
+  
+  <!-- PWA Manifest & iOS meta -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#1C382B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="./buffalo_back_icon.jpg">
+
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#1C382B',
+            moss: '#2D4A3E',
+            terracotta: '#C86D51',
+            sand: '#F7F4EE',
+            cream: '#FAF7F2',
+            charcoal: '#222222',
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style type="text/css">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FAF7F2;
+      color: #222222;
+    }
+    h1, h2, h3, h4, .font-serif-custom {
+      font-family: 'Playfair Display', serif;
+    }
+    /* Smooth transition for layout elements */
+    .fade-in-up {
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- Announcement Bar -->
+  <div class="bg-forest text-cream text-sm px-4 py-2 text-center relative z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2">
+      <span data-i18n="announcement" class="font-medium text-xs sm:text-sm">
+        Seasonal Harvest Highlights! Fresh organic millets, cold-pressed oils, and heritage rice varieties are now available.
+      </span>
+      <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" 
+         class="inline-flex items-center text-xs font-semibold text-terracotta hover:underline focus:outline-none focus:ring-1 focus:ring-terracotta rounded px-1.5 py-0.5 ml-1">
+         buffaloback.in <span class="ml-1">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 bg-cream/90 backdrop-blur-md border-b border-forest/10 z-40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo / Navigation Baseline redirect to / -->
+      <a href="./index.html" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-forest rounded-lg p-1" aria-label="Buffalo Back Collective Home">
+        <img src="./buffalo_back_icon.jpg" alt="Buffalo Back Icon" class="h-11 w-11 rounded-lg border border-forest/10 shadow-sm transition group-hover:scale-105">
+        <div class="flex flex-col">
+          <span data-i18n="logoText" class="text-lg font-bold tracking-tight text-forest leading-none">BUFFALO BACK</span>
+          <span data-i18n="logoSubtext" class="text-xs uppercase tracking-widest text-terracotta font-semibold mt-0.5">Collective</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Main Navigation">
+        <a href="#aboutSection" data-i18n="navAbout" class="text-sm font-semibold text-charcoal/80 hover:text-forest transition focus:outline-none focus:underline">About Us</a>
+        <a href="#pillarsGridSection" data-i18n="navConsumer" class="text-sm font-semibold text-charcoal/80 hover:text-forest transition focus:outline-none focus:underline">Consumer Federation</a>
+        <a href="#pillarsGridSection" data-i18n="navLab" class="text-sm font-semibold text-charcoal/80 hover:text-forest transition focus:outline-none focus:underline">Ragihalli Bio-Lab</a>
+        <a href="#pillarsGridSection" data-i18n="navEnterprises" class="text-sm font-semibold text-charcoal/80 hover:text-forest transition focus:outline-none focus:underline">Enterprises</a>
+        <a href="#pillarsGridSection" data-i18n="navLabs" class="text-sm font-semibold text-charcoal/80 hover:text-forest transition focus:outline-none focus:underline">Buffalo Back Labs</a>
+      </nav>
+
+      <!-- Desktop Global Actions -->
+      <div class="hidden md:flex items-center gap-4">
+        <!-- Translation Toggle -->
+        <div class="flex items-center bg-sand rounded-full p-1 border border-forest/10" role="group" aria-label="Language Selector">
+          <button onclick="setLanguage('en')" data-lang="en" class="lang-btn px-3 py-1 text-xs font-bold rounded-full transition-all focus:outline-none focus:ring-1 focus:ring-forest bg-forest text-cream">
+            EN
+          </button>
+          <button onclick="setLanguage('kn')" data-lang="kn" class="lang-btn px-3 py-1 text-xs font-bold rounded-full transition-all focus:outline-none focus:ring-1 focus:ring-forest text-forest bg-transparent">
+            KN
+          </button>
+        </div>
+
+        <!-- Auth Module (Logged Out) -->
+        <button onclick="showLoginModal()" class="auth-logged-out px-4 py-2 text-sm font-bold text-forest bg-sand hover:bg-forest hover:text-cream border border-forest/20 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-forest" data-i18n="authLogin">
+          Log In
+        </button>
+
+        <!-- Auth Module (Logged In) -->
+        <div class="auth-logged-in hidden relative">
+          <button id="userAvatarBtn" onclick="toggleProfileDropdown()" class="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-forest rounded-full p-1" aria-haspopup="true" aria-expanded="false" aria-label="User profile options">
+            <div class="h-9 w-9 rounded-full bg-forest text-cream flex items-center justify-center font-bold text-sm border-2 border-terracotta">
+              BB
+            </div>
+          </button>
+          <!-- User Profile Dropdown Menu -->
+          <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-64 bg-cream border border-forest/10 rounded-xl shadow-xl py-2 z-50 transform origin-top-right transition-all">
+            <div class="px-4 py-2.5 border-b border-forest/10">
+              <p class="text-sm font-bold text-charcoal leading-none" id="authUserName">User Name</p>
+              <p class="text-xs text-charcoal/60 mt-1 truncate" id="authUserEmail">user@example.com</p>
+              <div class="mt-2">
+                <span id="authUserRole" class="px-2 py-0.5 text-xs font-semibold rounded bg-forest text-cream">User</span>
+              </div>
+            </div>
+            <a href="#dashboardSection" onclick="closeProfileDropdown()" class="block px-4 py-2 text-sm font-semibold text-charcoal hover:bg-sand/50 hover:text-forest transition" data-i18n="authDashboard">Dashboard</a>
+            <button onclick="switchUserRole()" class="w-full text-left block px-4 py-2 text-sm font-semibold text-charcoal hover:bg-sand/50 hover:text-forest transition border-t border-forest/5" data-i18n="authSwitchRole">
+              Switch Role
+            </button>
+            <button onclick="handleLogout()" class="w-full text-left block px-4 py-2 text-sm font-bold text-rose-600 hover:bg-rose-50 transition border-t border-forest/5" data-i18n="authLogout">
+              Log Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Primary CTA -->
+        <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" 
+           class="px-5 py-2 text-sm font-bold bg-forest text-cream hover:bg-moss rounded-full shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-forest" data-i18n="btnShop">
+          Shop Online
+        </a>
+      </div>
+
+      <!-- Hamburger / Mobile Navigation Icon Toggle -->
+      <div class="flex items-center gap-3 md:hidden">
+        <!-- Language button mobile -->
+        <div class="flex bg-sand rounded-full p-0.5 border border-forest/10">
+          <button onclick="setLanguage('en')" data-lang="en" class="lang-btn px-2 py-0.5 text-[10px] font-bold rounded-full transition-all focus:outline-none">EN</button>
+          <button onclick="setLanguage('kn')" data-lang="kn" class="lang-btn px-2 py-0.5 text-[10px] font-bold rounded-full transition-all focus:outline-none">KN</button>
+        </div>
+        <button onclick="toggleMobileMenu()" class="text-forest focus:outline-none p-1.5 rounded-lg border border-forest/10 hover:bg-sand/30" aria-label="Toggle Mobile Menu" aria-controls="mobileMenuDrawer">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div id="mobileMenuDrawer" class="fixed inset-y-0 left-0 w-72 bg-cream border-r border-forest/10 shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+    <div class="p-6">
+      <div class="flex items-center justify-between border-b border-forest/10 pb-4">
+        <div class="flex items-center gap-2">
+          <img src="./buffalo_back_icon.jpg" alt="Logo" class="h-9 w-9 rounded-lg">
+          <span class="text-sm font-bold text-forest">BUFFALO BACK</span>
+        </div>
+        <button onclick="toggleMobileMenu()" class="text-forest hover:bg-sand/50 p-1 rounded-lg" aria-label="Close Mobile Menu">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Links -->
+      <nav class="flex flex-col gap-4 mt-6">
+        <a href="#aboutSection" onclick="toggleMobileMenu()" data-i18n="navAbout" class="text-base font-bold text-charcoal/80 hover:text-forest transition">About Us</a>
+        <a href="#pillarsGridSection" onclick="toggleMobileMenu()" data-i18n="navConsumer" class="text-base font-bold text-charcoal/80 hover:text-forest transition">Consumer Federation</a>
+        <a href="#pillarsGridSection" onclick="toggleMobileMenu()" data-i18n="navLab" class="text-base font-bold text-charcoal/80 hover:text-forest transition">Ragihalli Bio-Lab</a>
+        <a href="#pillarsGridSection" onclick="toggleMobileMenu()" data-i18n="navEnterprises" class="text-base font-bold text-charcoal/80 hover:text-forest transition">Enterprises</a>
+        <a href="#pillarsGridSection" onclick="toggleMobileMenu()" data-i18n="navLabs" class="text-base font-bold text-charcoal/80 hover:text-forest transition">Buffalo Back Labs</a>
+      </nav>
+    </div>
+
+    <!-- Mobile Drawer Bottom Actions -->
+    <div class="p-6 border-t border-forest/10 bg-sand/30 flex flex-col gap-3">
+      <!-- Auth Mobile Controls -->
+      <div class="auth-logged-out">
+        <button onclick="showLoginModal(); toggleMobileMenu();" class="w-full text-center py-2.5 text-sm font-bold text-forest bg-cream hover:bg-forest hover:text-cream border border-forest/20 rounded-full transition-all" data-i18n="authLogin">
+          Log In
+        </button>
+      </div>
+      <div class="auth-logged-in hidden flex flex-col gap-2">
+        <div class="flex items-center gap-3 px-1 py-1">
+          <div class="h-8 w-8 rounded-full bg-forest text-cream flex items-center justify-center font-bold text-xs">BB</div>
+          <div>
+            <p class="text-xs font-bold text-charcoal leading-none">Account Dashboard</p>
+            <button onclick="switchUserRole()" class="text-[10px] text-terracotta hover:underline mt-0.5" data-i18n="authSwitchRole">Switch Role</button>
+          </div>
+        </div>
+        <a href="#dashboardSection" onclick="toggleMobileMenu()" class="w-full text-center py-2 text-xs font-bold text-forest bg-cream border border-forest/10 rounded-full" data-i18n="authDashboard">Dashboard</a>
+        <button onclick="handleLogout(); toggleMobileMenu();" class="w-full text-center py-2 text-xs font-bold text-rose-600 bg-rose-50 rounded-full" data-i18n="authLogout">
+          Log Out
+        </button>
+      </div>
+
+      <!-- Shop CTA mobile -->
+      <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" 
+         class="w-full text-center py-2.5 text-sm font-bold bg-forest text-cream hover:bg-moss rounded-full shadow-md" data-i18n="btnShop">
+        Shop Online
+      </a>
+    </div>
+  </div>
+
+  <main class="flex-grow">
+    
+    <!-- Hero Section -->
+    <section id="aboutSection" class="relative bg-gradient-to-b from-cream to-sand/40 overflow-hidden py-16 lg:py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center max-w-4xl mx-auto fade-in-up">
+          
+          <!-- Badge -->
+          <span data-i18n="heroBadge" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-extrabold tracking-widest text-terracotta bg-terracotta/10 uppercase mb-6">
+            Agroecology • Community • Systems
+          </span>
+          
+          <!-- Headline -->
+          <h1 data-i18n="heroHeadline" class="text-4xl sm:text-5xl lg:text-6xl font-black text-forest leading-tight font-serif tracking-tight mb-6">
+            Rooted in Earth. Powered by Community. Scaled with Systems.
+          </h1>
+          
+          <!-- Sub-headline -->
+          <p data-i18n="heroSubheadline" class="text-base sm:text-lg lg:text-xl text-charcoal/80 leading-relaxed font-normal mb-10 max-w-3xl mx-auto">
+            Buffalo Back Collective is an integrated ecosystem dedicated to agroecology, bio-regional resilience, grassroots enterprises, and transparent supply chains. We bridge smallholder farmers, women-led collectives, and urban communities through fair-trade food systems and purpose-built technology.
+          </p>
+          
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+            <a href="#pillarsGridSection" id="exploreEcosystemBtn" 
+               class="w-full sm:w-auto px-8 py-3 text-base font-bold bg-forest text-cream hover:bg-moss rounded-full shadow-lg hover:shadow-xl transition-all focus:outline-none focus:ring-2 focus:ring-forest text-center" data-i18n="btnExplore">
+              Explore the Ecosystem
+            </a>
+            <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" 
+               class="w-full sm:w-auto px-8 py-3 text-base font-bold bg-sand text-forest hover:bg-forest hover:text-cream border border-forest/20 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-forest text-center" data-i18n="btnVisitStore">
+              Visit Store & Events
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Subtle background decoration graphic shapes -->
+      <div class="absolute top-1/2 left-0 w-72 h-72 bg-forest/5 rounded-full filter blur-3xl pointer-events-none -translate-y-1/2 -translate-x-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-terracotta/5 rounded-full filter blur-3xl pointer-events-none translate-x-1/3 translate-y-1/3"></div>
+    </section>
+
+    <!-- Architecture Summary Bar -->
+    <section class="border-y border-forest/10 bg-sand/30 py-8 relative z-25">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 data-i18n="summaryTitle" class="sr-only">Our Architecture</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y-0 md:divide-x divide-forest/10">
+          
+          <div class="flex flex-col items-center p-3">
+            <span class="text-xs uppercase tracking-wider text-charcoal/50 font-semibold mb-1" data-i18n="navConsumer">Consumer Federation</span>
+            <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-forest hover:text-terracotta transition focus:underline">buffaloback.in</a>
+          </div>
+          
+          <div class="flex flex-col items-center p-3">
+            <span class="text-xs uppercase tracking-wider text-charcoal/50 font-semibold mb-1" data-i18n="navLab">Ragihalli Bio-Lab</span>
+            <a href="https://16dodditrust.org" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-forest hover:text-terracotta transition focus:underline">16dodditrust.org</a>
+          </div>
+          
+          <div class="flex flex-col items-center p-3">
+            <span class="text-xs uppercase tracking-wider text-charcoal/50 font-semibold mb-1" data-i18n="navEnterprises">Enterprises</span>
+            <span class="text-sm font-bold text-forest">Ragihalli / Kai Thota</span>
+          </div>
+          
+          <div class="flex flex-col items-center p-3">
+            <span class="text-xs uppercase tracking-wider text-charcoal/50 font-semibold mb-1" data-i18n="navLabs">Buffalo Back Labs</span>
+            <a href="https://buffalobacklabs.com" target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-forest hover:text-terracotta transition focus:underline">buffalobacklabs.com</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- The Four Pillars Grid (2x2 Layout) -->
+    <section id="pillarsGridSection" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-forest font-serif mb-4" data-i18n="btnExplore">
+          Explore the Ecosystem
+        </h2>
+        <div class="h-1 w-20 bg-terracotta mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        
+        <!-- Pillar 1 -->
+        <article class="bg-cream border border-forest/10 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:scale-[1.01] hover:border-terracotta transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="h-12 w-12 bg-forest/10 rounded-xl flex items-center justify-center mb-6 text-forest">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </div>
+            <h3 data-i18n="pillar1Title" class="text-xl sm:text-2xl font-bold text-forest font-serif mb-2">Buffalo Back Consumer Federation</h3>
+            <p data-i18n="pillar1Sub" class="text-sm font-bold text-terracotta uppercase tracking-wide mb-4">Research, Outreach & Fair-Price Food Networks</p>
+            <p data-i18n="pillar1Body" class="text-sm sm:text-base text-charcoal/80 leading-relaxed mb-6">
+              The sub-organization taking care of research, outreach, markets, and shopping platforms for smallholder farmers, native seed savers, and women agrarian groups rooted in agroecology and fair prices.
+            </p>
+          </div>
+          <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" 
+             data-i18n="pillar1Cta" class="inline-flex items-center text-sm font-bold text-forest hover:text-terracotta hover:translate-x-1 transition duration-200 focus:outline-none focus:ring-1 focus:ring-forest px-1 py-0.5 rounded">
+            Visit buffaloback.in (eStore & Events) →
+          </a>
+        </article>
+
+        <!-- Pillar 2 -->
+        <article class="bg-cream border border-forest/10 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:scale-[1.01] hover:border-terracotta transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="h-12 w-12 bg-forest/10 rounded-xl flex items-center justify-center mb-6 text-forest">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            <h3 data-i18n="pillar2Title" class="text-xl sm:text-2xl font-bold text-forest font-serif mb-2">Bio-Regional Living Lab (Ragihalli)</h3>
+            <p data-i18n="pillar2Sub" class="text-sm font-bold text-terracotta uppercase tracking-wide mb-4">Place-Based Groundwork & Circular Systems</p>
+            <p data-i18n="pillar2Body" class="text-sm sm:text-base text-charcoal/80 leading-relaxed mb-6">
+              Our bio-regional living laboratory working with women, agroecology, livelihoods, health, education, and circular economy models.
+            </p>
+          </div>
+          <a href="https://16dodditrust.org" target="_blank" rel="noopener noreferrer" 
+             data-i18n="pillar2Cta" class="inline-flex items-center text-sm font-bold text-forest hover:text-terracotta hover:translate-x-1 transition duration-200 focus:outline-none focus:ring-1 focus:ring-forest px-1 py-0.5 rounded">
+            Learn About 16 Doddi Trust →
+          </a>
+        </article>
+
+        <!-- Pillar 3 -->
+        <article class="bg-cream border border-forest/10 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:scale-[1.01] hover:border-terracotta transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="h-12 w-12 bg-forest/10 rounded-xl flex items-center justify-center mb-6 text-forest">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 data-i18n="pillar3Title" class="text-xl sm:text-2xl font-bold text-forest font-serif mb-2">Community Enterprises</h3>
+            <p data-i18n="pillar3Sub" class="text-sm font-bold text-terracotta uppercase tracking-wide mb-4">Grassroots Incubations & Livelihood Units</p>
+            <p class="text-sm sm:text-base text-charcoal/80 leading-relaxed mb-4" data-i18n="pillar3Body">
+              Independent commercial enterprises nurtured by the collective:
+            </p>
+            <!-- Sub-units -->
+            <ul class="space-y-3 mb-6 bg-sand/30 p-4 rounded-xl border border-forest/5">
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta mt-1 text-xs">🌲</span>
+                <div>
+                  <h4 data-i18n="pillar3Item1Title" class="text-sm font-bold text-forest">Ragihalli Collective</h4>
+                  <p data-i18n="pillar3Item1Body" class="text-xs text-charcoal/80">Farm-to-table bakery and catering canteen for events and markets.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-terracotta mt-1 text-xs">🌲</span>
+                <div>
+                  <h4 data-i18n="pillar3Item2Title" class="text-sm font-bold text-forest">Kai Thota</h4>
+                  <p data-i18n="pillar3Item2Body" class="text-xs text-charcoal/80">Technology-enabled initiative supporting and empowering women farmers.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <button onclick="showLoginModal()" 
+             data-i18n="pillar3Cta" class="w-fit inline-flex items-center text-sm font-bold text-forest hover:text-terracotta hover:translate-x-1 transition duration-200 focus:outline-none focus:ring-1 focus:ring-forest px-1 py-0.5 rounded text-left">
+            Explore Enterprise Projects →
+          </button>
+        </article>
+
+        <!-- Pillar 4 -->
+        <article class="bg-cream border border-forest/10 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:scale-[1.01] hover:border-terracotta transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="h-12 w-12 bg-forest/10 rounded-xl flex items-center justify-center mb-6 text-forest">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h3 data-i18n="pillar4Title" class="text-xl sm:text-2xl font-bold text-forest font-serif mb-2">Ecosystem Systems & Solutions (Buffalo Back Labs)</h3>
+            <p data-i18n="pillar4Sub" class="text-sm font-bold text-terracotta uppercase tracking-wide mb-4">AgTech, Data & Scalable Value Chains</p>
+            <p data-i18n="pillar4Body" class="text-sm sm:text-base text-charcoal/80 leading-relaxed mb-6">
+              The tech and solutions engine building digital platforms, data analytics, and value chain infrastructure to scale agroecological impact.
+            </p>
+          </div>
+          <a href="https://buffalobacklabs.com" target="_blank" rel="noopener noreferrer" 
+             data-i18n="pillar4Cta" class="inline-flex items-center text-sm font-bold text-forest hover:text-terracotta hover:translate-x-1 transition duration-200 focus:outline-none focus:ring-1 focus:ring-forest px-1 py-0.5 rounded">
+            Visit buffalobacklabs.com →
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Guiding Principles Section -->
+    <section class="bg-sand/30 py-20 lg:py-24 border-t border-forest/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <h2 data-i18n="principlesTitle" class="text-3xl sm:text-4xl font-extrabold text-forest font-serif mb-4">
+            Our Guiding Principles
+          </h2>
+          <p data-i18n="principlesSub" class="text-sm sm:text-base text-charcoal/80 font-normal">
+            How we align our work across local ecosystems and technology.
+          </p>
+          <div class="h-1 w-20 bg-terracotta mx-auto rounded-full mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Principle 1 -->
+          <div class="bg-cream border border-forest/5 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-10 w-10 bg-forest text-cream rounded-full flex items-center justify-center font-bold text-lg mb-4">
+              1
+            </div>
+            <h3 data-i18n="principle1Title" class="text-lg font-bold text-forest font-serif mb-2">Agroecology First</h3>
+            <p data-i18n="principle1Body" class="text-sm text-charcoal/80 leading-relaxed">
+              Soil health, biodiversity, and native seeds over industrial yields.
+            </p>
+          </div>
+
+          <!-- Principle 2 -->
+          <div class="bg-cream border border-forest/5 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-10 w-10 bg-forest text-cream rounded-full flex items-center justify-center font-bold text-lg mb-4">
+              2
+            </div>
+            <h3 data-i18n="principle2Title" class="text-lg font-bold text-forest font-serif mb-2">Fair Price Models</h3>
+            <p data-i18n="principle2Body" class="text-sm text-charcoal/80 leading-relaxed">
+              Transparent pricing for farmer livelihoods and consumer value.
+            </p>
+          </div>
+
+          <!-- Principle 3 -->
+          <div class="bg-cream border border-forest/5 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-10 w-10 bg-forest text-cream rounded-full flex items-center justify-center font-bold text-lg mb-4">
+              3
+            </div>
+            <h3 data-i18n="principle3Title" class="text-lg font-bold text-forest font-serif mb-2">Women-Led Growth</h3>
+            <p data-i18n="principle3Body" class="text-sm text-charcoal/80 leading-relaxed">
+              Centering local decision-making and enterprise ownership with women.
+            </p>
+          </div>
+
+          <!-- Principle 4 -->
+          <div class="bg-cream border border-forest/5 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <div class="h-10 w-10 bg-forest text-cream rounded-full flex items-center justify-center font-bold text-lg mb-4">
+              4
+            </div>
+            <h3 data-i18n="principle4Title" class="text-lg font-bold text-forest font-serif mb-2">Tech with Intent</h3>
+            <p data-i18n="principle4Body" class="text-sm text-charcoal/80 leading-relaxed">
+              Digital tools designed to serve human networks and natural ecosystems.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Client-Side Dashboard Section (Locked behind Auth) -->
+    <section id="dashboardSection" class="hidden py-16 lg:py-20 bg-cream border-t border-forest/20 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-forest/10 pb-6 mb-8">
+          <div>
+            <h2 data-i18n="authDashboard" class="text-2xl sm:text-3xl font-extrabold text-forest font-serif">Dashboard</h2>
+            <p class="text-xs sm:text-sm text-charcoal/60 mt-1" id="dashboardWelcome">Welcome to the secure collective node.</p>
+          </div>
+          <div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+              <span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span>
+              Secure Session Active
+            </span>
+          </div>
+        </div>
+
+        <!-- Telemetry Details -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- System Quick-Link Node Card -->
+          <div class="bg-sand/30 border border-forest/10 p-6 rounded-2xl flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-forest font-serif mb-2">Ecosystem Nodes</h3>
+              <p class="text-xs text-charcoal/70 mb-4">Direct secure links to running collective applications.</p>
+              <div class="space-y-2">
+                <a href="https://buffaloback.in" target="_blank" class="flex items-center justify-between p-3 rounded-lg bg-cream hover:bg-forest/5 border border-forest/5 text-sm font-semibold text-forest transition">
+                  <span>Consumer Federation Portal</span>
+                  <span class="text-xs text-terracotta">External ↗</span>
+                </a>
+                <a href="https://16dodditrust.org" target="_blank" class="flex items-center justify-between p-3 rounded-lg bg-cream hover:bg-forest/5 border border-forest/5 text-sm font-semibold text-forest transition">
+                  <span>Doddi Trust Operations</span>
+                  <span class="text-xs text-terracotta">External ↗</span>
+                </a>
+                <a href="https://buffalobacklabs.com" target="_blank" class="flex items-center justify-between p-3 rounded-lg bg-cream hover:bg-forest/5 border border-forest/5 text-sm font-semibold text-forest transition">
+                  <span>AgTech Analytic Engines</span>
+                  <span class="text-xs text-terracotta">External ↗</span>
+                </a>
+              </div>
+            </div>
+            <p class="text-[10px] text-charcoal/40 mt-6 italic">Secure cryptographic handshake validated at boundary.</p>
+          </div>
+
+          <!-- Enterprise Focus: Kai Thota Portal Card -->
+          <div class="bg-sand/30 border border-forest/10 p-6 rounded-2xl flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-forest font-serif mb-2">Enterprise: Kai Thota Portal</h3>
+              <p class="text-xs text-charcoal/70 mb-4">Real-time agricultural inventory mapping. Calculated using Native Mass Normalization (Grams).</p>
+              
+              <!-- Real-time formula illustration matching kaithota.md -->
+              <div class="bg-cream p-4 rounded-xl border border-forest/5 mb-4 text-xs font-mono text-charcoal/80 space-y-1">
+                <p class="font-bold text-forest">Available Pool Weight Formula:</p>
+                <p class="text-[10px] text-charcoal/60 mt-1">Available = (Bed Harvests + AdHoc) - Logged Deliveries</p>
+                <div class="h-px bg-forest/10 my-2"></div>
+                <div class="flex justify-between">
+                  <span>Communal Bed Harvests:</span>
+                  <span class="font-bold text-forest">42,500g</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Ad-Hoc Additions:</span>
+                  <span class="font-bold text-forest">2,500g</span>
+                </div>
+                <div class="flex justify-between text-rose-600">
+                  <span>Deliveries Today:</span>
+                  <span>- 18,200g</span>
+                </div>
+                <div class="h-px bg-forest/10 my-2"></div>
+                <div class="flex justify-between text-emerald-600 font-bold">
+                  <span>Available Pool:</span>
+                  <span>26,800g</span>
+                </div>
+              </div>
+            </div>
+            <a href="https://buffaloback.in" target="_blank" class="w-full text-center py-2 bg-forest text-cream hover:bg-moss rounded-lg text-xs font-bold transition">
+              Launch Kai Thota Console 🚀
+            </a>
+          </div>
+
+          <!-- In-App Help Center Widget -->
+          <div class="bg-sand/30 border border-forest/10 p-6 rounded-2xl flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-forest font-serif mb-2">Operational Guide & Help</h3>
+              <p class="text-xs text-charcoal/70 mb-4">Contextual documentation for authorized collective members.</p>
+              <div class="space-y-3 text-xs text-charcoal/80">
+                <div class="p-2.5 rounded-lg bg-cream border border-forest/5">
+                  <p class="font-bold text-forest mb-0.5">🔒 Multi-Role Auth & RBAC</p>
+                  <p class="text-[10px]">Switch roles in the top-right profile dropdown to toggle Admin security logs and system metrics.</p>
+                </div>
+                <div class="p-2.5 rounded-lg bg-cream border border-forest/5">
+                  <p class="font-bold text-forest mb-0.5">🌾 Native Mass Normalization</p>
+                  <p class="text-[10px]">All inventory totals (like Kai Thota crop records) must be parsed and stored natively in Grams under the hood.</p>
+                </div>
+                <div class="p-2.5 rounded-lg bg-cream border border-forest/5">
+                  <p class="font-bold text-forest mb-0.5">💬 Support & General Operations</p>
+                  <p class="text-[10px]">Contact the technical operations guild at <span class="font-bold">weare@buffaloback.in</span> for assistance.</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-[10px] text-charcoal/40 mt-4">Version 1.0.0 (i18n Enabled: EN/KN)</p>
+          </div>
+
+          <!-- Admin Telemetry Column (Visible strictly to Admin role) -->
+          <div id="adminTelemetry" class="hidden lg:col-span-3 bg-sand/30 border-2 border-amber-500/20 p-6 rounded-2xl transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-forest/10 pb-4 mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-forest font-serif" data-i18n="adminTitle">Admin Control Cockpit</h3>
+                <p class="text-xs text-charcoal/70" data-i18n="adminDesc">Access administrative actions, view audit logs, and toggle diagnostic telemetry.</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300 uppercase rounded" data-i18n="authAdminLabel">
+                  Admin Mode Active
+                </span>
+              </div>
+            </div>
+
+            <!-- Audit Log Display Table -->
+            <div class="mt-4">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-charcoal/60 mb-2" data-i18n="adminAuditLogs">
+                Ecosystem Security Audit Logs
+              </h4>
+              <div class="overflow-x-auto border border-forest/10 rounded-xl bg-cream">
+                <table class="min-w-full divide-y divide-forest/10">
+                  <thead class="bg-sand">
+                    <tr>
+                      <th scope="col" class="px-6 py-3 text-left text-[10px] font-bold text-charcoal/60 uppercase tracking-wider" data-i18n="adminLogHeaderTime">Timestamp</th>
+                      <th scope="col" class="px-6 py-3 text-left text-[10px] font-bold text-charcoal/60 uppercase tracking-wider" data-i18n="adminLogHeaderUser">User</th>
+                      <th scope="col" class="px-6 py-3 text-left text-[10px] font-bold text-charcoal/60 uppercase tracking-wider" data-i18n="adminLogHeaderAction">Action</th>
+                      <th scope="col" class="px-6 py-3 text-left text-[10px] font-bold text-charcoal/60 uppercase tracking-wider" data-i18n="adminLogHeaderStatus">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="auditLogBody" class="divide-y divide-forest/5">
+                    <!-- Dynamic logs will be injected here by app.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-forest text-cream border-t border-moss py-16 relative z-10 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        
+        <!-- Summary / Brand -->
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <img src="./buffalo_back_icon.jpg" alt="Buffalo Back Icon" class="h-10 w-10 rounded-lg border border-cream/20">
+            <div class="flex flex-col">
+              <span class="text-base font-bold tracking-tight text-cream" data-i18n="logoText">BUFFALO BACK</span>
+              <span class="text-[10px] uppercase tracking-widest text-terracotta font-semibold" data-i18n="logoSubtext">Collective</span>
+            </div>
+          </div>
+          <p data-i18n="footerSummary" class="text-xs text-cream/70 leading-relaxed max-w-sm">
+            An integrated ecosystem dedicated to agroecology, bio-regional resilience, grassroots enterprises, and transparent supply chains.
+          </p>
+        </div>
+
+        <!-- Ecosystem Network Links -->
+        <div>
+          <h3 data-i18n="footerLinksHeader" class="text-xs uppercase tracking-widest text-terracotta font-bold mb-4">Ecosystem Network</h3>
+          <ul class="space-y-2 text-xs">
+            <li>
+              <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" class="text-cream/70 hover:text-cream hover:underline focus:outline-none">
+                Consumer Federation (buffaloback.in)
+              </a>
+            </li>
+            <li>
+              <a href="https://16dodditrust.org" target="_blank" rel="noopener noreferrer" class="text-cream/70 hover:text-cream hover:underline focus:outline-none">
+                Ragihalli Living Lab (16dodditrust.org)
+              </a>
+            </li>
+            <li>
+              <a href="https://buffalobacklabs.com" target="_blank" rel="noopener noreferrer" class="text-cream/70 hover:text-cream hover:underline focus:outline-none">
+                Ecosystem Labs (buffalobacklabs.com)
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact details -->
+        <div>
+          <h3 data-i18n="footerContactHeader" class="text-xs uppercase tracking-widest text-terracotta font-bold mb-4">Get in Touch</h3>
+          <p class="text-xs text-cream/70 mb-2">
+            Address: Ragihalli, Karnataka, India
+          </p>
+          <a href="mailto:weare@buffaloback.in" data-i18n="footerContactEmail" class="text-xs font-bold text-terracotta hover:underline focus:outline-none">
+            weare@buffaloback.in
+          </a>
+        </div>
+
+      </div>
+
+      <div class="h-px bg-cream/10 my-10"></div>
+
+      <!-- Copyright Notice & Bottom bar -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-cream/50">
+        <p data-i18n="footerCopyright">© 2026 Buffalo Back Collective / 16 Doddi Trust. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-cream hover:underline">Privacy Policy</a>
+          <a href="#" class="hover:text-cream hover:underline">Data Protection Agreement</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Login Modal Overlay (Hidden by default) -->
+  <div id="loginModal" class="hidden fixed inset-0 bg-charcoal/70 backdrop-blur-sm z-50 items-center justify-center px-4" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+    <div class="bg-cream max-w-md w-full border border-forest/10 rounded-2xl shadow-2xl p-6 relative">
+      <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-charcoal/60 hover:text-charcoal focus:outline-none" aria-label="Close Login Modal">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <div class="text-center mb-6">
+        <h3 id="loginModalTitle" class="text-2xl font-bold text-forest font-serif" data-i18n="authLogin">Log In</h3>
+        <p class="text-xs text-charcoal/60 mt-1">Access the secure ecosystem dashboard</p>
+      </div>
+
+      <form class="space-y-4">
+        <div>
+          <label for="loginEmail" class="block text-xs font-bold text-forest uppercase mb-1">Email Address</label>
+          <input type="email" id="loginEmail" placeholder="e.g. user@buffaloback.in" required
+                 class="w-full bg-sand/30 border border-forest/20 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-forest">
+        </div>
+        <div>
+          <label for="loginRole" class="block text-xs font-bold text-forest uppercase mb-1">Authorized Role</label>
+          <select id="loginRole" class="w-full bg-sand/30 border border-forest/20 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-forest">
+            <option value="user" data-i18n="authRoleUser">Role: User</option>
+            <option value="admin" data-i18n="authRoleAdmin">Role: Admin</option>
+          </select>
+        </div>
+        <button type="submit" id="loginSubmitBtn"
+                class="w-full py-3 bg-forest text-cream hover:bg-moss rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-forest" data-i18n="authLogin">
+          Log In
+        </button>
+      </form>
+
+      <p class="text-[10px] text-center text-charcoal/50 mt-4 leading-normal">
+        Use <span class="font-bold">admin@buffaloback.in</span> for Admin Role tests or <span class="font-bold">user@buffaloback.in</span> for User Role tests.
+      </p>
+    </div>
+  </div>
+
+  <!-- First-Time Login Consent Gate Modal Overlay (Hidden by default, blocks interaction until accepted) -->
+  <div id="consentModal" class="hidden fixed inset-0 bg-charcoal/80 backdrop-blur-md z-50 items-center justify-center px-4" role="dialog" aria-modal="true" aria-labelledby="consentModalTitle" data-backdrop="static" data-keyboard="false">
+    <div class="bg-cream max-w-lg w-full border-2 border-terracotta rounded-2xl shadow-2xl p-8 max-h-[90vh] overflow-y-auto flex flex-col justify-between">
+      
+      <div>
+        <div class="flex items-center gap-3 border-b border-forest/10 pb-4 mb-6">
+          <div class="h-10 w-10 bg-terracotta/10 text-terracotta rounded-full flex items-center justify-center font-bold text-lg">
+            🛡️
+          </div>
+          <h3 id="consentModalTitle" class="text-xl sm:text-2xl font-bold text-forest font-serif" data-i18n="consentTitle">Data Privacy & Consent Gate</h3>
+        </div>
+
+        <div class="space-y-4 text-xs sm:text-sm text-charcoal/80 leading-relaxed">
+          <p data-i18n="consentDesc">
+            Before accessing the Buffalo Back Collective system dashboard, please review and accept our data handling policies. We process farmer coordinates, transaction details, and bio-lab records strictly to enhance community livelihoods and soil health analytics.
+          </p>
+          <div class="bg-sand p-4 rounded-xl border border-forest/5 flex items-start gap-3">
+            <span class="text-terracotta text-sm">💡</span>
+            <p data-i18n="consentAadhaarNotice" class="text-xs text-charcoal/70">
+              Your personal credentials are masked at the API boundary and stored in compliance with local secure storage standards.
+            </p>
+          </div>
+          <div class="border-t border-forest/5 pt-4">
+            <p class="text-[10px] text-charcoal/50 leading-relaxed">
+              Acceptance of this agreement registers a secure, permanent, cryptographic audit trail (`privacyAcceptedAt`) with our decentralized verification node.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-forest/10 pt-6">
+        <label class="flex items-start gap-3 cursor-pointer select-none mb-4">
+          <input type="checkbox" id="consentCheckbox" class="h-5 w-5 rounded border-forest/20 text-forest focus:ring-forest mt-0.5">
+          <span data-i18n="consentAccept" class="text-xs sm:text-sm font-semibold text-charcoal">
+            I accept the data-handling agreement and privacy terms.
+          </span>
+        </label>
+
+        <button id="consentSubmitBtn" 
+                class="w-full py-3 bg-forest text-cream hover:bg-moss rounded-xl font-bold text-sm shadow-md hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-forest" data-i18n="consentSubmit">
+          Proceed to Dashboard
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Include App Scripts -->
+  <script src="./locales.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
