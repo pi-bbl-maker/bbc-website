@@ -22,7 +22,7 @@
   <!-- Google Fonts: Nunito & Lato -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -33,11 +33,12 @@
           colors: {
             forest: '#111111',
             moss: '#222222',
-            terracotta: '#8C5A4A',
-            sand: '#F9F9F9',
+            terracotta: '#C86D51',
+            sand: '#F9F9F7',
             cream: '#FFFFFF',
-            charcoal: '#111111',
-            accentGreen: '#3B6E4C',
+            charcoal: '#0A0A0A',
+            bodyText: '#333333',
+            accentGreen: '#1C382B',
             accentBrown: '#8C5A4A',
             accentPink: '#D98A8A',
             accentYellow: '#D8A24A',
@@ -55,10 +56,11 @@
     body {
       font-family: 'Lato', sans-serif;
       background-color: #FFFFFF;
-      color: #111111;
+      color: #333333;
     }
     h1, h2, h3, h4, .font-heading-custom {
       font-family: 'Nunito', sans-serif;
+      color: #0A0A0A;
     }
     .fade-in-up {
       animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -110,7 +112,7 @@
         <a href="#whyWeExistSection" data-i18n="navConsumer" class="text-neutral-500 hover:text-charcoal transition focus:outline-none">Why We Exist</a>
         <a href="#howWeWorkSection" data-i18n="navLab" class="text-neutral-500 hover:text-charcoal transition focus:outline-none">How We Work</a>
         <a href="#entitiesSection" data-i18n="navEnterprises" class="text-neutral-500 hover:text-charcoal transition focus:outline-none">Our 5 Entities</a>
-        <a href="#teamSection" data-i18n="navLabs" class="text-neutral-500 hover:text-charcoal transition focus:outline-none">Team & Leadership</a>
+        <a href="#teamSection" data-i18n="navLabs" class="text-neutral-500 hover:text-charcoal transition focus:outline-none">Stewardship</a>
       </nav>
 
       <!-- Desktop Global Actions -->
@@ -201,7 +203,7 @@
         <a href="#whyWeExistSection" onclick="toggleMobileMenu()" data-i18n="navConsumer" class="text-neutral-500 hover:text-charcoal transition">Why We Exist</a>
         <a href="#howWeWorkSection" onclick="toggleMobileMenu()" data-i18n="navLab" class="text-neutral-500 hover:text-charcoal transition">How We Work</a>
         <a href="#entitiesSection" onclick="toggleMobileMenu()" data-i18n="navEnterprises" class="text-neutral-500 hover:text-charcoal transition">Our 5 Entities</a>
-        <a href="#teamSection" onclick="toggleMobileMenu()" data-i18n="navLabs" class="text-neutral-500 hover:text-charcoal transition">Team & Leadership</a>
+        <a href="#teamSection" onclick="toggleMobileMenu()" data-i18n="navLabs" class="text-neutral-500 hover:text-charcoal transition">Stewardship</a>
       </nav>
     </div>
 
@@ -238,7 +240,7 @@
   <main class="flex-grow">
     
     <!-- Hero Section -->
-    <section id="aboutSection" class="relative bg-white py-24 sm:py-32 border-b border-neutral-100 overflow-hidden">
+    <section id="aboutSection" class="relative bg-white py-24 sm:py-32 border-b border-neutral-200 overflow-hidden">
       <!-- Botanical Watermark -->
       <div class="absolute top-10 right-0 lg:right-10 w-72 h-72 pointer-events-none opacity-20 lg:opacity-30">
         <svg viewBox="0 0 100 100" class="w-full h-full text-neutral-300 stroke-current" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -265,12 +267,12 @@
         <div class="max-w-3xl fade-in-up text-left">
           
           <!-- Badge -->
-          <span data-i18n="heroBadge" class="text-xs font-extrabold tracking-widest text-accentGreen uppercase mb-5 block">
+          <span data-i18n="heroBadge" class="text-xs font-black tracking-widest text-accentGreen uppercase mb-5 block">
             Agroecology • Community • Systems
           </span>
           
           <!-- Headline -->
-          <h1 data-i18n="heroHeadline" class="text-4xl sm:text-5xl lg:text-6xl font-light text-charcoal leading-tight tracking-tight mb-8 font-heading">
+          <h1 data-i18n="heroHeadline" class="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0A0A0A] leading-tight tracking-tight mb-8 font-heading">
             Restoring Soil. Empowering Women. Building Fair Food Systems.
           </h1>
           
@@ -282,11 +284,11 @@
           <!-- Action Buttons -->
           <div class="flex flex-wrap gap-4">
             <a href="#whyWeExistSection" id="exploreEcosystemBtn" 
-               class="px-6 py-3 text-xs font-bold uppercase tracking-wider bg-charcoal text-white hover:bg-neutral-800 rounded transition-all focus:outline-none" data-i18n="btnExplore">
+               class="px-6 py-3 text-xs font-bold uppercase tracking-wider bg-[#0A0A0A] text-white hover:bg-neutral-800 rounded transition-all focus:outline-none" data-i18n="btnExplore">
               Explore the Ecosystem
             </a>
             <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" 
-               class="px-6 py-3 text-xs font-bold uppercase tracking-wider border border-neutral-200 text-charcoal hover:bg-neutral-50 rounded transition-all focus:outline-none" data-i18n="btnVisitStore">
+               class="px-6 py-3 text-xs font-bold uppercase tracking-wider border border-neutral-200 text-[#0A0A0A] hover:bg-neutral-50 rounded transition-all focus:outline-none" data-i18n="btnVisitStore">
               Visit Store & Events
             </a>
           </div>
@@ -295,11 +297,11 @@
     </section>
 
     <!-- Section 01 / Why We Exist -->
-    <section id="whyWeExistSection" class="bg-white py-24 border-b border-neutral-100 scroll-mt-20">
+    <section id="whyWeExistSection" class="bg-[#F9F9F7] py-24 border-b border-neutral-200 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="mb-16 border-b border-neutral-100 pb-6">
-          <h2 data-i18n="whyWeExistTitle" class="text-2xl sm:text-3xl font-light text-charcoal font-heading mb-2">
+        <div class="mb-16 border-b border-neutral-200 pb-6">
+          <h2 data-i18n="whyWeExistTitle" class="text-2xl sm:text-3xl font-black text-[#0A0A0A] font-heading mb-2">
             Why We Exist
           </h2>
           <p data-i18n="whyWeExistSub" class="text-sm text-neutral-500 font-light">
@@ -311,24 +313,24 @@
           
           <!-- Challenge 1 -->
           <div class="border-l-[2.5px] border-accentGreen pl-6">
-            <h3 data-i18n="whyChallenge1Title" class="text-base font-bold text-charcoal font-heading mb-2">Soil & Ecological Degradation</h3>
-            <p data-i18n="whyChallenge1Body" class="text-xs text-neutral-500 leading-relaxed font-light">
+            <h3 data-i18n="whyChallenge1Title" class="text-base font-extrabold text-[#0A0A0A] font-heading mb-2">Soil & Ecological Degradation</h3>
+            <p data-i18n="whyChallenge1Body" class="text-xs text-[#333333] leading-relaxed font-light">
               Industrial farming depletes soil health, pollutes local watersheds, and destroys vital native seed biodiversity.
             </p>
           </div>
 
           <!-- Challenge 2 -->
           <div class="border-l-[2.5px] border-accentBrown pl-6">
-            <h3 data-i18n="whyChallenge2Title" class="text-base font-bold text-charcoal font-heading mb-2">Middlemen Exploitation</h3>
-            <p data-i18n="whyChallenge2Body" class="text-xs text-neutral-500 leading-relaxed font-light">
+            <h3 data-i18n="whyChallenge2Title" class="text-base font-extrabold text-[#0A0A0A] font-heading mb-2">Middlemen Exploitation</h3>
+            <p data-i18n="whyChallenge2Body" class="text-xs text-[#333333] leading-relaxed font-light">
               Opaque value chains siphon profits away from growers, leaving smallholders economically vulnerable.
             </p>
           </div>
 
           <!-- Challenge 3 -->
           <div class="border-l-[2.5px] border-accentPink pl-6">
-            <h3 data-i18n="whyChallenge3Title" class="text-base font-bold text-charcoal font-heading mb-2">Marginalization of Women</h3>
-            <p data-i18n="whyChallenge3Body" class="text-xs text-neutral-500 leading-relaxed font-light">
+            <h3 data-i18n="whyChallenge3Title" class="text-base font-extrabold text-[#0A0A0A] font-heading mb-2">Marginalization of Women</h3>
+            <p data-i18n="whyChallenge3Body" class="text-xs text-[#333333] leading-relaxed font-light">
               Women farmers perform the majority of agricultural labor yet are systematically excluded from land ownership and decision-making.
             </p>
           </div>
@@ -339,11 +341,11 @@
     </section>
 
     <!-- Section 02 / How We Work (Guiding Principles) -->
-    <section id="howWeWorkSection" class="bg-white py-24 border-b border-neutral-100 scroll-mt-20">
+    <section id="howWeWorkSection" class="bg-white py-24 border-b border-neutral-200 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="mb-16 border-b border-neutral-100 pb-6">
-          <h2 data-i18n="howWeWorkTitle" class="text-2xl sm:text-3xl font-light text-charcoal font-heading mb-2">
+        <div class="mb-16 border-b border-neutral-200 pb-6">
+          <h2 data-i18n="howWeWorkTitle" class="text-2xl sm:text-3xl font-black text-[#0A0A0A] font-heading mb-2">
             How We Work
           </h2>
           <p data-i18n="howWeWorkSub" class="text-sm text-neutral-500 font-light">
@@ -359,7 +361,7 @@
             <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
               <div class="sm:w-1/3 flex items-center gap-3">
                 <span class="h-3 w-3 rounded-full border-[2.5px] border-accentGreen bg-transparent flex-shrink-0" aria-hidden="true"></span>
-                <h3 data-i18n="principle1Title" class="text-base font-bold text-charcoal font-heading">Agroecology First</h3>
+                <h3 data-i18n="principle1Title" class="text-base font-extrabold text-[#0A0A0A] font-heading">Agroecology First</h3>
               </div>
               <div class="sm:w-2/3">
                 <p data-i18n="principle1Body" class="text-sm text-neutral-500 font-light leading-relaxed">
@@ -372,7 +374,7 @@
             <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
               <div class="sm:w-1/3 flex items-center gap-3">
                 <span class="h-3 w-3 rounded-full border-[2.5px] border-accentBrown bg-transparent flex-shrink-0" aria-hidden="true"></span>
-                <h3 data-i18n="principle2Title" class="text-base font-bold text-charcoal font-heading">Fair Price Models</h3>
+                <h3 data-i18n="principle2Title" class="text-base font-extrabold text-[#0A0A0A] font-heading">Fair Price Models</h3>
               </div>
               <div class="sm:w-2/3">
                 <p data-i18n="principle2Body" class="text-sm text-neutral-500 font-light leading-relaxed">
@@ -385,7 +387,7 @@
             <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
               <div class="sm:w-1/3 flex items-center gap-3">
                 <span class="h-3 w-3 rounded-full border-[2.5px] border-accentPink bg-transparent flex-shrink-0" aria-hidden="true"></span>
-                <h3 data-i18n="principle3Title" class="text-base font-bold text-charcoal font-heading">Women-Led Growth</h3>
+                <h3 data-i18n="principle3Title" class="text-base font-extrabold text-[#0A0A0A] font-heading">Women-Led Growth</h3>
               </div>
               <div class="sm:w-2/3">
                 <p data-i18n="principle3Body" class="text-sm text-neutral-500 font-light leading-relaxed">
@@ -398,7 +400,7 @@
             <div class="py-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
               <div class="sm:w-1/3 flex items-center gap-3">
                 <span class="h-3 w-3 rounded-full border-[2.5px] border-accentYellow bg-transparent flex-shrink-0" aria-hidden="true"></span>
-                <h3 data-i18n="principle4Title" class="text-base font-bold text-charcoal font-heading">Tech with Intent</h3>
+                <h3 data-i18n="principle4Title" class="text-base font-extrabold text-[#0A0A0A] font-heading">Tech with Intent</h3>
               </div>
               <div class="sm:w-2/3">
                 <p data-i18n="principle4Body" class="text-sm text-neutral-500 font-light leading-relaxed">
@@ -435,11 +437,11 @@
     </section>
 
     <!-- Section 03 / Our 5 Ecosystem Entities -->
-    <section id="entitiesSection" class="py-24 sm:py-32 bg-white border-b border-neutral-100 scroll-mt-20">
+    <section id="entitiesSection" class="py-24 sm:py-32 bg-white border-b border-neutral-200 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="mb-16 border-b border-neutral-100 pb-6">
-          <h2 data-i18n="summaryTitle" class="text-2xl sm:text-3xl font-light text-charcoal font-heading">
+        <div class="mb-16 border-b border-neutral-200 pb-6">
+          <h2 data-i18n="summaryTitle" class="text-2xl sm:text-3xl font-black text-[#0A0A0A] font-heading">
             Our 5 Entities
           </h2>
         </div>
@@ -447,10 +449,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           
           <!-- Entity 1: BBCF (Accent Green Top) -->
-          <article class="flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full border border-neutral-200 hover:border-neutral-300 p-6 rounded-xl shadow-sm transition-all bg-white">
             <div>
               <div class="mb-4">
-                <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#3B6E4C]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#1C382B]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12,22 C12,22 12,14 12,10" />
                   <path d="M12,12 C9.5,9.5 7,10 7,6 C7,2 12,5 12,5" />
                   <path d="M12,12 C14.5,9.5 17,10 17,6 C17,2 12,5 12,5" />
@@ -458,20 +460,20 @@
                 </svg>
               </div>
               <div class="h-[2.5px] w-full bg-accentGreen mb-6"></div>
-              <h3 data-i18n="pillar1Title" class="text-base font-bold text-charcoal font-heading mb-1">Buffalo Back Consumer Federation (BBCF)</h3>
-              <p data-i18n="pillar1Sub" class="text-[10px] font-bold tracking-wider text-accentGreen uppercase mb-3">Urban Community, Curation & Market Access</p>
-              <p data-i18n="pillar1Body" class="text-xs text-neutral-500 leading-relaxed font-light mb-6">
+              <h3 data-i18n="pillar1Title" class="text-base font-extrabold text-[#0A0A0A] font-heading mb-1 leading-snug">Buffalo Back Consumer Federation (BBCF)</h3>
+              <p data-i18n="pillar1Sub" class="text-[9px] font-black tracking-widest text-accentGreen uppercase mb-3">Urban Community, Curation & Market Access</p>
+              <p data-i18n="pillar1Body" class="text-xs text-[#333333] leading-relaxed font-light mb-6">
                 The urban-facing customer arm of the collective. Connects conscious consumers directly with a large network of organic smallholders and native seed savers. Focuses on community building, outreach, and curating native crop varieties through transparent market platforms.
               </p>
             </div>
             <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" 
-               data-i18n="pillar1Cta" class="inline-flex items-center text-xs font-bold text-charcoal hover:text-accentGreen transition duration-200 mt-auto">
+               data-i18n="pillar1Cta" class="inline-flex items-center text-xs font-bold text-[#0A0A0A] hover:text-accentGreen transition duration-200 mt-auto">
               Visit buffaloback.in (eStore) →
             </a>
           </article>
 
           <!-- Entity 2: 16 Doddi Trust (Accent Brown Top) -->
-          <article class="flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full border border-neutral-200 hover:border-neutral-300 p-6 rounded-xl shadow-sm transition-all bg-white">
             <div>
               <div class="mb-4">
                 <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#8C5A4A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -481,20 +483,20 @@
                 </svg>
               </div>
               <div class="h-[2.5px] w-full bg-accentBrown mb-6"></div>
-              <h3 data-i18n="pillar2Title" class="text-base font-bold text-charcoal font-heading mb-1">16 Doddi Trust</h3>
-              <p data-i18n="pillar2Sub" class="text-[10px] font-bold tracking-wider text-accentBrown uppercase mb-3">Bio-Regional Living Lab (Ragihalli)</p>
-              <p data-i18n="pillar2Body" class="text-xs text-neutral-500 leading-relaxed font-light mb-6">
+              <h3 data-i18n="pillar2Title" class="text-base font-extrabold text-[#0A0A0A] font-heading mb-1 leading-snug">16 Doddi Trust</h3>
+              <p data-i18n="pillar2Sub" class="text-[9px] font-black tracking-widest text-accentBrown uppercase mb-3">Bio-Regional Living Lab (Ragihalli)</p>
+              <p data-i18n="pillar2Body" class="text-xs text-[#333333] leading-relaxed font-light mb-6">
                 Our place-based living lab in Ragihalli. Functions as the grounded anchor for agroecological interventions, rural circular economies, local education, health, women's leadership, and sustainable community livelihoods.
               </p>
             </div>
             <a href="https://16dodditrust.org" target="_blank" rel="noopener noreferrer" 
-               data-i18n="pillar2Cta" class="inline-flex items-center text-xs font-bold text-charcoal hover:text-accentBrown transition duration-200 mt-auto">
+               data-i18n="pillar2Cta" class="inline-flex items-center text-xs font-bold text-[#0A0A0A] hover:text-accentBrown transition duration-200 mt-auto">
               Learn About 16 Doddi Trust →
             </a>
           </article>
 
           <!-- Entity 3: Community Enterprises (Accent Pink Top) -->
-          <article class="flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full border border-neutral-200 hover:border-neutral-300 p-6 rounded-xl shadow-sm transition-all bg-white">
             <div>
               <div class="mb-4">
                 <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#D98A8A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -504,31 +506,31 @@
                 </svg>
               </div>
               <div class="h-[2.5px] w-full bg-accentPink mb-6"></div>
-              <h3 data-i18n="pillar3Title" class="text-base font-bold text-charcoal font-heading mb-1">Community Enterprises</h3>
-              <p data-i18n="pillar3Sub" class="text-[10px] font-bold tracking-wider text-accentPink uppercase mb-3">Grassroots Incubations & Livelihood Units</p>
-              <p class="text-xs text-neutral-500 leading-relaxed font-light mb-4" data-i18n="pillar3Body">
+              <h3 data-i18n="pillar3Title" class="text-base font-extrabold text-[#0A0A0A] font-heading mb-1 leading-snug">Community Enterprises</h3>
+              <p data-i18n="pillar3Sub" class="text-[9px] font-black tracking-widest text-accentPink uppercase mb-3">Grassroots Incubations & Livelihood Units</p>
+              <p class="text-xs text-[#333333] leading-relaxed font-light mb-4" data-i18n="pillar3Body">
                 Independent commercial enterprises nurtured by the collective:
               </p>
               <!-- Sub-units -->
               <div class="space-y-4 mb-6 pt-2">
-                <div class="border-l border-neutral-100 pl-3">
-                  <h4 data-i18n="pillar3Item1Title" class="text-xs font-bold text-charcoal">Ragihalli Collective</h4>
-                  <p data-i18n="pillar3Item1Body" class="text-[11px] text-neutral-400 font-light mt-0.5">Farm-to-table bakery and catering canteen serving regional markets and events with clean local produce.</p>
+                <div class="border-l border-neutral-200 pl-3">
+                  <h4 data-i18n="pillar3Item1Title" class="text-xs font-extrabold text-[#0A0A0A]">Ragihalli Collective</h4>
+                  <p data-i18n="pillar3Item1Body" class="text-[11px] text-neutral-500 font-light mt-0.5">Farm-to-table bakery and catering canteen serving regional markets and events with clean local produce.</p>
                 </div>
-                <div class="border-l border-neutral-100 pl-3">
-                  <h4 data-i18n="pillar3Item2Title" class="text-xs font-bold text-charcoal">Kai Thota</h4>
-                  <p data-i18n="pillar3Item2Body" class="text-[11px] text-neutral-400 font-light mt-0.5">A community-supported initiative empowering women farmers with collective tools, decentralized production support, and market integration.</p>
+                <div class="border-l border-neutral-200 pl-3">
+                  <h4 data-i18n="pillar3Item2Title" class="text-xs font-extrabold text-[#0A0A0A]">Kai Thota</h4>
+                  <p data-i18n="pillar3Item2Body" class="text-[11px] text-neutral-500 font-light mt-0.5">A community-supported initiative empowering women farmers with collective tools, decentralized production support, and market integration.</p>
                 </div>
               </div>
             </div>
             <button onclick="showLoginModal()" 
-               data-i18n="pillar3Cta" class="w-fit inline-flex items-center text-xs font-bold text-charcoal hover:text-accentPink transition duration-200 mt-auto text-left">
+               data-i18n="pillar3Cta" class="w-fit inline-flex items-center text-xs font-bold text-[#0A0A0A] hover:text-accentPink transition duration-200 mt-auto text-left">
               Explore Enterprise Projects →
             </button>
           </article>
 
           <!-- Entity 4: Buffalo Back Labs (BBL) (Accent Yellow Top) -->
-          <article class="flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full border border-neutral-200 hover:border-neutral-300 p-6 rounded-xl shadow-sm transition-all bg-white">
             <div>
               <div class="mb-4">
                 <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#D8A24A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -548,20 +550,20 @@
                 </svg>
               </div>
               <div class="h-[2.5px] w-full bg-accentYellow mb-6"></div>
-              <h3 data-i18n="pillar4Title" class="text-base font-bold text-charcoal font-heading mb-1">Buffalo Back Labs (BBL)</h3>
-              <p data-i18n="pillar4Sub" class="text-[10px] font-bold tracking-wider text-accentYellow uppercase mb-3">Systems, AgTech & Analytics</p>
-              <p data-i18n="pillar4Body" class="text-xs text-neutral-500 leading-relaxed font-light mb-6">
+              <h3 data-i18n="pillar4Title" class="text-base font-extrabold text-[#0A0A0A] font-heading mb-1 leading-snug">Buffalo Back Labs (BBL)</h3>
+              <p data-i18n="pillar4Sub" class="text-[9px] font-black tracking-widest text-accentYellow uppercase mb-3">Systems, AgTech & Analytics</p>
+              <p data-i18n="pillar4Body" class="text-xs text-[#333333] leading-relaxed font-light mb-6">
                 The technology and infrastructure engine of the collective. Engineers open platforms, data analytics, and supply chain tools designed to scale agroecological value chains for smallholders and partner networks.
               </p>
             </div>
             <a href="https://buffalobacklabs.com" target="_blank" rel="noopener noreferrer" 
-               data-i18n="pillar4Cta" class="inline-flex items-center text-xs font-bold text-charcoal hover:text-accentYellow transition duration-200 mt-auto">
+               data-i18n="pillar4Cta" class="inline-flex items-center text-xs font-bold text-[#0A0A0A] hover:text-accentYellow transition duration-200 mt-auto">
               Visit buffalobacklabs.com →
             </a>
           </article>
 
           <!-- Entity 5: PGSOC (Accent Yellow Top) -->
-          <article class="flex flex-col justify-between h-full">
+          <article class="flex flex-col justify-between h-full border border-neutral-200 hover:border-neutral-300 p-6 rounded-xl shadow-sm transition-all bg-white">
             <div>
               <div class="mb-4">
                 <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#D8A24A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -570,14 +572,14 @@
                 </svg>
               </div>
               <div class="h-[2.5px] w-full bg-accentYellow mb-6"></div>
-              <h3 data-i18n="pillar5Title" class="text-base font-bold text-charcoal font-heading mb-1">PGSOC</h3>
-              <p data-i18n="pillar5Sub" class="text-[10px] font-bold tracking-wider text-accentYellow uppercase mb-3">Organic Certification & Quality Assurance</p>
-              <p data-i18n="pillar5Body" class="text-xs text-neutral-500 leading-relaxed font-light mb-6">
+              <h3 data-i18n="pillar5Title" class="text-base font-extrabold text-[#0A0A0A] font-heading mb-1 leading-snug">PGSOC</h3>
+              <p data-i18n="pillar5Sub" class="text-[9px] font-black tracking-widest text-accentYellow uppercase mb-3">Organic Certification & Quality Assurance</p>
+              <p data-i18n="pillar5Body" class="text-xs text-[#333333] leading-relaxed font-light mb-6">
                 A peer-review certification framework that supports smallholder organic farmers with accessible, community-driven organic verification, guaranteeing ecological integrity without cost-prohibitive third-party barriers.
               </p>
             </div>
             <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" 
-               data-i18n="pillar5Cta" class="inline-flex items-center text-xs font-bold text-charcoal hover:text-accentYellow transition duration-200 mt-auto">
+               data-i18n="pillar5Cta" class="inline-flex items-center text-xs font-bold text-[#0A0A0A] hover:text-accentYellow transition duration-200 mt-auto">
               Learn about PGSOC Certification →
             </a>
           </article>
@@ -586,54 +588,58 @@
       </div>
     </section>
 
-    <!-- Section 04 / Team & Leadership -->
-    <section id="teamSection" class="bg-white py-24 border-b border-neutral-100 scroll-mt-20">
+    <!-- Section 04 / Team & Stewardship (No Designations - Blurbs Only) -->
+    <section id="teamSection" class="bg-[#F9F9F7] py-24 border-b border-neutral-200 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="mb-16 border-b border-neutral-100 pb-6">
-          <h2 data-i18n="teamTitle" class="text-2xl sm:text-3xl font-light text-charcoal font-heading mb-2">
-            Team & Leadership
+        <div class="mb-16 border-b border-neutral-200 pb-6">
+          <h2 data-i18n="teamTitle" class="text-2xl sm:text-3xl font-black text-[#0A0A0A] font-heading mb-2">
+            Team & Stewardship
           </h2>
           <p data-i18n="teamSub" class="text-sm text-neutral-500 font-light">
-            Meet the directors, field coordinators, seed custodians, and architects steering the collective.
+            Our core focus areas and stewardship practices driving the collective.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           
-          <!-- Member 1 -->
-          <div class="border-t border-neutral-100 pt-6">
-            <span data-i18n="teamRole1" class="text-[9px] font-bold text-neutral-400 uppercase tracking-wider block">Executive Director</span>
-            <h3 data-i18n="teamMember1Name" class="text-base font-bold text-charcoal font-heading mt-1">Madhu</h3>
-            <p data-i18n="teamMember1Desc" class="text-xs text-neutral-500 font-light leading-relaxed mt-2">
-              Steering bio-regional strategy, policy operations, and community advocacy.
+          <!-- Focus Area 1 -->
+          <div class="border-t border-neutral-200 pt-6">
+            <h3 data-i18n="teamFocus1Title" class="text-sm font-extrabold text-[#0A0A0A] font-heading mb-2 leading-snug">Strategy, Vision & Agroecology</h3>
+            <p data-i18n="teamFocus1Body" class="text-xs text-[#333333] leading-relaxed font-light">
+              Guiding the overarching direction of the collective, aligning field operations with fair-trade ethics and long-term ecological resilience.
             </p>
           </div>
 
-          <!-- Member 2 -->
-          <div class="border-t border-neutral-100 pt-6">
-            <span data-i18n="teamRole2" class="text-[9px] font-bold text-neutral-400 uppercase tracking-wider block">Ragihalli Field Coordinator</span>
-            <h3 data-i18n="teamMember2Name" class="text-base font-bold text-charcoal font-heading mt-1">Kempamma</h3>
-            <p data-i18n="teamMember2Desc" class="text-xs text-neutral-500 font-light leading-relaxed mt-2">
-              Overseeing day-to-day agroecology training and women's self-help groups.
+          <!-- Focus Area 2 -->
+          <div class="border-t border-neutral-200 pt-6">
+            <h3 data-i18n="teamFocus2Title" class="text-sm font-extrabold text-[#0A0A0A] font-heading mb-2 leading-snug">Field Stewardship & Living Lab (Ragihalli)</h3>
+            <p data-i18n="teamFocus2Body" class="text-xs text-[#333333] leading-relaxed font-light">
+              Anchoring community healthcare, local education, and women-led circular economy initiatives on the ground.
             </p>
           </div>
 
-          <!-- Member 3 -->
-          <div class="border-t border-neutral-100 pt-6">
-            <span data-i18n="teamRole3" class="text-[9px] font-bold text-neutral-400 uppercase tracking-wider block">Seed Custodian</span>
-            <h3 data-i18n="teamMember3Name" class="text-base font-bold text-charcoal font-heading mt-1">Gowramma</h3>
-            <p data-i18n="teamMember3Desc" class="text-xs text-neutral-500 font-light leading-relaxed mt-2">
-              Leading native seed multiplication, seed swaps, and biodiversity indexing.
+          <!-- Focus Area 3 -->
+          <div class="border-t border-neutral-200 pt-6">
+            <h3 data-i18n="teamFocus3Title" class="text-sm font-extrabold text-[#0A0A0A] font-heading mb-2 leading-snug">AgTech & Systems Architecture (BBL)</h3>
+            <p data-i18n="teamFocus3Body" class="text-xs text-[#333333] leading-relaxed font-light">
+              Engineering open-source data tools, supply chain traceability, and digital infrastructure for smallholders.
             </p>
           </div>
 
-          <!-- Member 4 -->
-          <div class="border-t border-neutral-100 pt-6">
-            <span data-i18n="teamRole4" class="text-[9px] font-bold text-neutral-400 uppercase tracking-wider block">AgTech Architect</span>
-            <h3 data-i18n="teamMember4Name" class="text-base font-bold text-charcoal font-heading mt-1">Preethy</h3>
-            <p data-i18n="teamMember4Desc" class="text-xs text-neutral-500 font-light leading-relaxed mt-2">
-              Designing decentralized crop ledgers and soil telemetry systems.
+          <!-- Focus Area 4 -->
+          <div class="border-t border-neutral-200 pt-6">
+            <h3 data-i18n="teamFocus4Title" class="text-sm font-extrabold text-[#0A0A0A] font-heading mb-2 leading-snug">Community Enterprises & Livelihoods</h3>
+            <p data-i18n="teamFocus4Body" class="text-xs text-[#333333] leading-relaxed font-light">
+              Supporting the growth of self-sustaining community businesses like the Ragihalli Collective bakery and Kai Thota.
+            </p>
+          </div>
+
+          <!-- Focus Area 5 -->
+          <div class="border-t border-neutral-200 pt-6">
+            <h3 data-i18n="teamFocus5Title" class="text-sm font-extrabold text-[#0A0A0A] font-heading mb-2 leading-snug">Native Seed Custodians & Field Leaders</h3>
+            <p data-i18n="teamFocus5Body" class="text-xs text-[#333333] leading-relaxed font-light">
+              Local women practitioners leading seed saving, soil health tracking, and farmer peer networks.
             </p>
           </div>
 
@@ -642,12 +648,68 @@
       </div>
     </section>
 
-    <!-- Field Impact Section (Voices from the Ground) -->
-    <section class="bg-white py-24 border-b border-neutral-100 scroll-mt-20">
+    <!-- Section 05 / Aggregated Ecosystem Journal & Updates -->
+    <section id="journalSection" class="bg-white py-24 border-b border-neutral-200 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="mb-16 border-b border-neutral-100 pb-6">
-          <h2 class="text-2xl sm:text-3xl font-light text-charcoal font-heading mb-2">
+        <div class="mb-16 border-b border-neutral-200 pb-6">
+          <h2 data-i18n="journalTitle" class="text-2xl sm:text-3xl font-black text-[#0A0A0A] font-heading mb-2">
+            Ecosystem Journal
+          </h2>
+          <p data-i18n="journalSub" class="text-sm text-neutral-500 font-light">
+            Latest stories, research, and field updates from across our entities.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Journal Entry 1 -->
+          <article class="border border-neutral-200 p-6 rounded-xl flex flex-col justify-between hover:border-neutral-300 transition-all bg-white shadow-sm">
+            <div>
+              <span data-i18n="journalItem1Tag" class="text-[9px] font-extrabold uppercase tracking-widest text-[#1C382B] mb-3 block">Field Notes (16 Doddi Trust)</span>
+              <h3 data-i18n="journalItem1Title" class="text-base font-extrabold text-[#0A0A0A] font-heading leading-snug mb-3">Restoring Native Millet Strains in Ragihalli Soil</h3>
+              <p data-i18n="journalItem1Body" class="text-xs text-[#333333] leading-relaxed font-light mb-6">
+                Documenting soil microbial recovery and nitrogen fixation patterns across our test beds during the seasonal finger millet transplanting phase.
+              </p>
+            </div>
+            <a href="https://16dodditrust.org" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-[#0A0A0A] hover:text-[#1C382B] transition-all">Read Story →</a>
+          </article>
+
+          <!-- Journal Entry 2 -->
+          <article class="border border-neutral-200 p-6 rounded-xl flex flex-col justify-between hover:border-neutral-300 transition-all bg-white shadow-sm">
+            <div>
+              <span data-i18n="journalItem2Tag" class="text-[9px] font-extrabold uppercase tracking-widest text-[#D98A8A] mb-3 block">Market & Seed Swaps (BBCF)</span>
+              <h3 data-i18n="journalItem2Title" class="text-base font-extrabold text-[#0A0A0A] font-heading leading-snug mb-3">Monthly Urban Farmer Market & Native Seed Exchange Updates</h3>
+              <p data-i18n="journalItem2Body" class="text-xs text-[#333333] leading-relaxed font-light mb-6">
+                Connecting urban communities directly with heritage seed savers and facilitating organic grain bookings for the upcoming seasonal harvest.
+              </p>
+            </div>
+            <a href="https://buffaloback.in" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-[#0A0A0A] hover:text-[#D98A8A] transition-all">Read Story →</a>
+          </article>
+
+          <!-- Journal Entry 3 -->
+          <article class="border border-neutral-200 p-6 rounded-xl flex flex-col justify-between hover:border-neutral-300 transition-all bg-white shadow-sm">
+            <div>
+              <span data-i18n="journalItem3Tag" class="text-[9px] font-extrabold uppercase tracking-widest text-[#D8A24A] mb-3 block">AgTech Insights (Buffalo Back Labs)</span>
+              <h3 data-i18n="journalItem3Title" class="text-base font-extrabold text-[#0A0A0A] font-heading leading-snug mb-3">Open-Source Data Tools for Smallholder Value Chains</h3>
+              <p data-i18n="journalItem3Body" class="text-xs text-[#333333] leading-relaxed font-light mb-6">
+                Analyzing how decentralized digital ledgers secure crop tracking integrity and eliminate margin losses for women farmer collectives.
+              </p>
+            </div>
+            <a href="https://buffalobacklabs.com" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-[#0A0A0A] hover:text-[#D8A24A] transition-all">Read Story →</a>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 06 / Field Voices -->
+    <section class="bg-[#F9F9F7] py-24 border-b border-neutral-200 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-16 border-b border-neutral-200 pb-6">
+          <h2 class="text-2xl sm:text-3xl font-black text-[#0A0A0A] font-heading mb-2">
             Field Impact
           </h2>
           <p class="text-sm text-neutral-500 font-light">
@@ -657,7 +719,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
           
-          <!-- Impact Quote 1: Ragihalli Bio-Lab -->
+          <!-- Impact Quote 1 -->
           <div class="border-l-[2.5px] border-[#8C5A4A] pl-8 py-2">
             <blockquote class="text-base text-neutral-700 italic font-light leading-relaxed mb-4 font-body">
               "Preserving our native ragi and millet seeds is not just about farming; it is about keeping our soil alive, preserving our biodiversity, and ensuring our children's future health."
@@ -667,8 +729,8 @@
             </cite>
           </div>
 
-          <!-- Impact Quote 2: Kai Thota -->
-          <div class="border-l-[2.5px] border-[#3B6E4C] pl-8 py-2">
+          <!-- Impact Quote 2 -->
+          <div class="border-l-[2.5px] border-[#1C382B] pl-8 py-2">
             <blockquote class="text-base text-neutral-700 italic font-light leading-relaxed mb-4 font-body">
               "With real-time soil health tracking and digital crop mapping, we prove the organic integrity of our harvests, helping women smallholders command fair prices directly."
             </blockquote>
@@ -683,7 +745,7 @@
     </section>
 
     <!-- Client-Side Dashboard Section (Locked behind Auth) -->
-    <section id="dashboardSection" class="hidden py-24 bg-white border-b border-neutral-100 scroll-mt-20">
+    <section id="dashboardSection" class="hidden py-24 bg-white border-b border-neutral-200 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-100 pb-6 mb-12">
@@ -728,7 +790,7 @@
                   <span>- 18,200g</span>
                 </div>
                 <div class="h-px bg-neutral-200 my-2"></div>
-                <div class="flex justify-between text-accentGreen font-bold">
+                <div class="flex justify-between text-[#1C382B] font-bold">
                   <span>Available Pool:</span>
                   <span>26,800g</span>
                 </div>
@@ -804,12 +866,12 @@
       </div>
     </section>
 
-    <!-- Work With Us / Get Involved Section -->
-    <section id="getInvolvedSection" class="bg-white py-24 border-t border-neutral-100 scroll-mt-20">
+    <!-- Section 07 / Ways to Engage (CTAs) -->
+    <section id="getInvolvedSection" class="bg-white py-24 border-t border-neutral-200 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="mb-16 border-b border-neutral-100 pb-6">
-          <h2 class="text-2xl sm:text-3xl font-light text-charcoal font-heading mb-2">
+        <div class="mb-16 border-b border-neutral-200 pb-6">
+          <h2 class="text-2xl sm:text-3xl font-black text-[#0A0A0A] font-heading mb-2">
             Get Involved
           </h2>
           <p class="text-sm text-neutral-500 font-light">
@@ -820,7 +882,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           
           <!-- Track 1: Fund & Partner -->
-          <div class="flex flex-col justify-between h-full">
+          <div class="flex flex-col justify-between h-full border border-neutral-200 bg-white p-6 rounded-xl shadow-sm hover:border-neutral-300 transition-all">
             <div>
               <div class="mb-4">
                 <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#8C5A4A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -840,10 +902,10 @@
           </div>
 
           <!-- Track 2: Volunteer & Learn -->
-          <div class="flex flex-col justify-between h-full">
+          <div class="flex flex-col justify-between h-full border border-neutral-200 bg-white p-6 rounded-xl shadow-sm hover:border-neutral-300 transition-all">
             <div>
               <div class="mb-4">
-                <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#3B6E4C]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#1C382B]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M12 2a15 15 0 0 0-7.5 13c0 4.14 3.36 7.5 7.5 7.5s7.5-3.36 7.5-7.5A15 15 0 0 0 12 2z" />
                   <path d="M12 22V12" />
                   <path d="M12 12 Q8 10 8 8" />
@@ -862,7 +924,7 @@
           </div>
 
           <!-- Track 3: Shop & Support -->
-          <div class="flex flex-col justify-between h-full">
+          <div class="flex flex-col justify-between h-full border border-neutral-200 bg-white p-6 rounded-xl shadow-sm hover:border-neutral-300 transition-all">
             <div>
               <div class="mb-4">
                 <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#D98A8A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -883,7 +945,7 @@
           </div>
 
           <!-- Track 4: Join the Community -->
-          <div class="flex flex-col justify-between h-full">
+          <div class="flex flex-col justify-between h-full border border-neutral-200 bg-white p-6 rounded-xl shadow-sm hover:border-neutral-300 transition-all">
             <div>
               <div class="mb-4">
                 <svg viewBox="0 0 24 24" class="w-8 h-8 stroke-[#D8A24A]" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -913,7 +975,7 @@
   <!-- Footer -->
   <footer class="bg-white text-charcoal border-t border-neutral-100 py-16 relative z-10 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
         
         <!-- Summary / Brand -->
         <div class="flex flex-col gap-4">
@@ -960,6 +1022,37 @@
           <a href="mailto:weare@buffaloback.in" data-i18n="footerContactEmail" class="text-xs font-bold text-charcoal hover:underline">
             weare@buffaloback.in
           </a>
+        </div>
+
+        <!-- Social Channels -->
+        <div>
+          <h3 class="text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-4">Follow Our Work</h3>
+          <div class="flex gap-4">
+            <!-- Instagram -->
+            <a href="https://instagram.com/buffaloback" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-charcoal transition-all" aria-label="Instagram">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/buffaloback" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-charcoal transition-all" aria-label="LinkedIn">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://youtube.com/c/buffaloback" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-charcoal transition-all" aria-label="YouTube">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.107C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.388.511a3.002 3.002 0 0 0-2.11 2.107C0 8.053 0 12 0 12s0 3.947.502 5.837a3.003 3.003 0 0 0 2.11 2.107C4.495 20.455 12 20.455 12 20.455s7.505 0 9.388-.511a3.003 3.003 0 0 0 2.11-2.107C24 15.947 24 12 24 12s0-3.947-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <!-- X/Twitter -->
+            <a href="https://twitter.com/buffaloback" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-charcoal transition-all" aria-label="X (formerly Twitter)">
+              <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
       </div>
