@@ -72,6 +72,9 @@ const locales = {
     principle4Title: "Tech with Intent",
     principle4Body: "Digital tools designed to serve human networks and natural ecosystems.",
     
+    // Partners & Collaborators
+    collaboratorsTitle: "COLLABORATORS, TRUSTS & PARTNER NETWORK",
+    
     // Section 04: Team & Stewardship (Focus Blurbs Only)
     teamTitle: "Team & Stewardship",
     teamSub: "Our core focus areas and stewardship practices driving the collective.",
@@ -202,6 +205,9 @@ const locales = {
     principle4Title: "ಉದ್ದೇಶಪೂರ್ವಕ ತಂತ್ರಜ್ಞಾನ",
     principle4Body: "ಮಾನವ ನೆಟ್‌ವರ್ಕ್‌ಗಳು ಮತ್ತು ನೈಸರ್ಗಿಕ ಪರಿಸರ ವ್ಯವಸ್ಥೆಗಳಿಗೆ ಸೇವೆ ಸಲ್ಲಿಸಲು ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ಡಿಜಿಟಲ್ ಉಪಕರಣಗಳು.",
     
+    // Partners & Collaborators
+    collaboratorsTitle: "ಪಾಲುದಾರರು, ಟ್ರಸ್ಟ್‌ಗಳು ಮತ್ತು ಸಹಯೋಗಿಗಳ ನೆಟ್‌ವರ್ಕ್",
+    
     // Section 04: Team & Stewardship (Focus Blurbs Only)
     teamTitle: "ತಂಡ ಮತ್ತು ಉಸ್ತುವಾರಿ",
     teamSub: "ಕಲೆಕ್ಟಿವ್ ಅನ್ನು ಮುನ್ನಡೆಸುತ್ತಿರುವ ನಮ್ಮ ಗಮನ ಕ್ಷೇತ್ರಗಳು ಮತ್ತು ಉಸ್ತುವಾರಿ ಅಭ್ಯಾಸಗಳು.",
@@ -240,9 +246,9 @@ const locales = {
     authLogout: "ಲಾಗ್ ಔಟ್",
     authDashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     authAdminLabel: "ಅಡ್ಮಿನ್ ಮೋಡ್ ಸಕ್ರಿಯವಾಗಿದೆ",
-    authRoleUser: "ಪಾತ್ರ: ಬಳಕೆದಾರ",
-    authRoleAdmin: "ಪಾತ್ರ: ಅಡ್ಮಿನ್",
-    authSwitchRole: "ಪಾತ್ರ ಬದಲಾಯಿಸಿ",
+    authRoleUser: "Role: User",
+    authRoleAdmin: "Role: Admin",
+    authSwitchRole: "Switch Role",
     
     consentTitle: "ಡೇಟಾ ಗೌಪ್ಯತೆ ಮತ್ತು ಒಪ್ಪಿಗೆ ಗೇಟ್",
     consentDesc: "ಬಫಲೋ ಬ್ಯಾಕ್ ಕಲೆಕ್ಟಿವ್ ಸಿಸ್ಟಮ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ ಪ್ರವೇಶಿಸುವ ಮೊದಲು, ದಯವಿಟ್ಟು ನಮ್ಮ ಡೇಟಾ ನಿರ್ವಹಣೆ ನೀತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಒಪ್ಪಿಕೊಳ್ಳಿ. ನಾವು ರೈತರ ವಿವರಗಳು, ವಹಿವಾಟು ವಿವರಗಳು ಮತ್ತು ಬಯೋ-ಲ್ಯಾಬ್ ದಾಖಲೆಗಳನ್ನು ಕಟ್ಟುನಿಟ್ಟಾಗಿ ಸಮುದಾಯದ ಜೀವನೋಪಾಯ ಮತ್ತು ಮಣ್ಣಿನ ಆರೋಗ್ಯ ಅನಾಲಿಟಿಕ್ಸ್ ಹೆಚ್ಚಿಸಲು ಮಾತ್ರ ಬಳಸುತ್ತೇವೆ.",
