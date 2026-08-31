@@ -1,125 +1,80 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Database, TrendingUp, MessageSquareCode, Users, ArrowRightLeft, ArrowRight } from 'lucide-react';
 
 export default function Ecosystem() {
   const { t } = useLanguage();
 
   return (
-    <section id="ecosystem" className="bg-linen-light py-16 md:py-24 border-b border-linen-dark">
+    <section id="architecture" className="bg-[#FAF9F5] py-20 md:py-32 border-b border-earth/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto space-y-4 mb-16">
-          <span className="font-mono text-xs uppercase tracking-wider text-olive font-semibold">Dual-Engine Architecture</span>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-earth">
-            The Two-Part Ecosystem
+        <div className="space-y-4 mb-16 md:mb-24">
+          <div className="flex items-center space-x-2 text-olive font-mono text-xs uppercase tracking-[0.2em] font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-olive"></span>
+            <span>Platform Topology</span>
+          </div>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-earth">
+            {t('architecture.heading')}
           </h2>
-          <p className="text-sm md:text-base text-charcoal/70">
-            A cohesive stack that aggregates field data from remote plots and routes cash margins back to rural collectives.
+          <p className="text-base sm:text-lg text-charcoal/70 max-w-2xl font-light">
+            {t('architecture.tagline')}
           </p>
         </div>
 
-        {/* Side-by-Side Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch relative">
+        {/* Two-Column Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
           
-          {/* Connector Graphic for Desktop */}
-          <div className="hidden lg:flex absolute inset-0 items-center justify-center pointer-events-none z-10">
-            <div className="w-12 h-12 bg-linen rounded-full border border-earth/20 flex items-center justify-center shadow-sm">
-              <ArrowRightLeft className="w-5 h-5 text-earth" />
+          {/* Column 1: The Field Layer */}
+          <div className="flex flex-col space-y-6 md:space-y-8">
+            
+            {/* Visual Placeholder 2 */}
+            <div className="aspect-[4/3] w-full bg-[#EFE9E0] border border-earth/15 rounded flex items-center justify-center p-6 select-none">
+              <div className="max-w-xs text-center border border-dashed border-earth/20 p-4 rounded bg-linen/50">
+                <span className="font-mono text-[10px] uppercase text-earth/50 block mb-1">Visual Log // Field Layer</span>
+                <p className="font-mono text-xs text-earth/65 italic leading-relaxed">
+                  {t('architecture.fieldPlaceholder')}
+                </p>
+              </div>
             </div>
+
+            {/* Description Text */}
+            <div className="space-y-4">
+              <span className="font-mono text-xs uppercase tracking-wider text-olive font-semibold block">01 // Input Layer</span>
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-earth">
+                {t('architecture.fieldSub')}
+              </h3>
+              <p className="text-charcoal/85 leading-relaxed text-sm sm:text-base font-light">
+                {t('architecture.fieldCopy')}
+              </p>
+            </div>
+
           </div>
 
-          {/* Column A: The Field Layer (Data In) */}
-          <div className="lg:col-span-6 flex flex-col justify-between p-8 rounded-lg border border-earth/10 bg-[#FAF9F5] shadow-sm relative overflow-hidden group hover:border-olive/35 transition-all duration-300">
-            {/* Background Data Wave Accents */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-olive/5 rounded-bl-full pointer-events-none"></div>
-
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 rounded bg-olive/10 text-olive">
-                    <Database className="w-5 h-5" />
-                  </div>
-                  <span className="font-mono text-xs font-bold tracking-wider text-olive uppercase">
-                    {t('ecosystem.fieldTitle')}
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono text-olive/60 uppercase">Stream 01 // Input</span>
+          {/* Column 2: The Market Layer */}
+          <div className="flex flex-col space-y-6 md:space-y-8">
+            
+            {/* Visual Placeholder 3 */}
+            <div className="aspect-[4/3] w-full bg-[#EFE9E0] border border-earth/15 rounded flex items-center justify-center p-6 select-none">
+              <div className="max-w-xs text-center border border-dashed border-earth/20 p-4 rounded bg-linen/50">
+                <span className="font-mono text-[10px] uppercase text-earth/50 block mb-1">Visual Log // Market Layer</span>
+                <p className="font-mono text-xs text-earth/65 italic leading-relaxed">
+                  {t('architecture.marketPlaceholder')}
+                </p>
               </div>
+            </div>
 
+            {/* Description Text */}
+            <div className="space-y-4">
+              <span className="font-mono text-xs uppercase tracking-wider text-bblindigo font-semibold block">02 // Commerce Layer</span>
               <h3 className="font-serif text-2xl md:text-3xl font-bold text-earth">
-                {t('ecosystem.fieldSub')}
+                {t('architecture.marketSub')}
               </h3>
-
-              <p className="text-charcoal/80 leading-relaxed text-sm md:text-base">
-                {t('ecosystem.fieldCopy')}
+              <p className="text-charcoal/85 leading-relaxed text-sm sm:text-base font-light">
+                {t('architecture.marketCopy')}
               </p>
-
-              {/* Data In Flow Process */}
-              <div className="space-y-3 pt-4 border-t border-linen-dark">
-                <span className="text-[11px] font-mono font-bold text-earth uppercase tracking-wide block">Data Normalization Pipeline:</span>
-                
-                <div className="flex items-center space-x-3 text-xs text-charcoal/70">
-                  <span className="px-2 py-1 rounded bg-olive/10 font-mono text-olive">Voice Log</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-earth/50" />
-                  <span className="px-2 py-1 rounded bg-olive/10 font-mono text-olive">AI Transcription</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-earth/50" />
-                  <span className="px-2 py-1 rounded bg-olive/10 font-mono text-olive">Gram Mass Normalization</span>
-                </div>
-              </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-linen-dark/50 flex items-center text-xs text-charcoal/65">
-              <MessageSquareCode className="w-4 h-4 mr-2 text-olive" />
-              <span>Supports Kannada voice entries with automatic dialect recognition.</span>
-            </div>
-          </div>
-
-          {/* Column B: The Market Layer (Cash Out) */}
-          <div className="lg:col-span-6 flex flex-col justify-between p-8 rounded-lg border border-earth/10 bg-[#FAF9F5] shadow-sm relative overflow-hidden group hover:border-bblindigo/30 transition-all duration-300">
-            {/* Background Finance Wave Accents */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-bblindigo/5 rounded-bl-full pointer-events-none"></div>
-
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="p-2 rounded bg-bblindigo/10 text-bblindigo">
-                    <TrendingUp className="w-5 h-5" />
-                  </div>
-                  <span className="font-mono text-xs font-bold tracking-wider text-bblindigo uppercase">
-                    {t('ecosystem.marketTitle')}
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono text-bblindigo/60 uppercase">Stream 02 // Output</span>
-              </div>
-
-              <h3 className="font-serif text-2xl md:text-3xl font-bold text-earth">
-                {t('ecosystem.marketSub')}
-              </h3>
-
-              <p className="text-charcoal/80 leading-relaxed text-sm md:text-base">
-                {t('ecosystem.marketCopy')}
-              </p>
-
-              {/* Cash Out Flow Process */}
-              <div className="space-y-3 pt-4 border-t border-linen-dark">
-                <span className="text-[11px] font-mono font-bold text-earth uppercase tracking-wide block">Fulfillment & Revenue Routing:</span>
-                
-                <div className="flex items-center space-x-3 text-xs text-charcoal/70">
-                  <span className="px-2 py-1 rounded bg-bblindigo/10 font-mono text-bblindigo">CSA Sub</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-earth/50" />
-                  <span className="px-2 py-1 rounded bg-bblindigo/10 font-mono text-bblindigo">Yield Aggregator</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-earth/50" />
-                  <span className="px-2 py-1 rounded bg-bblindigo/10 font-mono text-bblindigo">Traceable Payout</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-linen-dark/50 flex items-center text-xs text-charcoal/65">
-              <Users className="w-4 h-4 mr-2 text-bblindigo" />
-              <span>Full compliance with Indian cooperative bank routing protocols.</span>
-            </div>
           </div>
 
         </div>

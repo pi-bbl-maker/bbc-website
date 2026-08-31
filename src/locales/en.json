@@ -3,67 +3,42 @@
     "platform": "Platform",
     "subscriptionEngine": "Subscription Engine",
     "forCollectives": "For Collectives",
-    "aboutUs": "About Us",
-    "demo": "Interactive Demo"
+    "aboutUs": "About Us"
   },
   "hero": {
-    "headline": "We build the digital infrastructure for agroecology.",
-    "subheadline": "Buffalo Back Labs provides the technology stack that helps grassroots collectives scale. From capturing offline farmer logs to powering seasonal subscription storefronts, we manage the complexity so you can manage the community.",
-    "cta": "Explore the Platform"
+    "headline": "The Technology Stack for Agroecology.",
+    "subheadline": "We build the digital infrastructure that helps grassroots collectives scale. We manage the data complexity so you can focus on the soil, the farmers, and the community.",
+    "placeholder": "[IMAGE REQ: High-quality photograph of women farmers at the Kai Thota demo farm in Ragihalli, working the soil.]"
   },
-  "problem": {
+  "manifesto": {
     "heading": "Grassroots impact shouldn't die behind a desk.",
-    "copy": "Right now, agricultural software is built for auditors, forcing field workers to become data-entry clerks. We build \"invisible\" technology designed for the realities of agroecology—unpredictable yields, offline farms, and community-driven logistics."
+    "copy": "Agricultural software is traditionally built for auditors, turning field workers into data-entry clerks. We build invisible, offline-first technology designed for the realities of climate-resilient farming, unpredictable yields, and community-driven logistics."
   },
-  "ecosystem": {
-    "fieldTitle": "The Field Layer (Data In)",
+  "architecture": {
+    "heading": "The Architecture of Scale",
+    "tagline": "Two complementary systems linking grassroots data collection to community food commerce.",
+    "fieldTitle": "The Field Layer",
     "fieldSub": "Digitizing the Grassroots.",
-    "fieldCopy": "White-labeled, offline-first tools for farmers to log daily inputs using voice and local languages. Track organic transitions and automate compliance reporting without adding mental load to the farmers.",
-    "marketTitle": "The Market Layer (Cash Out)",
+    "fieldCopy": "Voice-native, offline-first tools allowing women farmers to log daily inputs in local languages. We automate organic transition compliance without adding mental load to the grower.",
+    "fieldPlaceholder": "[IMAGE REQ: Close-up of a farmer logging voice data on a mobile device in the field.]",
+    "marketTitle": "The Market Layer",
     "marketSub": "The Agro-Commerce Engine.",
-    "marketCopy": "A subscription storefront built specifically for the physics of Community Supported Agriculture. Aggregate micro-yields from dozens of women farmers into weekly vegetable or flower subscriptions, with full traceability back to the grower."
+    "marketCopy": "A subscription storefront built for the physics of Community Supported Agriculture. We aggregate micro-yields into weekly subscriptions with full traceability back to the farm off Bannerghatta Road.",
+    "marketPlaceholder": "[IMAGE REQ: Fresh, organic harvest aggregated for community distribution.]"
   },
   "pitch": {
-    "heading": "Built for Collectives, NGOs, and Federations.",
-    "copy": "We sell the software. You run the logistics, manage the farmers, and keep the margins.",
-    "cta": "Partner With Us"
+    "heading": "Built for Collectives. Funded for Scale.",
+    "copy": "We provide the digital rails to keep climate-resilient agriculture alive and funded.",
+    "cta": "Connect with the Founder"
   },
-  "demo": {
-    "title": "Interactive Platform Preview",
-    "subtitle": "Explore how the BBL technology stack bridges the physical soil and digital commerce entirely on the frontend.",
-    "phone": {
-      "title": "Farmer Voice UI (Offline Log)",
-      "status": "Ready to Record",
-      "tapToSpeak": "Tap to Speak Log",
-      "listening": "Listening in Kannada...",
-      "processing": "Processing Voice & Translating...",
-      "success": "Log Saved & Normalized!",
-      "placeholderText": "Click standard speech logs below to test translation and mass normalization:",
-      "option1Text": "\"Today, I harvested 2.5 kg of raw beans from bed 4.\"",
-      "option1Kn": "\"ಇಂದು ಬೆಡ್ 4 ರಿಂದ 2.5 ಕೆಜಿ ಹಸಿರು ಹುರುಳಿಕಾಯಿ ಕಟಾವು ಮಾಡಿದ್ದೇನೆ.\"",
-      "option2Text": "\"Applied 3 baskets of organic vermicompost to the field borders.\"",
-      "option2Kn": "\"ಹೊಲದ ಅಂಚುಗಳಿಗೆ 3 ಬುಟ್ಟಿ ಸಾವಯವ ಎರೆಹುಳು ಗೊಬ್ಬರವನ್ನು ಹಾಕಿದ್ದೇನೆ.\"",
-      "parsedResult": "Normalized Output:",
-      "crop": "Crop",
-      "quantity": "Quantity",
-      "notes": "Field Notes",
-      "weight": "Weight (Grams)",
-      "gramsUnit": "grams"
-    },
-    "hub": {
-      "title": "Cooperative Hub Dashboard",
-      "subtitle": "Real-time fulfillment, active plots, and community distribution metrics.",
-      "kpiYield": "Total Yield Registered",
-      "kpiFulfillment": "CSA Fulfillment Rate",
-      "kpiActiveFarmers": "Active Women Farmers",
-      "activePlots": "Communal Yield Distribution Pool",
-      "plotName": "Plot Source",
-      "crop": "Crop",
-      "availablePool": "Communal Pool Balance",
-      "normalizedWeight": "Natively Tracked Mass",
-      "category": "Category",
-      "wildBadge": "🌲 WILD FORAGED"
-    }
+  "form": {
+    "name": "Your Name",
+    "org": "Fund / Organization Name",
+    "email": "Email Address",
+    "focus": "Partnership Interest / Organization Focus",
+    "message": "Message / Alignment Vision",
+    "success": "Inquiry Received",
+    "successText": "Thank you for connecting. A partner dialogue has been logged, and we will follow up shortly."
   },
   "footer": {
     "tagline": "Buffalo Back Labs - Enabling social-ecological food networks through software.",

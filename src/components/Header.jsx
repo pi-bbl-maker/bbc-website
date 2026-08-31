@@ -8,9 +8,7 @@ export default function Header() {
 
   const navItems = [
     { label: t('nav.platform'), href: '#platform' },
-    { label: t('nav.subscriptionEngine'), href: '#ecosystem' },
     { label: t('nav.forCollectives'), href: '#pitch' },
-    { label: t('nav.demo'), href: '#demo' },
   ];
 
   const handleLogoClick = (e) => {

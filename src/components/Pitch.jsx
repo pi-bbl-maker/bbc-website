@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Send, CheckCircle2, User, Building, Mail, Users, MessageSquare } from 'lucide-react';
+import { Send, CheckCircle2, User, Building, Mail, Target, MessageSquare } from 'lucide-react';
 
 export default function Pitch() {
   const { t } = useLanguage();
@@ -10,7 +10,7 @@ export default function Pitch() {
     name: '',
     org: '',
     email: '',
-    farmerCount: '',
+    focus: '',
     message: ''
   });
   
@@ -32,7 +32,7 @@ export default function Pitch() {
         if (!value.trim()) error = 'Name is required.';
         break;
       case 'org':
-        if (!value.trim()) error = 'Organization/Collective name is required.';
+        if (!value.trim()) error = 'Organization/Fund name is required.';
         break;
       case 'email':
         if (!value.trim()) {
@@ -41,18 +41,11 @@ export default function Pitch() {
           error = 'Please enter a valid email address.';
         }
         break;
-      case 'farmerCount':
-        if (!value.trim()) {
-          error = 'Farmer count is required.';
-        } else {
-          const num = Number(value);
-          if (isNaN(num) || num <= 0 || !Number.isInteger(num)) {
-            error = 'Please enter a positive whole number.';
-          }
-        }
+      case 'focus':
+        if (!value.trim()) error = 'Organization focus or partnership interest is required.';
         break;
       case 'message':
-        if (!value.trim()) error = 'Message cannot be empty.';
+        if (!value.trim()) error = 'Message / Alignment Vision cannot be empty.';
         break;
       default:
         break;
@@ -101,7 +94,7 @@ export default function Pitch() {
         name: '',
         org: '',
         email: '',
-        farmerCount: '',
+        focus: '',
         message: ''
       });
       setErrors({});
@@ -110,50 +103,50 @@ export default function Pitch() {
   };
 
   return (
-    <section id="pitch" className="bg-[#FAF9F5] py-16 md:py-24 border-b border-linen-dark">
+    <section id="pitch" className="bg-[#FAF9F5] py-20 md:py-32 border-b border-earth/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Pitch Information Panel */}
-          <div className="lg:col-span-6 space-y-6">
-            <span className="font-mono text-xs uppercase tracking-wider text-earth font-bold">Distribution Philosophy</span>
+          <div className="lg:col-span-6 space-y-6 md:space-y-8">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-earth font-bold block">Alliance & Growth</span>
             
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-earth leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-earth leading-tight">
               {t('pitch.heading')}
             </h2>
 
-            <p className="text-lg text-charcoal/80 leading-relaxed font-sans font-light">
+            <p className="text-lg sm:text-xl text-charcoal/80 leading-relaxed font-sans font-light">
               {t('pitch.copy')}
             </p>
 
             <div className="space-y-4 pt-4 font-mono text-xs text-charcoal/70">
               <div className="flex items-center space-x-3">
-                <span className="w-2 h-2 rounded-full bg-olive"></span>
-                <span>No per-farmer user license fees. Scale collectives organically.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-olive"></span>
+                <span>Open-source digital infrastructure for rural ecosystem enablement.</span>
               </div>
               <div className="flex items-center space-x-3">
-                <span className="w-2 h-2 rounded-full bg-olive"></span>
-                <span>Full white-label branding matching your NGO or federation logo.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-olive"></span>
+                <span>Structured data models configured for verified agroecological outcomes.</span>
               </div>
               <div className="flex items-center space-x-3">
-                <span className="w-2 h-2 rounded-full bg-olive"></span>
-                <span>Integrated local i18n support matching regional language maps.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-olive"></span>
+                <span>Designed to support diverse cooperatives and federations globally.</span>
               </div>
             </div>
           </div>
 
           {/* Fully Validated Partnership Form Panel */}
           <div className="lg:col-span-6">
-            <div className="bg-[#FAF6F0] p-6 sm:p-8 rounded-lg border border-earth/15 shadow-md">
+            <div className="bg-[#FAF6F0] p-6 sm:p-8 rounded-lg border border-earth/15 shadow-sm">
               
               {isSubmitted ? (
                 <div className="text-center py-12 space-y-4 animate-fadeIn">
                   <div className="w-16 h-16 bg-olive/15 text-olive rounded-full flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-10 h-10" />
                   </div>
-                  <h3 className="font-serif font-bold text-xl text-earth">Partnership Inquiry Received</h3>
+                  <h3 className="font-serif font-bold text-xl text-earth">{t('form.success')}</h3>
                   <p className="text-sm text-charcoal/70 max-w-sm mx-auto">
-                    Thank you for reaching out. A Buffalo Back Labs systems engineer will contact you shortly to schedule a sandbox demonstration.
+                    {t('form.successText')}
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
@@ -165,14 +158,14 @@ export default function Pitch() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <h3 className="font-serif font-bold text-lg text-earth border-b border-linen-dark pb-3 mb-2">
-                    Inquire for Sandbox Access
+                    {t('pitch.cta')}
                   </h3>
 
                   {/* Name field */}
                   <div className="space-y-1">
-                    <label className="text-[11px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
+                    <label className="text-[10px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
                       <User className="w-3.5 h-3.5 text-earth/50" />
-                      <span>Contact Name</span>
+                      <span>{t('form.name')}</span>
                     </label>
                     <input
                       type="text"
@@ -192,11 +185,11 @@ export default function Pitch() {
                     )}
                   </div>
 
-                  {/* Collective name */}
+                  {/* Organization name */}
                   <div className="space-y-1">
-                    <label className="text-[11px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
+                    <label className="text-[10px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
                       <Building className="w-3.5 h-3.5 text-earth/50" />
-                      <span>Collective / NGO Name</span>
+                      <span>{t('form.org')}</span>
                     </label>
                     <input
                       type="text"
@@ -209,7 +202,7 @@ export default function Pitch() {
                           ? 'border-red-500 focus:ring-1 focus:ring-red-500' 
                           : 'border-earth/15 focus:border-earth'
                       }`}
-                      placeholder="e.g. Kai Thota Collective"
+                      placeholder="e.g. Patient Capital Fund"
                     />
                     {errors.org && touched.org && (
                       <p className="text-[11px] text-red-600 font-mono mt-0.5">{errors.org}</p>
@@ -218,9 +211,9 @@ export default function Pitch() {
 
                   {/* Email */}
                   <div className="space-y-1">
-                    <label className="text-[11px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
+                    <label className="text-[10px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
                       <Mail className="w-3.5 h-3.5 text-earth/50" />
-                      <span>Professional Email</span>
+                      <span>{t('form.email')}</span>
                     </label>
                     <input
                       type="email"
@@ -233,43 +226,42 @@ export default function Pitch() {
                           ? 'border-red-500 focus:ring-1 focus:ring-red-500' 
                           : 'border-earth/15 focus:border-earth'
                       }`}
-                      placeholder="e.g. contact@kaithota.coop"
+                      placeholder="e.g. contact@patientcapital.org"
                     />
                     {errors.email && touched.email && (
                       <p className="text-[11px] text-red-600 font-mono mt-0.5">{errors.email}</p>
                     )}
                   </div>
 
-                  {/* Target Farmer Count */}
+                  {/* Focus Field (Modified to exclude VC term as requested) */}
                   <div className="space-y-1">
-                    <label className="text-[11px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
-                      <Users className="w-3.5 h-3.5 text-earth/50" />
-                      <span>Active Farmer Count</span>
+                    <label className="text-[10px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
+                      <Target className="w-3.5 h-3.5 text-earth/50" />
+                      <span>{t('form.focus')}</span>
                     </label>
                     <input
-                      type="number"
-                      name="farmerCount"
-                      value={formData.farmerCount}
+                      type="text"
+                      name="focus"
+                      value={formData.focus}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className={`w-full p-2.5 rounded border text-sm font-sans focus:outline-none bg-linen-light ${
-                        errors.farmerCount && touched.farmerCount 
+                        errors.focus && touched.focus 
                           ? 'border-red-500 focus:ring-1 focus:ring-red-500' 
                           : 'border-earth/15 focus:border-earth'
                       }`}
-                      placeholder="e.g. 50"
-                      min="1"
+                      placeholder="e.g. Agroecology Scaling, Social Impact, Ecosystem Enablement"
                     />
-                    {errors.farmerCount && touched.farmerCount && (
-                      <p className="text-[11px] text-red-600 font-mono mt-0.5">{errors.farmerCount}</p>
+                    {errors.focus && touched.focus && (
+                      <p className="text-[11px] text-red-600 font-mono mt-0.5">{errors.focus}</p>
                     )}
                   </div>
 
                   {/* Message */}
                   <div className="space-y-1">
-                    <label className="text-[11px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
+                    <label className="text-[10px] font-mono uppercase tracking-wider text-charcoal/65 flex items-center space-x-1.5">
                       <MessageSquare className="w-3.5 h-3.5 text-earth/50" />
-                      <span>Operational Scope</span>
+                      <span>{t('form.message')}</span>
                     </label>
                     <textarea
                       name="message"
@@ -282,7 +274,7 @@ export default function Pitch() {
                           ? 'border-red-500 focus:ring-1 focus:ring-red-500' 
                           : 'border-earth/15 focus:border-earth'
                       }`}
-                      placeholder="Describe your collective, current logistical streams, and geographical reach..."
+                      placeholder="Share alignment views or details regarding your ecosystem interest..."
                     ></textarea>
                     {errors.message && touched.message && (
                       <p className="text-[11px] text-red-600 font-mono mt-0.5">{errors.message}</p>

@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Problem from './components/Problem';
 import Ecosystem from './components/Ecosystem';
-import InteractiveDemo from './components/InteractiveDemo';
 import Pitch from './components/Pitch';
 import Footer from './components/Footer';
 
@@ -17,7 +16,6 @@ export default function App() {
           <Hero />
           <Problem />
           <Ecosystem />
-          <InteractiveDemo />
           <Pitch />
         </main>
         <Footer />
