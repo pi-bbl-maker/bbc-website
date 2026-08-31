@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "platform": "Platform",
+    "subscriptionEngine": "Subscription Engine",
+    "forCollectives": "For Collectives",
+    "aboutUs": "About Us",
+    "demo": "Interactive Demo"
+  },
+  "hero": {
+    "headline": "We build the digital infrastructure for agroecology.",
+    "subheadline": "Buffalo Back Labs provides the technology stack that helps grassroots collectives scale. From capturing offline farmer logs to powering seasonal subscription storefronts, we manage the complexity so you can manage the community.",
+    "cta": "Explore the Platform"
+  },
+  "problem": {
+    "heading": "Grassroots impact shouldn't die behind a desk.",
+    "copy": "Right now, agricultural software is built for auditors, forcing field workers to become data-entry clerks. We build \"invisible\" technology designed for the realities of agroecology—unpredictable yields, offline farms, and community-driven logistics."
+  },
+  "ecosystem": {
+    "fieldTitle": "The Field Layer (Data In)",
+    "fieldSub": "Digitizing the Grassroots.",
+    "fieldCopy": "White-labeled, offline-first tools for farmers to log daily inputs using voice and local languages. Track organic transitions and automate compliance reporting without adding mental load to the farmers.",
+    "marketTitle": "The Market Layer (Cash Out)",
+    "marketSub": "The Agro-Commerce Engine.",
+    "marketCopy": "A subscription storefront built specifically for the physics of Community Supported Agriculture. Aggregate micro-yields from dozens of women farmers into weekly vegetable or flower subscriptions, with full traceability back to the grower."
+  },
+  "pitch": {
+    "heading": "Built for Collectives, NGOs, and Federations.",
+    "copy": "We sell the software. You run the logistics, manage the farmers, and keep the margins.",
+    "cta": "Partner With Us"
+  },
+  "demo": {
+    "title": "Interactive Platform Preview",
+    "subtitle": "Explore how the BBL technology stack bridges the physical soil and digital commerce entirely on the frontend.",
+    "phone": {
+      "title": "Farmer Voice UI (Offline Log)",
+      "status": "Ready to Record",
+      "tapToSpeak": "Tap to Speak Log",
+      "listening": "Listening in Kannada...",
+      "processing": "Processing Voice & Translating...",
+      "success": "Log Saved & Normalized!",
+      "placeholderText": "Click standard speech logs below to test translation and mass normalization:",
+      "option1Text": "\"Today, I harvested 2.5 kg of raw beans from bed 4.\"",
+      "option1Kn": "\"ಇಂದು ಬೆಡ್ 4 ರಿಂದ 2.5 ಕೆಜಿ ಹಸಿರು ಹುರುಳಿಕಾಯಿ ಕಟಾವು ಮಾಡಿದ್ದೇನೆ.\"",
+      "option2Text": "\"Applied 3 baskets of organic vermicompost to the field borders.\"",
+      "option2Kn": "\"ಹೊಲದ ಅಂಚುಗಳಿಗೆ 3 ಬುಟ್ಟಿ ಸಾವಯವ ಎರೆಹುಳು ಗೊಬ್ಬರವನ್ನು ಹಾಕಿದ್ದೇನೆ.\"",
+      "parsedResult": "Normalized Output:",
+      "crop": "Crop",
+      "quantity": "Quantity",
+      "notes": "Field Notes",
+      "weight": "Weight (Grams)",
+      "gramsUnit": "grams"
+    },
+    "hub": {
+      "title": "Cooperative Hub Dashboard",
+      "subtitle": "Real-time fulfillment, active plots, and community distribution metrics.",
+      "kpiYield": "Total Yield Registered",
+      "kpiFulfillment": "CSA Fulfillment Rate",
+      "kpiActiveFarmers": "Active Women Farmers",
+      "activePlots": "Communal Yield Distribution Pool",
+      "plotName": "Plot Source",
+      "crop": "Crop",
+      "availablePool": "Communal Pool Balance",
+      "normalizedWeight": "Natively Tracked Mass",
+      "category": "Category",
+      "wildBadge": "🌲 WILD FORAGED"
+    }
+  },
+  "footer": {
+    "tagline": "Buffalo Back Labs - Enabling social-ecological food networks through software.",
+    "copyright": "© {year} buffaloback. All rights reserved."
+  }
+}
