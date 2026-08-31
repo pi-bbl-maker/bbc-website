@@ -1,6 +1,6 @@
 # Buffalo Back Labs - Implementation & User Guide
 
-This guide documents the layout structures, data pipelines, and validation layers built for the Buffalo Back Labs landing page.
+This guide documents the design topology and validation details built for the Buffalo Back Labs editorial landing page.
 
 ---
 
@@ -19,50 +19,36 @@ BBL Website/
 │   │   └── LanguageContext.jsx # Language State Provider (EN <-> KN)
 │   ├── components/
 │   │   ├── Header.jsx      # Top Navbar (Logo, Nav items, lang switcher)
-│   │   ├── Hero.jsx        # Landing hero with Woven Matrix SVG and indicators
-│   │   ├── Problem.jsx     # Auditor vs Field narrative grid
-│   │   ├── Ecosystem.jsx   # Dual-engine Field and Market Columns
-│   │   ├── InteractiveDemo.jsx # Interactive Sandbox (Phone & Dashboard)
-│   │   ├── Pitch.jsx       # Collective CTA with Form Validations
-│   │   └── Footer.jsx      # Branding, sitemap, and dynamic copyright
-│   ├── index.css           # Global CSS, Google Font configurations, & keyframes
-│   ├── App.jsx             # Component assembler
-│   └── main.jsx            # Bootstrap entry point
-├── package.json            # Node dependencies and build scripts
-├── tailwind.config.js      # Custom theme setup
-└── vite.config.js          # Vite bundler parameters
+│   │   ├── Hero.jsx        # Landing hero with Hero Image Placeholder 1
+│   │   ├── Problem.jsx     # The Manifesto (Typographic focus for Funders)
+│   │   ├── Ecosystem.jsx   # The Architecture of Scale (Field & Market grid with Placeholders 2 & 3)
+│   │   ├── Pitch.jsx       # Connect with the Founder Form (with Org Focus validations)
+│   │   └── Footer.jsx      # Branding and dynamic copyright notice
+│   ├── index.css           # Global CSS, Font face, & keyframe setups
+│   ├── App.jsx             # React component assembler
+│   └── main.jsx            # React bootstrap entry
+├── package.json            # Node dependencies
+├── tailwind.config.js      # Custom theme configurations
+└── vite.config.js          # Vite server and build specs
 ```
 
 ---
 
-## 🛠️ Mechanism Details
+## 🛠️ Design & Validation Details
 
-### 1. Custom Translation Layer (`LanguageContext.jsx`)
-Instead of pulling in heavy dependencies, i18n is handled by a custom React Context.
-* The translation function `t('key.path')` splits the string path and resolves nesting recursively inside `en.json` or `kn.json`.
-* Toggling languages updates state instantly and propagates across all UI components, rendering text, presets, and logs in the selected locale.
+### 1. Visual Placement & Styling
+* Placeholders are rendered as `<div className="bg-[#EFE9E0] border border-earth/15 flex items-center justify-center">` containers, giving them a raw, unbleached canvas structure.
+* Monospace italic text centers the strict image requirements in the respective language.
+* The header logo features a minimalist curved wireframe woven matrix SVG as requested.
 
-### 2. Sandbox Simulation Engine (`InteractiveDemo.jsx`)
-To simulate full-stack functionality entirely on the frontend:
-* **The Voice UI Shell** handles simulated mic recording states (`idle` ➔ `listening` ➔ `processing` ➔ `success`).
-* When a voice preset is clicked, its text is animated inside the transcript box. The parser extracts crop types and masses (e.g. `2.5 kg` is normalized under the hood to `2500g`).
-* **The Hub Dashboard Table** runs reactively. When the voice log succeeds, the respective crop row's `poolGrams` state is incremented. The layout reactively recalculates status classes:
-  * **Deficit (Amber)**: Available mass < target mass.
-  * **Target Met (Green)**: Available mass is at or above target.
-  * **Surplus (Blue)**: Available mass exceeds 120% of target.
-* Users can click **[Dispatch 500g]** to simulate shipping products out, which decrements the pool balance and shifts row highlight colors.
-* An **In-App Help Center Widget** is toggleable inside the dashboard header to guide users through the sandbox.
+### 2. Partnership Form validations (`Pitch.jsx`)
+In alignment with the VC/Funder-focused narrative:
+* **Contact Name & Fund Name**: String length check after `.trim()`.
+* **Email Address**: Checked against an RFC 5322 regex pattern to confirm professional email structures.
+* **Partnership Interest / Organization Focus**: Replaced previous farmer count metrics, validating that the input is non-empty.
+* **Message / Alignment Vision**: Rejects empty strings.
+* Real-time inputs styled dynamically: errors show red border rings, and error messages are rendered below the field. Submitting is blocked until all errors resolve.
 
-### 3. Partnership Form Validation (`Pitch.jsx`)
-In alignment with form validation constraints:
-* **Name & Organization**: Evaluates `.trim()` to reject empty strings.
-* **Email**: Checked against regular expression `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` to ensure valid domains.
-* **Farmer Count**: Ensures the value is entered, is a valid number, is an integer, and is strictly positive (`> 0`).
-* **Real-time feedback** is rendered in red copy beneath fields on blur (`onBlur`) and cleared immediately as the user resolves typos (`onChange`).
-* Forms are prevented from executing submissions if any field error state exists.
-
-### 4. PWA Cache Takeover (`sw.js`)
-To adhere to standard PWA cache protocols defined in `kaithota.md`:
-* **Installation hook**: Calls `self.skipWaiting()` to immediately activate the worker.
-* **Activation hook**: Calls `self.clients.claim()` to force instant page takeover.
-* Files (`/`, `/index.html`, `/manifest.json`) are cached locally to allow offline access.
+### 3. PWA sw.js Cache
+* Caches `/`, `/index.html`, and `/manifest.json` for offline manifest execution.
+* Intercepts standard browser requests to serve from cache first.

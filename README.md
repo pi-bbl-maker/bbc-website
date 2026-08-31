@@ -1,26 +1,29 @@
-# Buffalo Back Labs - Agroecological Stack Landing Page
+# Buffalo Back Labs - Agroecological Stack Editorial Manifesto
 
-This repository contains the high-fidelity, responsive static landing page for **Buffalo Back Labs (BBL)**, a social for-profit ecosystem enabler in agroecology. The website showcases the dual-engine architecture of the BBL platform: the Field Layer (data in) and the Market Layer (cash out).
+This repository contains the overhauled, high-fidelity responsive landing page for **Buffalo Back Labs (BBL)**, a social for-profit ecosystem enabler in agroecology, optimized for **Patient Capital Funders** and **Impact VCs**.
 
----
-
-## 🎨 Design System & Colors
-The visual design is grounded, authentic, and structural (B2B infrastructure platform style) built with the following custom palette:
-* **Linen / Canvas background** (`#FAF6F0`)
-* **Earth Brown** (`#3F2A1D`)
-* **Olive Green** (`#4D5D3B`)
-* **Indigo Blue** (`#1E1B4B`)
-* **Typography**: Warm serif headers (*Lora* via Google Fonts) and clean humanist sans-serif UI text (*Plus Jakarta Sans*).
+The UI/UX focuses on clean typography, generous whitespace, and an authentic editorial manifesto layout (shifting away from generic SaaS tech-graphics and dashboards).
 
 ---
 
-## ⚙️ Tech Stack & Overrides
-As overridden by `kaithota.md`:
+## 🎨 Design System & Visual Constraints
+The styling adheres to a raw, structural manifesto:
+* **Background Tones**: Natural, raw unbleached linen/canvas backgrounds (`#FAF6F0`).
+* **Colors**: Indigo Blue (`#1E1B4B`), Olive Green (`#4D5D3B`), and Earth Brown (`#3F2A1D`).
+* **Typography**: Elegant Georgia/Lora serif for headers, and Plus Jakarta Sans/Inter for structured UI labels.
+* **Photo Placeholders**: Large canvas elements styled as raw photo containers showing strict photo specifications:
+  * **Placeholder 1 (Hero Background)**: `[IMAGE REQ: High-quality photograph of women farmers at the Kai Thota demo farm in Ragihalli, working the soil.]`
+  * **Placeholder 2 (Field Layer Card)**: `[IMAGE REQ: Close-up of a farmer logging voice data on a mobile device in the field.]`
+  * **Placeholder 3 (Market Layer Card)**: `[IMAGE REQ: Fresh, organic harvest aggregated for community distribution.]`
+
+---
+
+## ⚙️ Tech Stack & Configurations
 * **Frontend**: React.js SPA powered by Vite
 * **Styling**: Tailwind CSS
 * **Build Engine**: Vite
-* **PWA Features**: Service Worker (`sw.js`) and Web Manifest (`manifest.json`) supporting immediate cache takeover (`skipWaiting` and `clients.claim`).
-* **i18n Mappings**: Supporting English (`en`) and Kannada (`kn`) translations out of the box.
+* **PWA Features**: Service Worker (`sw.js`) and Web Manifest (`manifest.json`) supporting immediate cache takeover.
+* **i18n Mappings**: Localized in English (`en`) and Kannada (`kn`).
 
 ---
 
@@ -32,7 +35,7 @@ Make sure you have Node.js and npm installed on your system.
 * npm: `10.9.3` or higher
 
 ### Installation
-Clone the repository and install the project dependencies:
+Clone the repository and install dependencies:
 ```bash
 npm install
 ```
@@ -50,16 +53,3 @@ Build the optimized static bundle:
 npm run build
 ```
 The output will compile into the `dist/` directory.
-
-### Preview Production Build
-Locally serve the compiled bundle for verification:
-```bash
-npm run preview
-```
-
----
-
-## 🌾 Platform Demonstration Capabilities
-An **Interactive Demo** sandbox is integrated directly into the landing page containing:
-1. **Farmer Voice UI (Smartphone Simulator)**: Clicking Kannada/English speech presets triggers audio wave transcription and parses values into normalized grams (e.g. 2.5 kg to 2500g).
-2. **Cooperative Hub Dashboard**: Reactively recalculates available inventories in the distribution pool table based on simulated entries and active dispatch triggers, showing deficit/surplus states (`Amber`, `Green`, `Blue`).
