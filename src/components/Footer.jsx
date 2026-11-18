@@ -1,75 +1,122 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { Github, Mail, ExternalLink, Sparkles } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useLanguage();
-  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-earth-dark text-linen/70 py-12 border-t border-earth/20 font-sans">
+    <footer className="bg-[#1B2A4A] text-white pt-16 pb-12 border-t border-[#4A6B82]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        {/* Main Footer Row */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           
-          {/* Brand Attribution & Tagline */}
-          <div className="md:col-span-6 space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-olive/20 rounded border border-olive/30 flex items-center justify-center">
-                <svg className="w-3.5 h-3.5 text-olive" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 9c6-1 7 1 14 0" />
-                  <path d="M9 5c-1 6 1 7 0 14" />
-                </svg>
-              </div>
-              <span className="font-serif text-base font-bold text-linen tracking-wide">
-                Buffalo Back Labs
-              </span>
+          {/* Brand Info */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/brand/Logo Color White.svg" 
+                alt="Buffalo Back Labs Logo" 
+                className="h-10 w-auto object-contain"
+              />
             </div>
-            <p className="text-xs max-w-sm leading-relaxed">
+
+            <p className="text-sm text-white/80 max-w-sm font-light leading-relaxed">
               {t('footer.tagline')}
             </p>
+
+            <p className="text-xs text-[#FAB818] font-mono">
+              {t('footer.sub')}
+            </p>
+
+            {/* AI Transparency Badge */}
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-mono text-white/90">
+              <Sparkles className="w-3.5 h-3.5 text-[#FAB818]" />
+              <span>{t('footer.aiDisclosure')}</span>
+            </div>
           </div>
 
-          {/* Links Column A */}
-          <div className="md:col-span-3 space-y-3">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-linen/40 font-bold block">Documentation</span>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <a href="#platform" className="hover:text-linen hover:underline transition-all">Platform Architecture</a>
-              </li>
-              <li>
-                <a href="#ecosystem" className="hover:text-linen hover:underline transition-all">Ecosystem Specifications</a>
-              </li>
-              <li>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-linen hover:underline transition-all">GitHub Repository</a>
-              </li>
-            </ul>
+          {/* Quick Links */}
+          <div className="md:col-span-4 grid grid-cols-2 gap-6 text-xs sm:text-sm">
+            <div className="space-y-3">
+              <span className="font-mono text-xs uppercase tracking-wider text-[#4A6B82] font-semibold block">
+                Platform
+              </span>
+              <ul className="space-y-2 font-light">
+                <li><a href="#products" className="text-white/80 hover:text-white transition-colors">Products</a></li>
+                <li><a href="#services" className="text-white/80 hover:text-white transition-colors">Services</a></li>
+                <li><a href="#research" className="text-white/80 hover:text-white transition-colors">Voice AI & Research</a></li>
+                <li>
+                  <a 
+                    href="https://app.kaithota.in" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-[#FAB818] hover:underline inline-flex items-center space-x-1"
+                  >
+                    <span>Kai Thota App</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <span className="font-mono text-xs uppercase tracking-wider text-[#4A6B82] font-semibold block">
+                Organization
+              </span>
+              <ul className="space-y-2 font-light">
+                <li><a href="#about" className="text-white/80 hover:text-white transition-colors">About BBL</a></li>
+                <li><a href="#ecosystem" className="text-white/80 hover:text-white transition-colors">Ecosystem</a></li>
+                <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">Partner With Us</a></li>
+                <li>
+                  <a 
+                    href="https://github.com/pi-bbl-maker" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white/80 hover:text-white transition-colors inline-flex items-center space-x-1"
+                  >
+                    <Github className="w-3 h-3" />
+                    <span>GitHub</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          {/* Links Column B */}
-          <div className="md:col-span-3 space-y-3">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-linen/40 font-bold block">Legal & Scope</span>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <a href="#demo" className="hover:text-linen hover:underline transition-all">Sandbox Terms</a>
-              </li>
-              <li>
-                <a href="#pitch" className="hover:text-linen hover:underline transition-all">Partner Guidelines</a>
-              </li>
-              <li>
-                <span className="text-linen/50">Version v1.0.0 (SemVer)</span>
-              </li>
-            </ul>
+          {/* Living Lab & Contact */}
+          <div className="md:col-span-3 space-y-3 text-xs text-white/80 font-mono">
+            <span className="uppercase tracking-wider text-[#4A6B82] font-semibold block">
+              Living Lab Coordinates
+            </span>
+            <p className="leading-relaxed font-sans text-xs text-white/70">
+              Ragihalli Bio-Regional Living Lab & Demo Farm, Bannerghatta, Bengaluru, Karnataka, India
+            </p>
+            <p className="text-[#FAB818] text-[11px]">
+              {t('footer.coordinates')}
+            </p>
+            <div className="pt-2">
+              <a 
+                href="mailto:labs@buffaloback.org" 
+                className="inline-flex items-center space-x-1.5 text-xs text-white hover:text-[#FAB818] transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>labs@buffaloback.org</span>
+              </a>
+            </div>
           </div>
 
         </div>
 
-        {/* Dynamic Copyright Section */}
-        <div className="mt-12 pt-6 border-t border-linen/10 flex flex-col sm:flex-row justify-between items-center text-[11px] text-linen/45 space-y-2 sm:space-y-0">
-          <span>
-            {t('footer.copyright').replace('{year}', currentYear)}
-          </span>
-          <div className="flex space-x-4">
-            <span className="font-mono text-[9px] uppercase tracking-widest text-olive/60">SOIL // DATA // COOPERATIVE</span>
+        {/* Bottom Attribution */}
+        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-white/60 gap-4">
+          <div>
+            {t('footer.attribution')}
+          </div>
+          <div className="flex items-center space-x-4 text-[11px]">
+            <span>SOVEREIGN DIGITAL COMMONS</span>
+            <span>•</span>
+            <span>BUILT WITH TRANSPARENT AI</span>
           </div>
         </div>
 

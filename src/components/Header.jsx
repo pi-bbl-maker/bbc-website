@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ExternalLink, Sparkles } from 'lucide-react';
 
 export default function Header() {
   const { locale, toggleLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: t('nav.platform'), href: '#platform' },
-    { label: t('nav.forCollectives'), href: '#pitch' },
+    { label: t('nav.products'), href: '#products' },
+    { label: t('nav.services'), href: '#services' },
+    { label: t('nav.research'), href: '#research' },
+    { label: t('nav.about'), href: '#about' },
+    { label: t('nav.ecosystem'), href: '#ecosystem' },
+    { label: t('nav.contact'), href: '#contact' },
   ];
 
   const handleLogoClick = (e) => {
@@ -18,84 +22,78 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-linen/90 backdrop-blur-md border-b border-linen-dark/50">
+    <header className="sticky top-0 z-50 bg-[#FAF6F0]/95 backdrop-blur-md border-b border-[#4A6B82]/15 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           
-          {/* Logo Section */}
+          {/* Logo Section with Official BBL Logo SVG */}
           <a 
             href="/" 
             onClick={handleLogoClick}
-            className="flex items-center space-x-3 group"
+            className="flex items-center space-x-3 group py-2"
+            aria-label="Buffalo Back Labs Home"
           >
-            {/* Woven Matrix SVG Icon */}
-            <div className="relative flex items-center justify-center w-10 h-10 bg-olive/10 rounded border border-olive/20 group-hover:bg-olive/20 transition-all duration-300">
-              <svg 
-                className="w-6 h-6 text-olive" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="1.75"
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                {/* Woven vertical/horizontal elements with organic curves */}
-                <path d="M5 9c6-1 7 1 14 0" />
-                <path d="M5 15c6 1 7-1 14 0" />
-                <path d="M9 5c-1 6 1 7 0 14" />
-                <path d="M15 5c1 6-1 7 0 14" />
-                {/* Connecting matrix weave */}
-                <path d="M2 12h20M12 2v20" strokeDasharray="2 2" className="opacity-50" />
-              </svg>
-              {/* Corner brackets simulating data grids */}
-              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-earth/30"></div>
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-earth/30"></div>
-            </div>
-            
-            <div className="flex flex-col">
-              <span className="font-serif text-lg md:text-xl font-bold tracking-tight text-earth">
+            <img 
+              src="/brand/Logo Color Blue.svg" 
+              alt="Buffalo Back Labs Logo" 
+              className="h-10 md:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+            />
+            <div className="hidden lg:flex flex-col pl-2 border-l border-[#4A6B82]/20">
+              <span className="text-[11px] font-semibold text-[#1B2A4A] tracking-tight leading-tight">
                 Buffalo Back Labs
               </span>
-              <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-olive -mt-1">
-                Agroecological Stack
+              <span className="text-[10px] text-[#4D5D3B] font-medium tracking-wide">
+                Technology for Agroecology
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 items-center">
+          <nav className="hidden md:flex space-x-6 lg:space-x-8 items-center" aria-label="Main Navigation">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-charcoal/85 hover:text-earth transition-colors duration-250 border-b border-transparent hover:border-earth/40 pb-1"
+                className="text-sm font-medium text-[#222222]/85 hover:text-[#1B2A4A] transition-colors duration-200 border-b-2 border-transparent hover:border-[#1B2A4A] py-1"
               >
                 {item.label}
               </a>
             ))}
 
-            {/* Language Selection Switcher */}
+            {/* Launch App Button */}
+            <a
+              href="https://app.kaithota.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#1B2A4A] text-white hover:bg-[#2E3E61] transition-all shadow-sm"
+            >
+              <span>Kai Thota</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+
+            {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold bg-earth/5 hover:bg-earth/10 text-earth border border-earth/15 transition-all"
-              aria-label="Toggle language"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#1B2A4A]/5 hover:bg-[#1B2A4A]/10 text-[#1B2A4A] border border-[#1B2A4A]/20 transition-all min-h-[36px]"
+              aria-label="Toggle language between English and Kannada"
             >
               <Globe className="w-3.5 h-3.5" />
               <span>{locale === 'en' ? 'ಕನ್ನಡ' : 'English'}</span>
             </button>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-4 md:hidden">
+          {/* Mobile Actions */}
+          <div className="flex items-center space-x-3 md:hidden">
             <button
               onClick={toggleLanguage}
-              className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-earth/5 text-earth border border-earth/15"
+              className="flex items-center space-x-1 px-3 py-2 rounded-full text-xs font-semibold bg-[#1B2A4A]/5 text-[#1B2A4A] border border-[#1B2A4A]/20 min-h-[44px]"
+              aria-label="Toggle language"
             >
               <span>{locale === 'en' ? 'ಕನ್ನಡ' : 'EN'}</span>
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1 text-earth hover:text-olive transition-colors"
+              className="p-2 text-[#1B2A4A] hover:text-[#4D5D3B] transition-colors min-h-[48px] min-w-[48px] flex items-center justify-center rounded-lg border border-[#4A6B82]/20"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -107,18 +105,29 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-linen-dark/50 bg-linen/95 backdrop-blur-lg animate-fadeIn">
-          <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
+        <div className="md:hidden border-t border-[#4A6B82]/20 bg-[#FAF6F0]/98 backdrop-blur-xl animate-fadeIn">
+          <div className="px-4 pt-3 pb-6 space-y-2">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-3 rounded-md text-base font-medium text-charcoal/85 hover:bg-olive/10 hover:text-earth transition-colors"
+                className="block px-4 py-3 rounded-lg text-base font-medium text-[#222222] hover:bg-[#1B2A4A]/5 hover:text-[#1B2A4A] transition-colors min-h-[48px] flex items-center"
               >
                 {item.label}
               </a>
             ))}
+            <div className="pt-2 border-t border-[#4A6B82]/15">
+              <a
+                href="https://app.kaithota.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center space-x-2 px-4 py-3 rounded-lg text-sm font-semibold bg-[#1B2A4A] text-white hover:bg-[#2E3E61] transition-all min-h-[48px]"
+              >
+                <span>Launch Kai Thota (app.kaithota.in)</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       )}
