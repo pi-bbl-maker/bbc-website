@@ -14,12 +14,15 @@ export default function Footer() {
           
           {/* Column 1: Brand & Socials (md:col-span-5) */}
           <div className="md:col-span-5 space-y-6">
-            <a href="/" className="inline-block" aria-label="Buffalo Back Labs">
+            <a href="/" className="inline-flex items-center space-x-2.5 sm:space-x-3 select-none" aria-label="Buffalo Back Labs">
               <img 
-                src="/brand/Logo Color White.svg" 
-                alt="Buffalo Back Labs" 
-                className="h-10 w-auto object-contain block"
+                src="/brand/Icon Color White.svg" 
+                alt="Buffalo Back Labs Mark" 
+                className="h-10 w-auto object-contain block shrink-0"
               />
+              <span className="font-condensed font-light text-2xl sm:text-[26px] tracking-[0.02em] text-[#F4F1EA] whitespace-nowrap leading-none pt-0.5">
+                Buffalo Back Labs
+              </span>
             </a>
             
             <p className="text-sm text-[#F4F1EA]/80 font-sans leading-relaxed max-w-sm">

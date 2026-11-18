@@ -27,26 +27,29 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 md:h-24">
           
-          {/* Left: Full Unclipped BBL Logo at generous 44-48px height */}
+          {/* Left: Vector Mark + Barlow Condensed Wordmark (Option A) */}
           <a 
             href="/" 
             onClick={handleLogoClick}
-            className="flex items-center py-2 shrink-0"
+            className="flex items-center space-x-2.5 sm:space-x-3 py-2 shrink-0 group select-none"
             aria-label="Buffalo Back Labs"
           >
             {theme === 'dark' ? (
               <img 
-                src="/brand/Logo Color White.svg" 
-                alt="Buffalo Back Labs" 
-                className="h-10 sm:h-11 md:h-12 w-auto object-contain max-w-none block"
+                src="/brand/Icon Color White.svg" 
+                alt="Buffalo Back Labs Mark" 
+                className="h-10 sm:h-11 w-auto object-contain block shrink-0"
               />
             ) : (
               <img 
-                src="/brand/Logo Color Blue.svg" 
-                alt="Buffalo Back Labs" 
-                className="h-10 sm:h-11 md:h-12 w-auto object-contain max-w-none block"
+                src="/brand/Icon Color Blue.svg" 
+                alt="Buffalo Back Labs Mark" 
+                className="h-10 sm:h-11 w-auto object-contain block shrink-0"
               />
             )}
+            <span className="font-condensed font-light text-2xl sm:text-[26px] tracking-[0.02em] text-[#003149] dark:text-[#F4F1EA] whitespace-nowrap leading-none pt-0.5">
+              Buffalo Back Labs
+            </span>
           </a>
 
           {/* Right: Clean Single-Line Nav Links + Primary Pill CTA + Theme Toggle + Kannada Toggle */}

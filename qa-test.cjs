@@ -5,7 +5,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 async function run() {
-  console.log('--- Starting Playwright QA Verification (Ashwidea-Style Studio, Form, Light & Dark Mode) ---');
+  console.log('--- Starting Playwright QA Verification (Option A Vector Mark + Barlow Wordmark) ---');
 
   // Start preview server
   const preview = spawn('npx', ['vite', 'preview', '--port', '4173', '--host', '127.0.0.1', '--strictPort'], {
@@ -58,29 +58,40 @@ async function run() {
     }
     console.log(`✓ Zero horizontal overflow verified in ${label}`);
 
-    // 2. Verify Header Logo (unclipped, full wordmark, no duplicate text)
-    const logoHandle = await page.$('header a img');
-    if (!logoHandle) throw new Error(`Header logo missing in ${label}`);
+    // 2. Verify Header Logo (Vector Mark + Barlow Condensed Wordmark)
+    const headerLogoHandle = await page.$('header a[aria-label="Buffalo Back Labs"]');
+    if (!headerLogoHandle) throw new Error(`Header logo link missing in ${label}`);
     
-    const logoDetails = await page.evaluate((el) => {
-      const rect = el.getBoundingClientRect();
-      const parentText = el.closest('a').textContent.trim();
+    const headerLogoDetails = await page.evaluate((a) => {
+      const img = a.querySelector('img');
+      const span = a.querySelector('span');
+      const aRect = a.getBoundingClientRect();
+      const imgRect = img ? img.getBoundingClientRect() : null;
+      const spanRect = span ? span.getBoundingClientRect() : null;
       return {
-        visible: rect.width >= 100 && rect.height >= 30,
-        width: rect.width,
-        height: rect.height,
-        parentText: parentText,
-        src: el.src
+        hasImg: !!img,
+        imgSrc: img ? img.src : null,
+        imgWidth: imgRect ? imgRect.width : 0,
+        imgHeight: imgRect ? imgRect.height : 0,
+        hasSpan: !!span,
+        spanText: span ? span.textContent.trim() : '',
+        spanWidth: spanRect ? spanRect.width : 0,
+        spanHeight: spanRect ? spanRect.height : 0,
+        totalWidth: aRect.width,
+        totalHeight: aRect.height
       };
-    }, logoHandle);
+    }, headerLogoHandle);
 
-    if (!logoDetails.visible) {
-      throw new Error(`Header Logo is clipped or too small in ${label}: ${JSON.stringify(logoDetails)}`);
+    if (!headerLogoDetails.hasImg || headerLogoDetails.imgHeight < 30) {
+      throw new Error(`Header mark missing or too small in ${label}: ${JSON.stringify(headerLogoDetails)}`);
     }
-    if (logoDetails.parentText !== '') {
-      throw new Error(`Header Logo has duplicated sibling text in ${label}: "${logoDetails.parentText}"`);
+    if (!headerLogoDetails.hasSpan || headerLogoDetails.spanText !== 'Buffalo Back Labs') {
+      throw new Error(`Header wordmark text missing or incorrect in ${label}: "${headerLogoDetails.spanText}"`);
     }
-    console.log(`✓ Header logo verified in ${label} (width: ${Math.round(logoDetails.width)}px, height: ${Math.round(logoDetails.height)}px, unclipped wordmark)`);
+    if (headerLogoDetails.spanWidth < 120) {
+      throw new Error(`Header wordmark "Buffalo Back Labs" appears clipped: width=${headerLogoDetails.spanWidth}px`);
+    }
+    console.log(`✓ Header logo verified in ${label} (mark: ${Math.round(headerLogoDetails.imgWidth)}x${Math.round(headerLogoDetails.imgHeight)}px, text: "${headerLogoDetails.spanText}" width: ${Math.round(headerLogoDetails.spanWidth)}px, total: ${Math.round(headerLogoDetails.totalWidth)}px)`);
 
     // 3. Verify Hero Mark placement
     const heroMarkHandle = await page.$('section img[alt="Buffalo Back Labs Mark"]:visible');
@@ -101,16 +112,23 @@ async function run() {
       const style = window.getComputedStyle(f);
       const bg = style.backgroundColor;
       const text = f.textContent;
-      const logoImg = f.querySelector('img[alt="Buffalo Back Labs"]');
-      const logoRect = logoImg ? logoImg.getBoundingClientRect() : null;
+      const brandLink = f.querySelector('a[aria-label="Buffalo Back Labs"]');
+      const img = brandLink ? brandLink.querySelector('img') : null;
+      const span = brandLink ? brandLink.querySelector('span') : null;
+      const imgRect = img ? img.getBoundingClientRect() : null;
+      const spanRect = span ? span.getBoundingClientRect() : null;
       const socialLinks = Array.from(f.querySelectorAll('a[aria-label]')).map(a => a.getAttribute('aria-label'));
       
       return {
         bg: bg,
-        hasLogo: !!logoImg,
-        logoSrc: logoImg ? logoImg.src : null,
-        logoWidth: logoRect ? logoRect.width : 0,
-        logoHeight: logoRect ? logoRect.height : 0,
+        hasBrandLink: !!brandLink,
+        hasImg: !!img,
+        imgSrc: img ? img.src : null,
+        imgWidth: imgRect ? imgRect.width : 0,
+        imgHeight: imgRect ? imgRect.height : 0,
+        hasSpan: !!span,
+        spanText: span ? span.textContent.trim() : '',
+        spanWidth: spanRect ? spanRect.width : 0,
         hasDeprecatedTag: text.includes('INDEPENDENT LAB // VOICE-FIRST SOVEREIGNTY'),
         hasCopyright: text.includes('© 2026 Buffalo Back Labs (OPC) Private Limited.'),
         socialLabels: socialLinks
@@ -123,11 +141,14 @@ async function run() {
     if (!footerDetails.hasCopyright) {
       throw new Error(`Footer missing copyright notice in ${label}`);
     }
-    if (!footerDetails.hasLogo || footerDetails.logoWidth < 80) {
-      throw new Error(`Footer logo missing or clipped in ${label}: ${JSON.stringify(footerDetails)}`);
+    if (!footerDetails.hasImg || footerDetails.imgHeight < 30) {
+      throw new Error(`Footer mark missing or too small in ${label}: ${JSON.stringify(footerDetails)}`);
     }
-    if (!footerDetails.logoSrc.includes('Logo%20Color%20White.svg') && !footerDetails.logoSrc.includes('Logo Color White.svg')) {
-      throw new Error(`Footer should always use Logo Color White.svg on dark ground, got: ${footerDetails.logoSrc}`);
+    if (!footerDetails.imgSrc.includes('Icon%20Color%20White.svg') && !footerDetails.imgSrc.includes('Icon Color White.svg')) {
+      throw new Error(`Footer should use Icon Color White.svg on dark ground, got: ${footerDetails.imgSrc}`);
+    }
+    if (!footerDetails.hasSpan || footerDetails.spanText !== 'Buffalo Back Labs' || footerDetails.spanWidth < 120) {
+      throw new Error(`Footer wordmark text missing or clipped in ${label}: "${footerDetails.spanText}" (${footerDetails.spanWidth}px)`);
     }
     const expectedSocials = ['GitHub', 'LinkedIn', 'Substack'];
     for (const s of expectedSocials) {
@@ -135,7 +156,7 @@ async function run() {
         throw new Error(`Missing expected social button "${s}" in footer (${label})`);
       }
     }
-    console.log(`✓ Ashwidea-style dark footer verified in ${label} (bg: ${footerDetails.bg}, unclipped white logo, circular socials: ${footerDetails.socialLabels.join(', ')})`);
+    console.log(`✓ Ashwidea-style dark footer verified in ${label} (bg: ${footerDetails.bg}, mark + "${footerDetails.spanText}", circular socials: ${footerDetails.socialLabels.join(', ')})`);
   }
 
   // Helper to verify Contact Form functionality
@@ -219,6 +240,18 @@ async function run() {
   await pageDesktopLight.screenshot({ path: 'public/playwright-evidence/bbl-light-desktop-1440.png', fullPage: true });
   console.log('✓ Captured: bbl-light-desktop-1440.png');
 
+  // Also capture a dedicated close-up of Header and Footer for visual inspection
+  const headerElemLight = await pageDesktopLight.$('header');
+  if (headerElemLight) {
+    await headerElemLight.screenshot({ path: 'public/playwright-evidence/header-light-desktop.png' });
+    console.log('✓ Captured close-up: header-light-desktop.png');
+  }
+  const footerElemLight = await pageDesktopLight.$('footer');
+  if (footerElemLight) {
+    await footerElemLight.screenshot({ path: 'public/playwright-evidence/footer-light-desktop.png' });
+    console.log('✓ Captured close-up: footer-light-desktop.png');
+  }
+
   // 2. Desktop 1440x900 - Dark Mode
   console.log('\n--- Testing Desktop 1440x900: Dark Mode ---');
   const contextDesktopDark = await browser.newContext({
@@ -235,6 +268,12 @@ async function run() {
   await auditContactForm(pageDesktopDark, 'Desktop Dark Mode');
   await pageDesktopDark.screenshot({ path: 'public/playwright-evidence/bbl-dark-desktop-1440.png', fullPage: true });
   console.log('✓ Captured: bbl-dark-desktop-1440.png');
+
+  const headerElemDark = await pageDesktopDark.$('header');
+  if (headerElemDark) {
+    await headerElemDark.screenshot({ path: 'public/playwright-evidence/header-dark-desktop.png' });
+    console.log('✓ Captured close-up: header-dark-desktop.png');
+  }
 
   // 3. Mobile 390x844 - Light Mode
   console.log('\n--- Testing Mobile 390x844: Light Mode ---');
@@ -306,7 +345,7 @@ async function run() {
   }
 
   console.log('\n✓ 0 Console Errors detected across all test suites');
-  console.log('=== Playwright QA Verification (Form, Light & Dark Mode) PASSED ===');
+  console.log('=== Playwright QA Verification (Option A Vector Mark + Barlow Wordmark) PASSED ===');
   process.exit(0);
 }
 
