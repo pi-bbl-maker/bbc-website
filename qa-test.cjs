@@ -5,7 +5,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 async function run() {
-  console.log('--- Starting Playwright QA Verification (Form, Light & Dark Mode) ---');
+  console.log('--- Starting Playwright QA Verification (Ashwidea-Style Studio, Form, Light & Dark Mode) ---');
 
   // Start preview server
   const preview = spawn('npx', ['vite', 'preview', '--port', '4173', '--host', '127.0.0.1', '--strictPort'], {
@@ -47,8 +47,9 @@ async function run() {
   const browser = await chromium.launch();
   const consoleErrors = [];
 
-  // Helper to verify horizontal overflow and logo
-  async function auditPage(page, label) {
+  // Helper to verify horizontal overflow, logos, hero mark, and footer styling
+  async function auditPage(page, label, isMobile = false) {
+    // 1. Check horizontal overflow
     const overflow = await page.evaluate(() => {
       return document.documentElement.scrollWidth > window.innerWidth;
     });
@@ -57,7 +58,7 @@ async function run() {
     }
     console.log(`✓ Zero horizontal overflow verified in ${label}`);
 
-    // Verify logo
+    // 2. Verify Header Logo (unclipped, full wordmark, no duplicate text)
     const logoHandle = await page.$('header a img');
     if (!logoHandle) throw new Error(`Header logo missing in ${label}`);
     
@@ -65,7 +66,7 @@ async function run() {
       const rect = el.getBoundingClientRect();
       const parentText = el.closest('a').textContent.trim();
       return {
-        visible: rect.width > 50 && rect.height > 15,
+        visible: rect.width >= 100 && rect.height >= 30,
         width: rect.width,
         height: rect.height,
         parentText: parentText,
@@ -74,12 +75,67 @@ async function run() {
     }, logoHandle);
 
     if (!logoDetails.visible) {
-      throw new Error(`Logo is clipped or zero-sized in ${label}: ${JSON.stringify(logoDetails)}`);
+      throw new Error(`Header Logo is clipped or too small in ${label}: ${JSON.stringify(logoDetails)}`);
     }
     if (logoDetails.parentText !== '') {
-      throw new Error(`Logo has duplicated sibling text in ${label}: "${logoDetails.parentText}"`);
+      throw new Error(`Header Logo has duplicated sibling text in ${label}: "${logoDetails.parentText}"`);
     }
-    console.log(`✓ Logo verified in ${label} (width: ${Math.round(logoDetails.width)}px, height: ${Math.round(logoDetails.height)}px, no duplicate text)`);
+    console.log(`✓ Header logo verified in ${label} (width: ${Math.round(logoDetails.width)}px, height: ${Math.round(logoDetails.height)}px, unclipped wordmark)`);
+
+    // 3. Verify Hero Mark placement
+    const heroMarkHandle = await page.$('section img[alt="Buffalo Back Labs Mark"]:visible');
+    if (!heroMarkHandle) {
+      throw new Error(`Hero Mark missing or hidden in ${label}`);
+    }
+    const heroMarkRect = await heroMarkHandle.boundingBox();
+    if (!heroMarkRect || (isMobile ? heroMarkRect.width < 40 : heroMarkRect.width < 140)) {
+      throw new Error(`Hero Mark size incorrect in ${label}: ${JSON.stringify(heroMarkRect)}`);
+    }
+    console.log(`✓ Hero Mark verified in ${label} (visible width: ${Math.round(heroMarkRect.width)}px, height: ${Math.round(heroMarkRect.height)}px)`);
+
+    // 4. Verify Ashwidea-style 3-Column Dark-Ground Footer
+    const footer = await page.$('footer');
+    if (!footer) throw new Error(`Footer missing in ${label}`);
+
+    const footerDetails = await page.evaluate((f) => {
+      const style = window.getComputedStyle(f);
+      const bg = style.backgroundColor;
+      const text = f.textContent;
+      const logoImg = f.querySelector('img[alt="Buffalo Back Labs"]');
+      const logoRect = logoImg ? logoImg.getBoundingClientRect() : null;
+      const socialLinks = Array.from(f.querySelectorAll('a[aria-label]')).map(a => a.getAttribute('aria-label'));
+      
+      return {
+        bg: bg,
+        hasLogo: !!logoImg,
+        logoSrc: logoImg ? logoImg.src : null,
+        logoWidth: logoRect ? logoRect.width : 0,
+        logoHeight: logoRect ? logoRect.height : 0,
+        hasDeprecatedTag: text.includes('INDEPENDENT LAB // VOICE-FIRST SOVEREIGNTY'),
+        hasCopyright: text.includes('© 2026 Buffalo Back Labs (OPC) Private Limited.'),
+        socialLabels: socialLinks
+      };
+    }, footer);
+
+    if (footerDetails.hasDeprecatedTag) {
+      throw new Error(`Footer still contains deprecated tag 'INDEPENDENT LAB // VOICE-FIRST SOVEREIGNTY' in ${label}`);
+    }
+    if (!footerDetails.hasCopyright) {
+      throw new Error(`Footer missing copyright notice in ${label}`);
+    }
+    if (!footerDetails.hasLogo || footerDetails.logoWidth < 80) {
+      throw new Error(`Footer logo missing or clipped in ${label}: ${JSON.stringify(footerDetails)}`);
+    }
+    if (!footerDetails.logoSrc.includes('Logo%20Color%20White.svg') && !footerDetails.logoSrc.includes('Logo Color White.svg')) {
+      throw new Error(`Footer should always use Logo Color White.svg on dark ground, got: ${footerDetails.logoSrc}`);
+    }
+    const expectedSocials = ['GitHub', 'LinkedIn', 'Substack'];
+    for (const s of expectedSocials) {
+      if (!footerDetails.socialLabels.includes(s)) {
+        throw new Error(`Missing expected social button "${s}" in footer (${label})`);
+      }
+    }
+    console.log(`✓ Ashwidea-style dark footer verified in ${label} (bg: ${footerDetails.bg}, unclipped white logo, circular socials: ${footerDetails.socialLabels.join(', ')})`);
   }
 
   // Helper to verify Contact Form functionality
@@ -158,7 +214,7 @@ async function run() {
   });
 
   await pageDesktopLight.goto('http://127.0.0.1:4173', { waitUntil: 'networkidle' });
-  await auditPage(pageDesktopLight, 'Desktop Light Mode');
+  await auditPage(pageDesktopLight, 'Desktop Light Mode', false);
   await auditContactForm(pageDesktopLight, 'Desktop Light Mode');
   await pageDesktopLight.screenshot({ path: 'public/playwright-evidence/bbl-light-desktop-1440.png', fullPage: true });
   console.log('✓ Captured: bbl-light-desktop-1440.png');
@@ -175,7 +231,7 @@ async function run() {
   });
 
   await pageDesktopDark.goto('http://127.0.0.1:4173', { waitUntil: 'networkidle' });
-  await auditPage(pageDesktopDark, 'Desktop Dark Mode');
+  await auditPage(pageDesktopDark, 'Desktop Dark Mode', false);
   await auditContactForm(pageDesktopDark, 'Desktop Dark Mode');
   await pageDesktopDark.screenshot({ path: 'public/playwright-evidence/bbl-dark-desktop-1440.png', fullPage: true });
   console.log('✓ Captured: bbl-dark-desktop-1440.png');
@@ -194,9 +250,9 @@ async function run() {
   });
 
   await pageMobileLight.goto('http://127.0.0.1:4173', { waitUntil: 'networkidle' });
-  await auditPage(pageMobileLight, 'Mobile Light Mode');
+  await auditPage(pageMobileLight, 'Mobile Light Mode', true);
   
-  // Verify mobile touch targets >= 48px (excluding hidden honeypot)
+  // Verify mobile touch targets >= 44/48px (excluding hidden honeypot)
   const touchHeights = await pageMobileLight.evaluate(() => {
     const inputs = document.querySelectorAll('#contact input:not([name="company_website_url"]):not([type="hidden"]), #contact select, #contact button[type="submit"]');
     return Array.from(inputs).map(inp => ({
@@ -227,7 +283,7 @@ async function run() {
   });
 
   await pageMobileDark.goto('http://127.0.0.1:4173', { waitUntil: 'networkidle' });
-  await auditPage(pageMobileDark, 'Mobile Dark Mode');
+  await auditPage(pageMobileDark, 'Mobile Dark Mode', true);
   await pageMobileDark.screenshot({ path: 'public/playwright-evidence/bbl-dark-mobile-390.png', fullPage: true });
   console.log('✓ Captured: bbl-dark-mobile-390.png');
 

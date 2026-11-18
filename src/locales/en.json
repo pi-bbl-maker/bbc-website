@@ -99,5 +99,10 @@
     "error": "Submission encountered an issue. You can reach us directly at weare@buffaloback.in.",
     "reset": "Send another message",
     "copyright": "© 2026 Buffalo Back Labs (OPC) Private Limited."
+  },
+  "footer": {
+    "summary": "Technology for Agroecology. We build offline-first software, vernacular voice tools, and open data commons with women-led farming collectives.",
+    "quickNav": "Navigation",
+    "connect": "Get in Touch"
   }
 }

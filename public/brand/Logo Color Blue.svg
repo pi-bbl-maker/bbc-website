@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6800 2000">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7400 2000" preserveAspectRatio="xMinYMid meet">
   <defs>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400&amp;display=swap');
       .cls-1 {
         fill: #e5b622;
       }
@@ -11,9 +12,10 @@
       }
 
       .cls-3 {
-        font-family: BarlowCondensed-ExtraLight, 'Barlow Condensed';
+        font-family: 'Barlow Condensed', BarlowCondensed-ExtraLight, sans-serif;
         font-size: 687.5px;
         font-weight: 200;
+        letter-spacing: 0.02em;
       }
     </style>
   </defs>
