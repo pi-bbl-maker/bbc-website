@@ -19,12 +19,11 @@
     "title": "What We Build",
     "kaithota": {
       "name": "Kai Thota OS",
-      "desc": "Offline-first, bilingual (English/Kannada) crop planning, biodynamic sowing, and harvest tracking for collective farms.",
-      "linkText": "Launch app.kaithota.in ↗"
+      "desc": "Offline-first, bilingual (English/Kannada) crop planning, biodynamic sowing, and harvest tracking for collective farms."
     },
     "pgsoc": {
-      "name": "PGS Tools",
-      "desc": "Peer-verified organic certification and farmer onboarding (pgsoc-verification, pgsoc-farmer-onboarding) built for decentralized group integrity without paperwork friction."
+      "name": "Peer-Verified Organic Certification (PGS) & Farmer Onboarding Tools",
+      "desc": "Peer-verified organic certification and farmer onboarding tools built for decentralized group integrity without paperwork friction."
     },
     "commons": {
       "name": "Open Agroecology Commons",
@@ -54,12 +53,11 @@
     },
     "livingLab": {
       "name": "Living Lab",
-      "desc": "Tested daily on active collective plots (Kai Thota 1, 2, 3 & Project Organic Ragi 2026) alongside smallholder farmers in Ragihalli."
+      "desc": "Continuously tested on active agroecology plots."
     },
     "openSource": {
       "name": "Open Source",
-      "desc": "Published openly under GNU GPL v3 for the global agrarian commons.",
-      "linkText": "github.com/pi-bbl-maker ↗"
+      "desc": "Public repositories and documentation coming soon for the global agrarian commons."
     }
   },
   "about": {
@@ -76,9 +74,8 @@
     "title": "Get in Touch",
     "desc": "If you are a farming collective, a researcher, or an impact partner interested in our field tools or voice models, we would love to hear from you.",
     "emailLabel": "Direct Email",
-    "officeLabel": "Registered Office",
-    "office": "33 (Old No. 43), Mountain Street, 1st Block Jayanagar, Madhavan Park, Bangalore - 560011",
-    "cin": "CIN: U62011KA2026OPC220541",
+    "officeLabel": "Location",
+    "office": "Jayanagar, Bangalore",
     "formName": "Name",
     "formNamePlaceholder": "Your name",
     "formOrg": "Organization / Collective",
@@ -96,7 +93,7 @@
     "send": "Send Message",
     "sending": "Sending...",
     "sent": "Thank you. Your message has been received and logged.",
-    "error": "Submission encountered an issue. You can reach us directly at weare@buffaloback.in.",
+    "error": "Submission encountered an issue. You can reach us directly at labs@buffaloback.in.",
     "reset": "Send another message",
     "copyright": "© 2026 Buffalo Back Labs (OPC) Private Limited."
   },

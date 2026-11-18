@@ -3,7 +3,7 @@
  * -------------------------------------------------------------
  * Connects the Buffalo Back Labs (bbc-website) contact form directly to:
  * 1. A Google Sheet (auto-logging all incoming partner & collective inquiries)
- * 2. Instant notification emails to weare@buffaloback.in
+ * 2. Instant notification emails to labs@buffaloback.in
  *
  * SETUP INSTRUCTIONS (Takes ~2 minutes):
  * 1. Open Google Sheets (https://sheets.new) and create a new spreadsheet.
@@ -21,7 +21,7 @@
  *    or hosting environment variables.
  */
 
-const NOTIFICATION_EMAIL = "weare@buffaloback.in";
+const NOTIFICATION_EMAIL = "labs@buffaloback.in";
 const SHEET_NAME = "Website Inquiries";
 
 /**

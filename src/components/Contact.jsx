@@ -93,7 +93,7 @@ export default function Contact() {
     setStatus('idle');
   };
 
-  const mailtoHref = `mailto:weare@buffaloback.in?subject=${encodeURIComponent(
+  const mailtoHref = `mailto:labs@buffaloback.in?subject=${encodeURIComponent(
     `[BBL Inquiry] ${formData.topic || 'General'}: ${formData.name || 'Visitor'}`
   )}&body=${encodeURIComponent(
     `Name: ${formData.name}\nOrganization: ${formData.org}\nEmail: ${formData.email}\nTopic: ${formData.topic}\n\nMessage:\n${formData.message}`
@@ -115,11 +115,11 @@ export default function Contact() {
             </p>
             <div className="pt-2">
               <a
-                href="mailto:weare@buffaloback.in"
+                href="mailto:labs@buffaloback.in"
                 className="inline-flex items-center space-x-2 text-base font-medium text-brand-blue dark:text-brand-gold hover:underline min-h-[44px]"
               >
                 <Mail className="w-4 h-4" />
-                <span>weare@buffaloback.in</span>
+                <span>labs@buffaloback.in</span>
               </a>
             </div>
           </div>
@@ -133,7 +133,7 @@ export default function Contact() {
                   {t('contact.sent')}
                 </h3>
                 <p className="text-sm font-sans text-ink-muted dark:text-ink-darkMuted font-light">
-                  A notification has been sent to our team at <code className="text-xs font-mono">weare@buffaloback.in</code>.
+                  A notification has been sent to our team at <code className="text-xs font-mono">labs@buffaloback.in</code>.
                 </p>
                 <div className="pt-2">
                   <button
@@ -292,7 +292,7 @@ export default function Contact() {
                   </button>
 
                   <span className="text-xs font-mono text-ink-muted/70 dark:text-ink-darkMuted/70">
-                    Direct logs & alert to weare@buffaloback.in
+                    Direct logs & alert to labs@buffaloback.in
                   </span>
                 </div>
 

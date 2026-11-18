@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Github, Linkedin, BookOpen, MapPin, Mail, Building2 } from 'lucide-react';
+import { Linkedin, BookOpen, MapPin, Mail } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -29,18 +29,8 @@ export default function Footer() {
               {t('footer.summary')}
             </p>
 
-            {/* Circular Social Buttons */}
+            {/* Circular Social Buttons (LinkedIn & Substack) */}
             <div className="flex items-center space-x-3 pt-1">
-              <a
-                href="https://github.com/pi-bbl-maker"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-brand-gold/20 text-[#F4F1EA] hover:text-brand-gold border border-white/10 hover:border-brand-gold/40 flex items-center justify-center transition-all duration-200"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-
               <a
                 href="https://www.linkedin.com/company/buffaloback"
                 target="_blank"
@@ -97,37 +87,36 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Get in Touch (md:col-span-4) */}
+          {/* Column 3: Location & Direct Email (md:col-span-4) */}
           <div className="md:col-span-4 space-y-4">
             <h3 className="text-xs font-mono uppercase tracking-widest text-brand-gold font-semibold">
               {t('footer.connect')}
             </h3>
             <div className="space-y-3.5 text-xs text-[#F4F1EA]/85 leading-relaxed font-sans">
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
+              <div className="flex items-center space-x-3">
+                <MapPin className="w-4 h-4 text-brand-gold shrink-0" />
                 <span>{t('contact.office')}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-brand-gold shrink-0" />
                 <a 
-                  href="mailto:weare@buffaloback.in" 
+                  href="mailto:labs@buffaloback.in" 
                   className="text-[#F4F1EA] hover:text-brand-gold transition-colors underline-offset-4 hover:underline"
                 >
-                  weare@buffaloback.in
+                  labs@buffaloback.in
                 </a>
-              </div>
-              <div className="flex items-center space-x-3 font-mono text-[11px] text-[#F4F1EA]/70">
-                <Building2 className="w-4 h-4 text-brand-gold/80 shrink-0" />
-                <span>{t('contact.cin')}</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Bar: Hairline divider + Centered copyright */}
-        <div className="border-t border-white/10 pt-8 mt-12 text-center text-xs font-sans text-[#F4F1EA]/60">
+        {/* Bottom Legal Bar: Copyright alongside AI built tagline */}
+        <div className="border-t border-white/10 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center text-xs font-sans text-[#F4F1EA]/60 gap-4">
           <p>{t('contact.copyright')}</p>
+          <p className="text-center md:text-right italic text-[#F4F1EA]/50 font-sans">
+            {t('hero.aiLine')}
+          </p>
         </div>
 
       </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { Github } from 'lucide-react';
 
 export default function Research() {
   const { t } = useLanguage();
@@ -54,21 +53,10 @@ export default function Research() {
                 {t('research.openSource.name')}
               </h3>
             </div>
-            <div className="md:col-span-8 space-y-4">
+            <div className="md:col-span-8 space-y-2">
               <p className="font-sans text-base sm:text-lg text-ink-muted dark:text-ink-darkMuted font-light leading-relaxed">
                 {t('research.openSource.desc')}
               </p>
-              <div>
-                <a
-                  href="https://github.com/pi-bbl-maker"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-sm font-medium text-brand-blue hover:underline dark:text-brand-gold"
-                >
-                  <Github className="w-4 h-4" />
-                  <span>{t('research.openSource.linkText')}</span>
-                </a>
-              </div>
             </div>
           </div>
 

@@ -5,7 +5,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 async function run() {
-  console.log('--- Starting Playwright QA Verification (Option A Vector Mark + Barlow Wordmark) ---');
+  console.log('--- Starting Playwright QA Verification (BBL-WEBSITE-1.2) ---');
 
   // Start preview server
   const preview = spawn('npx', ['vite', 'preview', '--port', '4173', '--host', '127.0.0.1', '--strictPort'], {
@@ -47,7 +47,7 @@ async function run() {
   const browser = await chromium.launch();
   const consoleErrors = [];
 
-  // Helper to verify horizontal overflow, logos, hero mark, and footer styling
+  // Helper to audit DOM invariants, logos, frames, and partner assets
   async function auditPage(page, label, isMobile = false) {
     // 1. Check horizontal overflow
     const overflow = await page.evaluate(() => {
@@ -58,42 +58,59 @@ async function run() {
     }
     console.log(`✓ Zero horizontal overflow verified in ${label}`);
 
-    // 2. Verify Header Logo (Vector Mark + Barlow Condensed Wordmark)
+    // 2. Strict Domain Invariants: 0 occurrences of deprecated strings in rendered DOM
+    const forbiddenTerms = [
+      'app.kaithota.in',
+      'github.com',
+      'pgsoc-',
+      'CIN: ',
+      'CIN : ',
+      'weare@buffaloback.in'
+    ];
+
+    const violations = await page.evaluate((terms) => {
+      const pageText = document.body.innerText;
+      const html = document.body.innerHTML;
+      const found = [];
+      for (const t of terms) {
+        if (pageText.includes(t) || html.includes(t)) {
+          found.push(t);
+        }
+      }
+      return found;
+    }, forbiddenTerms);
+
+    if (violations.length > 0) {
+      throw new Error(`Rendered DOM contains forbidden terms in ${label}: ${violations.join(', ')}`);
+    }
+    console.log(`✓ 0 occurrences of forbidden terms (app.kaithota.in, github.com, pgsoc-, CIN, weare@buffaloback.in) in ${label}`);
+
+    // 3. Verify Header Logo (Vector Mark + Barlow Wordmark)
     const headerLogoHandle = await page.$('header a[aria-label="Buffalo Back Labs"]');
     if (!headerLogoHandle) throw new Error(`Header logo link missing in ${label}`);
     
     const headerLogoDetails = await page.evaluate((a) => {
       const img = a.querySelector('img');
       const span = a.querySelector('span');
-      const aRect = a.getBoundingClientRect();
       const imgRect = img ? img.getBoundingClientRect() : null;
       const spanRect = span ? span.getBoundingClientRect() : null;
       return {
         hasImg: !!img,
-        imgSrc: img ? img.src : null,
-        imgWidth: imgRect ? imgRect.width : 0,
         imgHeight: imgRect ? imgRect.height : 0,
-        hasSpan: !!span,
         spanText: span ? span.textContent.trim() : '',
-        spanWidth: spanRect ? spanRect.width : 0,
-        spanHeight: spanRect ? spanRect.height : 0,
-        totalWidth: aRect.width,
-        totalHeight: aRect.height
+        spanWidth: spanRect ? spanRect.width : 0
       };
     }, headerLogoHandle);
 
     if (!headerLogoDetails.hasImg || headerLogoDetails.imgHeight < 30) {
-      throw new Error(`Header mark missing or too small in ${label}: ${JSON.stringify(headerLogoDetails)}`);
+      throw new Error(`Header mark missing or too small in ${label}`);
     }
-    if (!headerLogoDetails.hasSpan || headerLogoDetails.spanText !== 'Buffalo Back Labs') {
-      throw new Error(`Header wordmark text missing or incorrect in ${label}: "${headerLogoDetails.spanText}"`);
+    if (headerLogoDetails.spanText !== 'Buffalo Back Labs' || headerLogoDetails.spanWidth < 120) {
+      throw new Error(`Header wordmark text missing or clipped in ${label}: "${headerLogoDetails.spanText}" (${headerLogoDetails.spanWidth}px)`);
     }
-    if (headerLogoDetails.spanWidth < 120) {
-      throw new Error(`Header wordmark "Buffalo Back Labs" appears clipped: width=${headerLogoDetails.spanWidth}px`);
-    }
-    console.log(`✓ Header logo verified in ${label} (mark: ${Math.round(headerLogoDetails.imgWidth)}x${Math.round(headerLogoDetails.imgHeight)}px, text: "${headerLogoDetails.spanText}" width: ${Math.round(headerLogoDetails.spanWidth)}px, total: ${Math.round(headerLogoDetails.totalWidth)}px)`);
+    console.log(`✓ Header logo verified in ${label} (mark height: ${Math.round(headerLogoDetails.imgHeight)}px, text: "${headerLogoDetails.spanText}", width: ${Math.round(headerLogoDetails.spanWidth)}px)`);
 
-    // 3. Verify Hero Mark placement
+    // 4. Verify Hero Mark
     const heroMarkHandle = await page.$('section img[alt="Buffalo Back Labs Mark"]:visible');
     if (!heroMarkHandle) {
       throw new Error(`Hero Mark missing or hidden in ${label}`);
@@ -102,61 +119,105 @@ async function run() {
     if (!heroMarkRect || (isMobile ? heroMarkRect.width < 40 : heroMarkRect.width < 140)) {
       throw new Error(`Hero Mark size incorrect in ${label}: ${JSON.stringify(heroMarkRect)}`);
     }
-    console.log(`✓ Hero Mark verified in ${label} (visible width: ${Math.round(heroMarkRect.width)}px, height: ${Math.round(heroMarkRect.height)}px)`);
+    console.log(`✓ Hero Mark verified in ${label} (visible width: ${Math.round(heroMarkRect.width)}px)`);
 
-    // 4. Verify Ashwidea-style 3-Column Dark-Ground Footer
+    // 5. Verify Mobile + Web Layered Demo Screenshots in #products
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.waitForTimeout(400);
+    await page.evaluate(() => window.scrollTo(0, 0));
+
+    const screenshotCheck = await page.evaluate(() => {
+      const webImg = document.querySelector('img[src*="/screenshots/kaithota-web.png"]');
+      const mobileImg = document.querySelector('img[src*="/screenshots/kaithota-mobile.png"]');
+      return {
+        hasWeb: !!webImg,
+        webLoaded: webImg ? webImg.naturalWidth > 0 : false,
+        webWidth: webImg ? webImg.naturalWidth : 0,
+        hasMobile: !!mobileImg,
+        mobileLoaded: mobileImg ? mobileImg.naturalWidth > 0 : false,
+        mobileWidth: mobileImg ? mobileImg.naturalWidth : 0
+      };
+    });
+
+    if (!screenshotCheck.hasWeb || !screenshotCheck.webLoaded) {
+      throw new Error(`Web dashboard screenshot missing or failed to load in ${label}: ${JSON.stringify(screenshotCheck)}`);
+    }
+    if (!screenshotCheck.hasMobile || !screenshotCheck.mobileLoaded) {
+      throw new Error(`Mobile farmer screenshot missing or failed to load in ${label}: ${JSON.stringify(screenshotCheck)}`);
+    }
+    console.log(`✓ Layered demo screenshots verified in ${label} (Web: ${screenshotCheck.webWidth}px, Mobile: ${screenshotCheck.mobileWidth}px natural)`);
+
+    // 6. Verify Ecosystem Partner Logos from bbcf.store in #ecosystem
+    const ecosystemLogosCheck = await page.evaluate(() => {
+      const expectedLogos = [
+        'logo-buffaloback.png',
+        'logo-kaithota.png',
+        'logo-16doddi.png',
+        'logo-ragihalli.png'
+      ];
+      const imgs = Array.from(document.querySelectorAll('#ecosystem img'));
+      const loaded = imgs.filter(img => img.naturalWidth > 0).map(img => {
+        return expectedLogos.find(name => img.src.includes(name));
+      }).filter(Boolean);
+
+      return {
+        totalFound: imgs.length,
+        loadedCount: loaded.length,
+        loadedLogos: loaded
+      };
+    });
+
+    if (ecosystemLogosCheck.loadedCount < 4) {
+      throw new Error(`Ecosystem logos missing or failed to load in ${label}: ${JSON.stringify(ecosystemLogosCheck)}`);
+    }
+    console.log(`✓ 4 BBCF ecosystem logos loaded successfully in ${label}: ${ecosystemLogosCheck.loadedLogos.join(', ')}`);
+
+    // 7. Verify Footer Details (Option A Logo, labs@ email, Jayanagar address, legal bar with AI tagline)
     const footer = await page.$('footer');
     if (!footer) throw new Error(`Footer missing in ${label}`);
 
     const footerDetails = await page.evaluate((f) => {
-      const style = window.getComputedStyle(f);
-      const bg = style.backgroundColor;
-      const text = f.textContent;
+      const text = f.innerText;
       const brandLink = f.querySelector('a[aria-label="Buffalo Back Labs"]');
       const img = brandLink ? brandLink.querySelector('img') : null;
       const span = brandLink ? brandLink.querySelector('span') : null;
-      const imgRect = img ? img.getBoundingClientRect() : null;
       const spanRect = span ? span.getBoundingClientRect() : null;
+      const emailLink = f.querySelector('a[href="mailto:labs@buffaloback.in"]');
       const socialLinks = Array.from(f.querySelectorAll('a[aria-label]')).map(a => a.getAttribute('aria-label'));
-      
+
       return {
-        bg: bg,
-        hasBrandLink: !!brandLink,
-        hasImg: !!img,
-        imgSrc: img ? img.src : null,
-        imgWidth: imgRect ? imgRect.width : 0,
-        imgHeight: imgRect ? imgRect.height : 0,
-        hasSpan: !!span,
-        spanText: span ? span.textContent.trim() : '',
+        hasLogoImg: !!img && (img.src.includes('Icon%20Color%20White.svg') || img.src.includes('Icon Color White.svg') || img.src.includes('Logo%20Color%20White.png')),
+        hasWordmark: !!span && span.textContent.trim() === 'Buffalo Back Labs' && spanRect.width >= 120,
         spanWidth: spanRect ? spanRect.width : 0,
-        hasDeprecatedTag: text.includes('INDEPENDENT LAB // VOICE-FIRST SOVEREIGNTY'),
+        hasLabsEmail: !!emailLink && emailLink.textContent.includes('labs@buffaloback.in'),
+        hasJayanagar: text.includes('Jayanagar, Bangalore') || text.includes('ಜಯನಗರ, ಬೆಂಗಳೂರು'),
+        hasNoCIN: !text.includes('CIN:'),
         hasCopyright: text.includes('© 2026 Buffalo Back Labs (OPC) Private Limited.'),
-        socialLabels: socialLinks
+        hasAITagline: text.includes('Yes, AI built this website') || text.includes('ಹೌದು, ಎಐ ಈ ವೆಬ್‌ಸೈಟ್'),
+        socials: socialLinks
       };
     }, footer);
 
-    if (footerDetails.hasDeprecatedTag) {
-      throw new Error(`Footer still contains deprecated tag 'INDEPENDENT LAB // VOICE-FIRST SOVEREIGNTY' in ${label}`);
+    if (!footerDetails.hasLogoImg || !footerDetails.hasWordmark) {
+      throw new Error(`Footer logo unclipped check failed in ${label}: ${JSON.stringify(footerDetails)}`);
     }
-    if (!footerDetails.hasCopyright) {
-      throw new Error(`Footer missing copyright notice in ${label}`);
+    if (!footerDetails.hasLabsEmail) {
+      throw new Error(`Footer missing labs@buffaloback.in link in ${label}`);
     }
-    if (!footerDetails.hasImg || footerDetails.imgHeight < 30) {
-      throw new Error(`Footer mark missing or too small in ${label}: ${JSON.stringify(footerDetails)}`);
+    if (!footerDetails.hasJayanagar || !footerDetails.hasNoCIN) {
+      throw new Error(`Footer address/CIN check failed in ${label}: hasJayanagar=${footerDetails.hasJayanagar}, hasNoCIN=${footerDetails.hasNoCIN}`);
     }
-    if (!footerDetails.imgSrc.includes('Icon%20Color%20White.svg') && !footerDetails.imgSrc.includes('Icon Color White.svg')) {
-      throw new Error(`Footer should use Icon Color White.svg on dark ground, got: ${footerDetails.imgSrc}`);
+    if (!footerDetails.hasCopyright || !footerDetails.hasAITagline) {
+      throw new Error(`Footer legal bar missing copyright or AI tagline in ${label}`);
     }
-    if (!footerDetails.hasSpan || footerDetails.spanText !== 'Buffalo Back Labs' || footerDetails.spanWidth < 120) {
-      throw new Error(`Footer wordmark text missing or clipped in ${label}: "${footerDetails.spanText}" (${footerDetails.spanWidth}px)`);
+    if (footerDetails.socials.includes('GitHub')) {
+      throw new Error(`Footer still contains GitHub social link in ${label}`);
     }
-    const expectedSocials = ['GitHub', 'LinkedIn', 'Substack'];
-    for (const s of expectedSocials) {
-      if (!footerDetails.socialLabels.includes(s)) {
-        throw new Error(`Missing expected social button "${s}" in footer (${label})`);
-      }
+    if (!footerDetails.socials.includes('LinkedIn') || !footerDetails.socials.includes('Substack')) {
+      throw new Error(`Footer missing LinkedIn or Substack in ${label}: ${footerDetails.socials.join(', ')}`);
     }
-    console.log(`✓ Ashwidea-style dark footer verified in ${label} (bg: ${footerDetails.bg}, mark + "${footerDetails.spanText}", circular socials: ${footerDetails.socialLabels.join(', ')})`);
+
+    console.log(`✓ Footer verified in ${label} (labs@ email, Jayanagar address, legal bar with AI tagline, socials: ${footerDetails.socials.join(', ')})`);
   }
 
   // Helper to verify Contact Form functionality
@@ -176,11 +237,10 @@ async function run() {
       throw new Error(`One or more contact form fields missing in ${label}`);
     }
 
-    // Verify topic dropdown options
-    const options = await page.$$eval('#contact-topic option', (opts) => opts.map(o => o.value));
-    const expectedTopics = ['Kai Thota / PGS Tools', 'Custom Field Tech', 'Research & Open Source', 'Partnership / Grant', 'General'];
-    for (const t of expectedTopics) {
-      if (!options.includes(t)) throw new Error(`Missing expected topic "${t}" in ${label}`);
+    // Verify direct email row has labs@buffaloback.in
+    const contactEmailLink = await page.$('#contact a[href="mailto:labs@buffaloback.in"]');
+    if (!contactEmailLink) {
+      throw new Error(`Contact section missing labs@buffaloback.in link in ${label}`);
     }
 
     // Test form validation: submit empty form
@@ -190,10 +250,10 @@ async function run() {
 
     const hasValidationErrors = await page.evaluate(() => {
       const errs = document.querySelectorAll('#contact span.text-red-500');
-      return errs.length >= 2; // Name & Email required
+      return errs.length >= 2;
     });
     if (!hasValidationErrors) throw new Error(`Validation errors did not render on empty submission in ${label}`);
-    console.log(`✓ Contact form validation verified on empty submission in ${label}`);
+    console.log(`✓ Contact form validation verified in ${label}`);
 
     // Fill valid data
     await nameInput.fill('Kavitha Rao');
@@ -209,8 +269,7 @@ async function run() {
     // Verify success state rendered
     const successHeading = await page.$('#contact h3');
     if (!successHeading) throw new Error(`Success state did not render in ${label}`);
-    const successText = await successHeading.textContent();
-    console.log(`✓ Form submission success state verified in ${label}: "${successText.trim()}"`);
+    console.log(`✓ Form submission success state verified in ${label}`);
 
     // Test reset button
     const resetBtn = await page.$('#contact button:has-text("another message"), #contact button:has-text("ಮತ್ತೊಂದು ಸಂದೇಶ")');
@@ -240,16 +299,21 @@ async function run() {
   await pageDesktopLight.screenshot({ path: 'public/playwright-evidence/bbl-light-desktop-1440.png', fullPage: true });
   console.log('✓ Captured: bbl-light-desktop-1440.png');
 
-  // Also capture a dedicated close-up of Header and Footer for visual inspection
-  const headerElemLight = await pageDesktopLight.$('header');
-  if (headerElemLight) {
-    await headerElemLight.screenshot({ path: 'public/playwright-evidence/header-light-desktop.png' });
-    console.log('✓ Captured close-up: header-light-desktop.png');
+  // Close-up captures
+  const productsProofElem = await pageDesktopLight.$('#proof');
+  if (productsProofElem) {
+    await productsProofElem.screenshot({ path: 'public/playwright-evidence/proof-layered-frame-desktop.png' });
+    console.log('✓ Captured close-up: proof-layered-frame-desktop.png');
   }
-  const footerElemLight = await pageDesktopLight.$('footer');
-  if (footerElemLight) {
-    await footerElemLight.screenshot({ path: 'public/playwright-evidence/footer-light-desktop.png' });
-    console.log('✓ Captured close-up: footer-light-desktop.png');
+  const ecosystemElem = await pageDesktopLight.$('#ecosystem');
+  if (ecosystemElem) {
+    await ecosystemElem.screenshot({ path: 'public/playwright-evidence/ecosystem-logos-desktop.png' });
+    console.log('✓ Captured close-up: ecosystem-logos-desktop.png');
+  }
+  const footerElem = await pageDesktopLight.$('footer');
+  if (footerElem) {
+    await footerElem.screenshot({ path: 'public/playwright-evidence/footer-clean-desktop.png' });
+    console.log('✓ Captured close-up: footer-clean-desktop.png');
   }
 
   // 2. Desktop 1440x900 - Dark Mode
@@ -269,12 +333,6 @@ async function run() {
   await pageDesktopDark.screenshot({ path: 'public/playwright-evidence/bbl-dark-desktop-1440.png', fullPage: true });
   console.log('✓ Captured: bbl-dark-desktop-1440.png');
 
-  const headerElemDark = await pageDesktopDark.$('header');
-  if (headerElemDark) {
-    await headerElemDark.screenshot({ path: 'public/playwright-evidence/header-dark-desktop.png' });
-    console.log('✓ Captured close-up: header-dark-desktop.png');
-  }
-
   // 3. Mobile 390x844 - Light Mode
   console.log('\n--- Testing Mobile 390x844: Light Mode ---');
   const contextMobileLight = await browser.newContext({
@@ -291,7 +349,7 @@ async function run() {
   await pageMobileLight.goto('http://127.0.0.1:4173', { waitUntil: 'networkidle' });
   await auditPage(pageMobileLight, 'Mobile Light Mode', true);
   
-  // Verify mobile touch targets >= 44/48px (excluding hidden honeypot)
+  // Verify mobile touch targets >= 44/48px
   const touchHeights = await pageMobileLight.evaluate(() => {
     const inputs = document.querySelectorAll('#contact input:not([name="company_website_url"]):not([type="hidden"]), #contact select, #contact button[type="submit"]');
     return Array.from(inputs).map(inp => ({
@@ -300,7 +358,6 @@ async function run() {
       height: inp.getBoundingClientRect().height
     }));
   });
-  console.log('Mobile touch target heights:', touchHeights);
   const touchTargetsOk = touchHeights.every(t => t.height >= 44);
   if (!touchTargetsOk) throw new Error('Mobile touch targets below 44/48px in Contact Form');
   console.log('✓ Contact form mobile touch targets verified >= 48px');
@@ -345,7 +402,7 @@ async function run() {
   }
 
   console.log('\n✓ 0 Console Errors detected across all test suites');
-  console.log('=== Playwright QA Verification (Option A Vector Mark + Barlow Wordmark) PASSED ===');
+  console.log('=== Playwright QA Verification (BBL-WEBSITE-1.2) PASSED ===');
   process.exit(0);
 }
 
