@@ -1,5 +1,6 @@
 import React from 'react';
 import { LanguageProvider } from './context/LanguageContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Products from './components/Products';
@@ -12,20 +13,22 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <div className="flex flex-col min-h-screen bg-[#FAF6F0] text-[#222222] font-sans antialiased selection:bg-[#1B2A4A]/20 selection:text-[#1B2A4A]">
-        <Header />
-        <main className="flex-grow">
-          <Hero />
-          <Products />
-          <Services />
-          <Research />
-          <About />
-          <Ecosystem />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <div className="min-h-screen flex flex-col bg-canvas-light text-ink-light dark:bg-canvas-dark dark:text-ink-dark transition-colors duration-200">
+          <Header />
+          <main className="flex-grow">
+            <Hero />
+            <Products />
+            <Services />
+            <Research />
+            <About />
+            <Ecosystem />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

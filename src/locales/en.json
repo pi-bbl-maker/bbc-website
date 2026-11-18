@@ -1,143 +1,90 @@
 {
   "nav": {
-    "products": "Products",
+    "products": "Work",
     "services": "Services",
-    "research": "Open Source & Research",
+    "research": "Research",
     "about": "About",
     "ecosystem": "Ecosystem",
     "contact": "Contact",
-    "appLink": "Launch Kai Thota ↗"
-  },
-  "badge": {
-    "tagline": "Technology for Agroecology",
-    "aiTransparency": "AI-Accelerated • Soil-Verified • Open Commons"
+    "appLink": "Kai Thota OS ↗"
   },
   "hero": {
     "headline": "Technology for Agroecology",
-    "subheadline": "We build open digital public infrastructure, vernacular voice AI, and field platforms directly alongside smallholder farming collectives and bio-regional living labs.",
-    "aiTagline": "Transparently engineered with modern AI acceleration — verified by human stewards on the soil.",
-    "ctaProducts": "Explore Products",
-    "ctaResearch": "Voice AI Research",
-    "ctaLiveApp": "Open Kai Thota App ↗",
-    "stamp": "BUFFALO BACK LABS // LIVING LAB RAGIHALLI // 12.7562° N, 77.5891° E"
+    "subhead": "We build offline-first software, vernacular voice tools, and open data commons with women-led farming collectives.",
+    "aiLine": "Yes, AI built this website—because our hands are busy building tools for women in agroecology.",
+    "ctaWork": "Our Work",
+    "ctaContact": "Get in Touch"
   },
   "products": {
-    "sectionTag": "01 // Software For The Soil",
-    "heading": "Field-Tested Agrarian Products",
-    "subheading": "Sovereign, offline-first digital tools engineered specifically for agroecological collectives, farm-to-community logistics, and peer-certified organic integrity.",
+    "title": "What We Build",
     "kaithota": {
-      "tag": "Flagship Field Platform",
-      "title": "Kai Thota (ಕೈ ತೋಟ)",
-      "desc": "A participatory crop planning, harvest logging, and field management PWA built for bio-regional living labs and smallholder farmer collectives. Designed to run offline on mobile devices in the field.",
-      "f1": "100% Offline-first with automatic background sync",
-      "f2": "Native Kannada & bilingual vernacular UI",
-      "f3": "Bio-diverse plot mapping & succession logs",
-      "f4": "Daily harvest logging with zero paperwork",
-      "cta": "Launch Live App (app.kaithota.in)"
+      "name": "Kai Thota OS",
+      "desc": "Offline-first, bilingual (English/Kannada) crop planning, biodynamic sowing, and harvest tracking for collective farms.",
+      "linkText": "Launch app.kaithota.in ↗"
     },
     "pgsoc": {
-      "tag": "Trust & Certification Engine",
-      "title": "PGSOC Peer Verification & Onboarding",
-      "desc": "A transparent Participatory Guarantee System (PGS-India aligned) digital engine for farmer onboarding and peer-reviewed organic verification.",
-      "f1": "Decentralized peer group audit workflows",
-      "f2": "Geo-tagged farm inspection trails",
-      "f3": "Zero bureaucratic overhead for growers"
+      "name": "PGS Tools",
+      "desc": "Peer-verified organic certification and farmer onboarding (pgsoc-verification, pgsoc-farmer-onboarding) built for decentralized group integrity without paperwork friction."
     },
-    "preference": {
-      "tag": "Distribution & Aggregation",
-      "title": "Collective Logistics & Preference Master",
-      "desc": "An intelligent Community Supported Agriculture (CSA) engine balancing harvest unpredictability with consumer weekly basket preferences.",
-      "f1": "Real-time harvest-to-basket reconciliation",
-      "f2": "Transparent fair-price farmer settlements",
-      "f3": "Zero-waste localized supply chain routing"
+    "commons": {
+      "name": "Open Agroecology Commons",
+      "desc": "Shared agronomy knowledge, native seed taxonomies, and community-owned field schemas ensuring smallholders own their historical data."
     }
   },
   "services": {
-    "sectionTag": "02 // Technical Capabilities",
-    "heading": "Engineering for Sovereign Food Systems",
-    "subheading": "From custom agroecological architectures to community-owned digital public infrastructure, we offer mission-aligned software engineering.",
-    "s1Title": "Custom Agroecology Architecture",
-    "s1Desc": "Tailored software design and engineering for Farmer Producer Organizations (FPOs), seed conservancies, and bio-regional trusts. We craft bespoke workflows that mirror ecological reality.",
-    "s2Title": "Participatory Digital Public Infrastructure (DPI)",
-    "s2Desc": "Designing community-owned data registries, localized seed schemas (seeds_master), and open-source protocols ensuring smallholders maintain strict data sovereignty.",
-    "s3Title": "Cloud & Edge Deployment Stewardship",
-    "s3Desc": "End-to-end infrastructure provisioning on Google Cloud & Firebase with strict data residency, privacy, local caching, and zero extractive vendor lock-in."
+    "title": "Services",
+    "s1": {
+      "name": "Participatory Field-Tech Co-Design",
+      "desc": "Software built shoulder-to-shoulder with women farmers in the field, adapting technology to human rhythms rather than forcing bureaucratic routines."
+    },
+    "s2": {
+      "name": "Custom Collective Software",
+      "desc": "Operational tools for Farmer Producer Organisations (FPOs), Participatory Guarantee System groups, and decentralized food networks."
+    },
+    "s3": {
+      "name": "Field Data Migration & Audits",
+      "desc": "Turning physical paper registers, WhatsApp voice notes, and messy spreadsheets into structured, audit-ready farm records."
+    }
   },
   "research": {
-    "sectionTag": "03 // Open Commons & Research",
-    "heading": "Indigenous Agrarian Voice AI & Open Commons",
-    "subheading": "Breaking digital literacy barriers through natural spoken voice recognition in under-represented indigenous dialects.",
-    "asrTitle": "Vernacular Agrarian Speech Recognition (ASR): Iruliga & Lambani (Gor-Boli)",
-    "asrCopy1": "Literacy barriers should never lock smallholder and indigenous women farmers out of digital ecological monitoring. Standard commercial speech models fail completely on regional tribal dialects and colloquial agronomic terms.",
-    "asrCopy2": "Buffalo Back Labs is pioneering open acoustic fine-tuning and domain-specific dataset curation for Iruliga (forest-dwelling agrarian communities of Bannerghatta and Nilgiris) and Lambani / Gor-Boli (nomadic pastoralist and dryland farming communities across Karnataka).",
-    "asrPill1": "Edge-Ready Voice Inference",
-    "asrPill2": "Iruliga & Lambani Dialect Datasets",
-    "asrPill3": "Dialect-to-Structured Farm Logs",
-    "openCommonsTitle": "Open Agrarian Commons",
-    "openCommonsDesc": "All core schemas, offline PWA service worker patterns, and seed registry protocols are published openly under permissive licenses on GitHub for the agroecological movement.",
-    "githubCta": "Explore pi-bbl-maker on GitHub ↗"
+    "title": "Open Source & Field Research",
+    "asr": {
+      "name": "Offline Vernacular ASR",
+      "desc": "Voice-first speech recognition for Iruliga and Lambani dialects so typing or literacy never blocks field logging."
+    },
+    "livingLab": {
+      "name": "Living Lab",
+      "desc": "Tested daily on active collective plots (Kai Thota 1, 2, 3 & Project Organic Ragi 2026) alongside smallholder farmers in Ragihalli."
+    },
+    "openSource": {
+      "name": "Open Source",
+      "desc": "Published openly under GNU GPL v3 for the global agrarian commons.",
+      "linkText": "github.com/pi-bbl-maker ↗"
+    }
   },
   "about": {
-    "sectionTag": "04 // Identity & Mission",
-    "heading": "Technology Subservient to Ecology",
-    "subheading": "Buffalo Back Labs (OPC) Private Limited is an ecosystem-anchored software lab founded to build sovereign, non-extractive digital tools for the soil.",
-    "p1": "Conventional AgTech is designed for monocultures, commodity traders, and debt-driven contract farming. At Buffalo Back Labs, we invert this paradigm. We design software around the complex physics of polycultures, women-led collective stewardship, and bioregional food sheds.",
-    "p2": "We believe in honest, transparent technology. As a modern engineering studio, we harness advanced AI acceleration to build enterprise-grade software at grassroots speed — but every feature, data schema, and workflow is co-created and tested with farmers on the ground at our Ragihalli Living Lab.",
-    "val1Title": "Soil First",
-    "val1Desc": "Technology must nurture ecological biodiversity and community autonomy, never extract value.",
-    "val2Title": "Data Sovereignty",
-    "val2Desc": "Farmers and grassroots collectives own 100% of their operational, seed, and yield data.",
-    "val3Title": "Honest AI Engineering",
-    "val3Desc": "AI-accelerated development audited transparently and field-verified with boots on the ground."
+    "title": "About",
+    "p1": "Buffalo Back Labs (OPC) Private Limited was founded by Preethy Iyer in Bengaluru. We are an independent software lab dedicated to grassroots agroecology and food sovereignty.",
+    "p2": "We work field-first and voice-first, with zero third-party AI data egress. Our code serves the soil and the women who sustain it."
   },
   "ecosystem": {
-    "sectionTag": "05 // The Wider Federation",
-    "heading": "The Buffalo Back Ecosystem",
-    "subheading": "Buffalo Back Labs operates in synergistic alignment with non-profit conservation, living labs, and fair-trade consumer federations.",
-    "e1Title": "Buffalo Back Labs (BBL)",
-    "e1Role": "Technology & Innovation Engine",
-    "e1Desc": "Engineering the software layer, vernacular voice models, and digital public infrastructure for agroecology.",
-    "e2Title": "16 Doddi Trust (16DT)",
-    "e2Role": "Living Lab & Seed Sanctuary",
-    "e2Desc": "Bio-regional research center, native seed conservation, and farmer demonstration hub in Ragihalli.",
-    "e3Title": "Buffalo Back Consumers Federation (BBCF)",
-    "e3Role": "Fair Trade & CSA Network",
-    "e3Desc": "Connecting conscious urban consumers directly with ecological producers through fair, decentralized supply chains.",
-    "e4Title": "Kai Thota (ಕೈ ತೋಟ)",
-    "e4Role": "Field-Level Software Application",
-    "e4Desc": "The live digital bridge actively synchronizing farm plots, harvest entries, and customer weekly allocations.",
-    "e5Title": "Global Agroecology Solidarity",
-    "e5Role": "Thousand Currents & Regional Partners",
-    "e5Desc": "Collaborating with grassroots agroecology movements and food sovereignty alliances across the Global South."
+    "title": "Ecosystem & Collaborations",
+    "desc": "We work alongside farmer collectives, FPOs, PGS clusters, conservation trusts, and public interest research foundations across the Global South.",
+    "cta": "Partner With Us"
   },
   "contact": {
-    "sectionTag": "06 // Dialogue & Collaboration",
-    "heading": "Partner With Us",
-    "subheading": "Whether you are a farming collective, a conservation trust, a researcher, or a patient capital partner — let's build sovereign technology for the soil together.",
-    "formName": "Full Name",
-    "formOrg": "Organization / Collective",
+    "title": "Get in Touch",
+    "desc": "If you are a farming collective, a researcher, or an impact partner interested in our field tools or voice models, we would love to hear from you.",
+    "emailLabel": "Direct Email",
+    "officeLabel": "Registered Office",
+    "office": "33 (Old No. 43), Mountain Street, 1st Block Jayanagar, Madhavan Park, Bangalore - 560011",
+    "cin": "CIN: U62011KA2026OPC220541",
+    "formName": "Your Name",
     "formEmail": "Email Address",
-    "formTopic": "Area of Collaboration",
-    "topic1": "Kai Thota Platform Deployment",
-    "topic2": "Vernacular Voice AI (Iruliga/Lambani)",
-    "topic3": "Custom Agroecology Tech Architecture",
-    "topic4": "Research & Open Source Collaboration",
-    "topic5": "General Inquiry",
-    "formMessage": "Project Details / Alignment Vision",
-    "submitBtn": "Send Message",
-    "submitting": "Sending...",
-    "successHeading": "Message Received",
-    "successMsg": "Thank you for reaching out. The Buffalo Back Labs engineering team has logged your inquiry and will follow up shortly.",
-    "directEmail": "Direct Email",
-    "github": "Open Source GitHub",
-    "location": "Living Lab & Office",
-    "locationText": "Ragihalli Living Lab, Bannerghatta & Bengaluru, Karnataka, India"
-  },
-  "footer": {
-    "tagline": "Buffalo Back Labs — Technology for Agroecology.",
-    "sub": "Engineered with AI acceleration, grounded on the soil.",
-    "attribution": "© 2026 Buffalo Back Labs (OPC) Private Limited. All rights reserved.",
-    "coordinates": "LAT: 12.7562° N // LON: 77.5891° E",
-    "aiDisclosure": "AI-Accelerated Engineering • Verified on Ground"
+    "formMessage": "How can we work together?",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "sent": "Thank you. Your message has been received.",
+    "copyright": "© 2026 Buffalo Back Labs (OPC) Private Limited."
   }
 }

@@ -4,28 +4,44 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#1B2A4A" />
+    <meta name="theme-color" content="#FAF9F6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B1F22" media="(prefers-color-scheme: dark)" />
     <title>Buffalo Back Labs | Technology for Agroecology</title>
     
+    <!-- Inline script to prevent theme flash -->
+    <script>
+      (function() {
+        try {
+          const saved = localStorage.getItem('bbl-theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Meta tags for SEO & Social Preview -->
-    <meta name="description" content="Buffalo Back Labs engineers open digital public infrastructure, vernacular voice AI (Iruliga & Lambani), and sovereign field platforms for agroecology movements." />
-    <meta name="keywords" content="Buffalo Back Labs, Agroecology, Kai Thota, PGSOC, Vernacular Voice AI, Iruliga, Lambani, Ragihalli Living Lab, Open Agrarian Commons" />
+    <meta name="description" content="Buffalo Back Labs builds offline-first software, vernacular voice tools, and open data commons with women-led farming collectives." />
+    <meta name="keywords" content="Buffalo Back Labs, Agroecology, Kai Thota OS, PGS Tools, Vernacular Voice AI, Iruliga, Lambani, Open Agroecology Commons" />
     <meta property="og:title" content="Buffalo Back Labs | Technology for Agroecology" />
-    <meta property="og:description" content="Open digital public infrastructure, vernacular voice AI, and field platforms directly alongside smallholder farming collectives." />
+    <meta property="og:description" content="We build offline-first software, vernacular voice tools, and open data commons with women-led farming collectives." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/brand/Logo Color Blue.svg" />
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     
-    <!-- Google Fonts: Lora (Serif) & Plus Jakarta Sans (Sans-serif) -->
+    <!-- Google Fonts: Barlow, Barlow Condensed, Inter & Noto Sans Kannada -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-BbmbhJ6w.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BlorDV0q.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-DLpDQBY3.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D1hUk-Zp.css">
   </head>
-  <body class="bg-[#FAF6F0] font-sans text-[#222222] antialiased selection:bg-[#1B2A4A]/20 selection:text-[#1B2A4A]">
+  <body class="bg-canvas-light text-ink-light dark:bg-canvas-dark dark:text-ink-dark font-sans antialiased selection:bg-brand-gold/30 selection:text-ink-light dark:selection:text-ink-dark transition-colors duration-200">
     <div id="root"></div>
     
     <!-- Service Worker Registration -->
@@ -33,7 +49,7 @@
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
-            .then(reg => console.log('Service Worker registered with scope: ', reg.scope))
+            .then(reg => console.log('Service Worker registered: ', reg.scope))
             .catch(err => console.error('Service Worker registration failed: ', err));
         });
       }

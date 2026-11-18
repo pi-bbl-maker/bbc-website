@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -7,43 +8,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        linen: {
-          light: '#FDFBF7',
-          DEFAULT: '#FAF6F0',
-          dark: '#F0EAE1',
+        canvas: {
+          light: '#FAF9F6',
+          dark: '#0B1F22',
+          surface: '#0F2A2E',
         },
-        charcoal: {
-          DEFAULT: '#222222',
-          light: '#333333',
-          dark: '#111111',
+        ink: {
+          light: '#111827',
+          muted: '#4B5563',
+          dark: '#F4F1EA',
+          darkMuted: '#94A3B8',
         },
-        indigo: {
-          bbl: '#1B2A4A',
-          deep: '#1E1B4B',
-          light: '#2E3E61',
+        brand: {
+          blue: '#003149',
+          indigo: '#1B2A4A',
+          gold: '#E5B622',
+          teal: '#2DD4BF',
         },
-        slate: {
-          steel: '#4A6B82',
-          muted: '#627D98',
-        },
-        earth: {
-          light: '#5C4331',
-          DEFAULT: '#3F2A1D',
-          dark: '#2E1E12',
-          ochre: '#8B5A2B',
-        },
-        olive: {
-          light: '#6E8259',
-          DEFAULT: '#4D5D3B',
-          dark: '#1E4D2B',
-        },
-        amber: {
-          gold: '#FAB818',
+        hairline: {
+          light: 'rgba(27, 42, 74, 0.12)',
+          dark: 'rgba(255, 255, 255, 0.12)',
         }
       },
       fontFamily: {
-        serif: ['Lora', 'Georgia', 'serif'],
-        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        condensed: ['Barlow Condensed', 'sans-serif'],
+        heading: ['Barlow', 'sans-serif'],
       },
     },
   },

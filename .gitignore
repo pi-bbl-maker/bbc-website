@@ -84,3 +84,7 @@ out/
 # Vite / bundler caches
 .vite
 .parcel-cache
+
+# Firebase
+.firebase
+.firebase/

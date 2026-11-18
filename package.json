@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "lint": "eslint src/",
     "preview": "vite preview",
     "test": "node qa-test.cjs"
   },
@@ -20,6 +21,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "eslint": "^10.15.0",
     "playwright": "^1.65.1",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",

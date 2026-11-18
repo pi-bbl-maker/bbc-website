@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-linen text-charcoal font-sans antialiased selection:bg-olive/20 selection:text-olive-dark;
+    @apply bg-canvas-light text-ink-light dark:bg-canvas-dark dark:text-ink-dark font-sans antialiased;
   }
 }
 
@@ -23,5 +23,5 @@
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
