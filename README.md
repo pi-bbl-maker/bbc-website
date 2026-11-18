@@ -1,55 +1,86 @@
-# Buffalo Back Labs - Agroecological Stack Editorial Manifesto
+# Buffalo Back Labs — Technology for Agroecology
 
-This repository contains the overhauled, high-fidelity responsive landing page for **Buffalo Back Labs (BBL)**, a social for-profit ecosystem enabler in agroecology, optimized for **Patient Capital Funders** and **Impact VCs**.
+The official website for **Buffalo Back Labs (OPC) Private Limited** (`pi-bbl-maker/bbc-website`).
 
-The UI/UX focuses on clean typography, generous whitespace, and an authentic editorial manifesto layout (shifting away from generic SaaS tech-graphics and dashboards).
-
----
-
-## 🎨 Design System & Visual Constraints
-The styling adheres to a raw, structural manifesto:
-* **Background Tones**: Natural, raw unbleached linen/canvas backgrounds (`#FAF6F0`).
-* **Colors**: Indigo Blue (`#1E1B4B`), Olive Green (`#4D5D3B`), and Earth Brown (`#3F2A1D`).
-* **Typography**: Elegant Georgia/Lora serif for headers, and Plus Jakarta Sans/Inter for structured UI labels.
-* **Photo Placeholders**: Large canvas elements styled as raw photo containers showing strict photo specifications:
-  * **Placeholder 1 (Hero Background)**: `[IMAGE REQ: High-quality photograph of women farmers at the Kai Thota demo farm in Ragihalli, working the soil.]`
-  * **Placeholder 2 (Field Layer Card)**: `[IMAGE REQ: Close-up of a farmer logging voice data on a mobile device in the field.]`
-  * **Placeholder 3 (Market Layer Card)**: `[IMAGE REQ: Fresh, organic harvest aggregated for community distribution.]`
+Clean, independent studio design with auto-detecting Light & Dark mode, plain-spoken voice, and zero template clutter.
 
 ---
 
-## ⚙️ Tech Stack & Configurations
-* **Frontend**: React.js SPA powered by Vite
-* **Styling**: Tailwind CSS
-* **Build Engine**: Vite
-* **PWA Features**: Service Worker (`sw.js`) and Web Manifest (`manifest.json`) supporting immediate cache takeover.
-* **i18n Mappings**: Localized in English (`en`) and Kannada (`kn`).
+## 🎨 Visual System & Studio Design
+* **Typography**: `Barlow` / `Barlow Condensed` (light, regular, medium weights) + `Inter` matching the monoline BBL vector logo.
+* **Canvas Colors**:
+  * **Light Mode**: Warm off-white canvas (`#FAF9F6`), deep indigo / charcoal ink (`#111827` / `#003149`), hairline borders (`rgba(27, 42, 74, 0.12)`).
+  * **Dark Mode**: Deep teal-slate canvas (`#0B1F22`), surface (`#0F2A2E`), crisp warm-white text (`#F4F1EA`), subtle gold (`#E5B622`) and teal (`#2DD4BF`) accents.
+* **Branding**: Full vector SVGs rendered directly from the BBL Logo Kit:
+  * Light Mode: `public/brand/Logo Color Blue.svg`
+  * Dark Mode: `public/brand/Logo Color White.svg`
+* **Theme Switching**: Respects `prefers-color-scheme` by default with minimal Sun/Moon toggle.
+* **Localization**: Full bilingual parity in English (`en`) and Kannada (`kn`).
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Tech Stack
+* **Frontend**: React 18 SPA powered by Vite
+* **Styling**: Tailwind CSS (Tailwind v3 with `darkMode: 'class'`)
+* **Icons**: Lucide React
+* **QA Suite**: Automated Playwright test suite (`node qa-test.cjs`)
+* **Hosting**: Firebase Hosting (`bbl-website.web.app`)
 
-### Prerequisites
-Make sure you have Node.js and npm installed on your system.
-* Node.js: `v22.20.0` or higher
-* npm: `10.9.3` or higher
+---
 
-### Installation
-Clone the repository and install dependencies:
+## 📬 Contact Form & Google Apps Script Webhook Setup
+
+The website uses a zero-cost, serverless Google Apps Script webhook to log inquiries into a Google Sheet and email `weare@buffaloback.in`.
+
+### Quick Setup (2 Minutes):
+1. Open [Google Sheets](https://sheets.new) and create a new spreadsheet named **"BBL Website Inquiries"**.
+2. Click **Extensions > Apps Script** in the top menu.
+3. Paste the contents of [`google_apps_script.js`](./google_apps_script.js) into `Code.gs`.
+4. Click **Deploy > New deployment**.
+   * Type: **Web app**
+   * Description: `BBL Website Webhook`
+   * Execute as: **Me**
+   * Who has access: **Anyone**
+5. Click **Deploy**, authorize Google permissions, and copy the **Web App URL** (`https://script.google.com/macros/s/.../exec`).
+6. Add the URL to `.env.local`:
+   ```env
+   VITE_CONTACT_WEBHOOK_URL=https://script.google.com/macros/s/.../exec
+   ```
+7. *(Fallback)* If `VITE_CONTACT_WEBHOOK_URL` is omitted, the form runs in dev mode with a seamless direct `mailto:weare@buffaloback.in` fallback.
+
+---
+
+## 🚀 Development & Verification
+
+### Install Dependencies
 ```bash
 npm install
 ```
 
-### Development Server
-Run the local Vite development server:
+### Local Dev Server
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your web browser.
+
+### Linting
+```bash
+npm run lint
+```
 
 ### Production Build
-Build the optimized static bundle:
 ```bash
 npm run build
 ```
-The output will compile into the `dist/` directory.
+
+### Playwright Automated QA (Light & Dark Mode)
+```bash
+npm test
+```
+
+---
+
+## 📜 Legal & Corporate Information
+* **Legal Entity**: Buffalo Back Labs (OPC) Private Limited
+* **Registered Office**: 33 (Old No. 43), Mountain Street, 1st Block Jayanagar, Madhavan Park, Bangalore - 560011
+* **CIN**: U62011KA2026OPC220541
+* **Email**: `weare@buffaloback.in`
