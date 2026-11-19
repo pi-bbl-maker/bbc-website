@@ -64,7 +64,7 @@ export default function Products() {
 
         {/* Clean Studio Mobile + Web Layered Frame */}
         <div id="proof" className="mt-16 md:mt-20">
-          <div className="relative rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-hairline-light dark:border-hairline-dark p-4 sm:p-8 md:p-12 overflow-hidden">
+          <div className="relative rounded-2xl bg-black/[0.02] dark:bg-white/[0.02] border border-hairline-light dark:border-hairline-dark p-4 sm:p-8 md:p-12 pb-8 sm:pb-16 overflow-visible">
             
             {/* Ambient subtle glow */}
             <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-brand-gold/5 blur-3xl pointer-events-none" />
@@ -72,21 +72,8 @@ export default function Products() {
 
             <div className="relative max-w-4xl mx-auto">
               
-              {/* Web Dashboard Frame */}
-              <div className="rounded-xl overflow-hidden shadow-xl border border-hairline-light dark:border-white/10 bg-white dark:bg-[#0B1F22]">
-                {/* Minimal Browser Header */}
-                <div className="px-4 py-2.5 bg-canvas-light dark:bg-[#081719] border-b border-hairline-light dark:border-white/10 flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-black/20 dark:bg-white/20" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-black/20 dark:bg-white/20" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-black/20 dark:bg-white/20" />
-                  </div>
-                  <span className="text-[11px] font-mono text-ink-muted/80 dark:text-ink-darkMuted/80 tracking-tight">
-                    Kai Thota OS — Farm & Harvest Planning
-                  </span>
-                  <div className="w-12" />
-                </div>
-                
+              {/* Web Dashboard Frame (Clean border and shadow only) */}
+              <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-xl border border-hairline-light dark:border-white/10 bg-white dark:bg-[#0B1F22]">
                 <img 
                   src="/screenshots/kaithota-web.png" 
                   alt="Kai Thota OS Web Dashboard" 
@@ -94,17 +81,11 @@ export default function Products() {
                 />
               </div>
 
-              {/* Layered Mobile Device Frame (Farmer View) */}
-              <div className="mt-6 sm:mt-0 sm:absolute sm:-bottom-6 sm:right-2 md:right-8 w-full sm:w-56 md:w-64 rounded-2xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white dark:border-[#0F2A2E] bg-white dark:bg-[#081719] transition-transform duration-300 hover:scale-105">
-                {/* Mobile Top Indicator */}
-                <div className="bg-[#1E4D2B] px-3.5 py-1.5 flex items-center justify-between text-[11px] font-medium text-white">
-                  <span>ಕೈ ತೋಟ • Field View</span>
-                  <span className="text-[10px] opacity-80">Offline</span>
-                </div>
-                
+              {/* Layered Mobile Device Frame (3x3 Kannada Action Grid) */}
+              <div className="mt-6 sm:mt-0 sm:absolute sm:-bottom-8 sm:left-[34%] md:left-[38%] w-full sm:w-64 md:w-72 rounded-2xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white dark:border-[#0F2A2E] bg-white dark:bg-[#081719] transition-transform duration-300 hover:scale-105">
                 <img 
                   src="/screenshots/kaithota-mobile.png" 
-                  alt="Kai Thota Farmer Mobile Interface" 
+                  alt="Kai Thota Farmer Tactile Logging Grid" 
                   className="w-full h-auto object-cover block"
                 />
               </div>
