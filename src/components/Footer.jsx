@@ -115,7 +115,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center text-xs font-sans text-[#F4F1EA]/60 gap-4">
           <p>{t('contact.copyright')}</p>
           <p className="text-center md:text-right italic text-[#F4F1EA]/50 font-sans">
-            {t('hero.aiLine')}
+            {t('footer.aiLine')}
           </p>
         </div>
 

@@ -8,16 +8,16 @@ export default function Hero() {
   const { theme } = useTheme();
 
   return (
-    <section className="relative pt-16 pb-20 md:pt-28 md:pb-28 border-b border-hairline-light dark:border-hairline-dark transition-colors overflow-hidden">
+    <section id="hero" className="relative pt-16 pb-20 md:pt-28 md:pb-28 border-b border-hairline-light dark:border-hairline-dark transition-colors overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
           
           {/* Left Column: Typography, Narrative & Actions */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="md:col-span-7 space-y-8">
             
-            {/* Mobile Mark: Cleanly scaled above headline on mobile */}
-            <div className="block lg:hidden">
+            {/* Mobile Mark: only shown on small mobile screens (< md) */}
+            <div className="block md:hidden">
               {theme === 'dark' ? (
                 <img 
                   src="/brand/Icon Color White.svg" 
@@ -43,13 +43,6 @@ export default function Hero() {
               {t('hero.subhead')}
             </p>
 
-            {/* Honest AI-built line: clean, understated note—not a badge */}
-            <div className="pt-2">
-              <p className="text-sm text-ink-muted/80 dark:text-ink-darkMuted/80 font-sans italic border-l border-brand-gold/60 pl-4 py-1">
-                {t('hero.aiLine')}
-              </p>
-            </div>
-
             {/* Two clean links/buttons */}
             <div className="pt-6 flex flex-wrap items-center gap-6">
               <a
@@ -70,9 +63,9 @@ export default function Hero() {
 
           </div>
 
-          {/* Right Column: Large Crisp Editorial BBL Mark on Desktop */}
-          <div className="hidden lg:flex lg:col-span-5 justify-center items-center py-6">
-            <div className="w-full max-w-[340px] flex justify-center items-center select-none">
+          {/* Right Column: Large Crisp Editorial BBL Mark on Tablet/Desktop (md:w-64 lg:w-80) */}
+          <div className="hidden md:flex md:col-span-5 justify-center items-center py-6">
+            <div className="w-full md:w-64 lg:w-80 max-w-[340px] flex justify-center items-center select-none">
               {theme === 'dark' ? (
                 <img 
                   src="/brand/Icon Color White.svg" 

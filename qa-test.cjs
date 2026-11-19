@@ -110,13 +110,19 @@ async function run() {
     }
     console.log(`✓ Header logo verified in ${label} (mark height: ${Math.round(headerLogoDetails.imgHeight)}px, text: "${headerLogoDetails.spanText}", width: ${Math.round(headerLogoDetails.spanWidth)}px)`);
 
-    // 4. Verify Hero Mark
-    const heroMarkHandle = await page.$('section img[alt="Buffalo Back Labs Mark"]:visible');
+    // 4. Verify Hero Mark & Hero Cleanliness (No AI Tagline in Hero)
+    const heroText = await page.$eval('#hero', el => el.innerText);
+    if (heroText.includes('Yes, AI built this website') || heroText.includes('ಹೌದು, ಎಐ ಈ ವೆಬ್‌ಸೈಟ್')) {
+      throw new Error(`#hero still contains AI tagline in ${label}`);
+    }
+    console.log(`✓ Verified #hero does NOT contain AI tagline in ${label}`);
+
+    const heroMarkHandle = await page.$('section#hero img[alt="Buffalo Back Labs Mark"]:visible');
     if (!heroMarkHandle) {
       throw new Error(`Hero Mark missing or hidden in ${label}`);
     }
     const heroMarkRect = await heroMarkHandle.boundingBox();
-    if (!heroMarkRect || (isMobile ? heroMarkRect.width < 40 : heroMarkRect.width < 140)) {
+    if (!heroMarkRect || (isMobile ? heroMarkRect.width < 40 : heroMarkRect.width < 200)) {
       throw new Error(`Hero Mark size incorrect in ${label}: ${JSON.stringify(heroMarkRect)}`);
     }
     console.log(`✓ Hero Mark verified in ${label} (visible width: ${Math.round(heroMarkRect.width)}px)`);
@@ -193,7 +199,8 @@ async function run() {
         hasJayanagar: text.includes('Jayanagar, Bangalore') || text.includes('ಜಯನಗರ, ಬೆಂಗಳೂರು'),
         hasNoCIN: !text.includes('CIN:'),
         hasCopyright: text.includes('© 2026 Buffalo Back Labs (OPC) Private Limited.'),
-        hasAITagline: text.includes('Yes, AI built this website') || text.includes('ಹೌದು, ಎಐ ಈ ವೆಬ್‌ಸೈಟ್'),
+        hasAITagline: text.includes('(noticed the famous emdash?)') || text.includes('ಎಮ್‌ಡ್ಯಾಶ್'),
+        rawAITagline: text.includes('Yes, AI built this website') || text.includes('ಹೌದು, ಎಐ ಈ ವೆಬ್‌ಸೈಟ್'),
         socials: socialLinks
       };
     }, footer);
@@ -208,8 +215,9 @@ async function run() {
       throw new Error(`Footer address/CIN check failed in ${label}: hasJayanagar=${footerDetails.hasJayanagar}, hasNoCIN=${footerDetails.hasNoCIN}`);
     }
     if (!footerDetails.hasCopyright || !footerDetails.hasAITagline) {
-      throw new Error(`Footer legal bar missing copyright or AI tagline in ${label}`);
+      throw new Error(`Footer legal bar missing copyright or '(noticed the famous emdash?)' in ${label}`);
     }
+    console.log(`✓ Footer verified in ${label} (labs@ email, Jayanagar address, legal bar with '(noticed the famous emdash?)' tagline)`);
     if (footerDetails.socials.includes('GitHub')) {
       throw new Error(`Footer still contains GitHub social link in ${label}`);
     }
