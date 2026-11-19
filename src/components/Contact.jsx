@@ -15,19 +15,37 @@ export default function Contact() {
     company_website_url: '' // Honeypot spam trap
   });
 
+  const [formLoadedAt, setFormLoadedAt] = useState(() => Date.now());
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
   const [errorMessage, setErrorMessage] = useState('');
 
+  const containsUrl = (str) => /https?:\/\//i.test(str || '');
+
   const validate = () => {
     const errs = {};
-    if (!formData.name.trim()) errs.name = 'Required';
+    if (!formData.name.trim()) {
+      errs.name = 'Required';
+    } else if (containsUrl(formData.name)) {
+      errs.name = t('contact.errorUrls');
+    }
+
+    if (containsUrl(formData.org)) {
+      errs.org = t('contact.errorUrls');
+    }
+
     if (!formData.email.trim()) {
       errs.email = 'Required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       errs.email = 'Invalid email';
     }
-    if (!formData.message.trim()) errs.message = 'Required';
+
+    if (!formData.message.trim()) {
+      errs.message = 'Required';
+    } else if (containsUrl(formData.message)) {
+      errs.message = t('contact.errorUrls');
+    }
+
     return errs;
   };
 
@@ -40,12 +58,20 @@ export default function Contact() {
       return;
     }
 
+    // Client-side URL blocking: reject any links/URLs in name, org, or message
+    if (containsUrl(formData.name) || containsUrl(formData.org) || containsUrl(formData.message)) {
+      setErrors({ message: t('contact.errorUrls') });
+      return;
+    }
+
     const errs = validate();
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
     setStatus('loading');
     setErrorMessage('');
+
+    const elapsed_ms = Date.now() - formLoadedAt;
 
     const payload = {
       timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
@@ -54,7 +80,8 @@ export default function Contact() {
       email: formData.email.trim(),
       topic: formData.topic,
       message: formData.message.trim(),
-      company_website_url: formData.company_website_url
+      company_website_url: formData.company_website_url,
+      elapsed_ms: elapsed_ms
     };
 
     try {
@@ -89,6 +116,7 @@ export default function Contact() {
       message: '',
       company_website_url: ''
     });
+    setFormLoadedAt(Date.now());
     setErrors({});
     setStatus('idle');
   };
@@ -188,6 +216,7 @@ export default function Contact() {
                       onChange={(e) => setFormData({ ...formData, org: e.target.value })}
                       className="w-full px-0 py-3 bg-transparent border-b border-hairline-light dark:border-hairline-dark text-ink-light dark:text-ink-dark text-sm focus:outline-none focus:border-brand-blue dark:focus:border-brand-gold transition-colors min-h-[48px]"
                     />
+                    {errors.org && <span className="text-xs text-red-500 mt-1 block">{errors.org}</span>}
                   </div>
                 </div>
 

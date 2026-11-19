@@ -233,6 +233,14 @@ async function run() {
     const form = await page.$('#contact form');
     if (!form) throw new Error(`Contact form missing in ${label}`);
 
+    let lastWebhookPayload = null;
+    await page.route(/script\.google\.com/, async route => {
+      try {
+        lastWebhookPayload = JSON.parse(route.request().postData());
+      } catch (e) {}
+      await route.fulfill({ status: 200, contentType: 'application/json', body: '{"status":"success"}' });
+    });
+
     // Verify 5 fields + honeypot
     const nameInput = await page.$('#contact-name');
     const orgInput = await page.$('#contact-org');
@@ -263,7 +271,26 @@ async function run() {
     if (!hasValidationErrors) throw new Error(`Validation errors did not render on empty submission in ${label}`);
     console.log(`✓ Contact form validation verified in ${label}`);
 
-    // Fill valid data
+    // Test client-side URL blocking: entering http:// or https:// must be rejected
+    await nameInput.fill('Bot Spammer');
+    await emailInput.fill('spammer@evilbot.com');
+    await messageInput.fill('Check out our crypto spam http://spam-links.com right now!');
+    await submitBtn.click();
+    await page.waitForTimeout(200);
+
+    const urlBlocked = await page.evaluate(() => {
+      const formEl = document.querySelector('#contact form');
+      const errs = Array.from(document.querySelectorAll('#contact span.text-red-500')).map(e => e.textContent);
+      const isStillForm = !!formEl;
+      const hasUrlErr = errs.some(txt => txt.includes('URL') || txt.includes('http'));
+      return isStillForm && hasUrlErr;
+    });
+    if (!urlBlocked) {
+      throw new Error(`Client-side URL blocking failed in ${label}`);
+    }
+    console.log(`✓ Client-side URL blocking verified in ${label}`);
+
+    // Fill clean valid data
     await nameInput.fill('Kavitha Rao');
     await orgInput.fill('Karnataka Mahila Raitha Okkuta');
     await emailInput.fill('kavitha@okkuta.org');
@@ -271,13 +298,20 @@ async function run() {
     await messageInput.fill('We would like to pilot Kai Thota OS with 50 women organic farmers in our collective.');
 
     // Submit valid form
-    await submitBtn.click();
-    await page.waitForTimeout(800);
-
-    // Verify success state rendered
+    const currentSubmitBtn = await page.$('#contact button[type="submit"]');
+    await currentSubmitBtn.click();
+    
+    // Wait for success heading to appear
+    await page.waitForSelector('#contact h3', { timeout: 6000 });
     const successHeading = await page.$('#contact h3');
-    if (!successHeading) throw new Error(`Success state did not render in ${label}`);
     console.log(`✓ Form submission success state verified in ${label}`);
+
+    if (lastWebhookPayload) {
+      if (typeof lastWebhookPayload.elapsed_ms !== 'number' || lastWebhookPayload.elapsed_ms < 0) {
+        throw new Error(`Webhook payload missing valid elapsed_ms in ${label}: ${JSON.stringify(lastWebhookPayload)}`);
+      }
+      console.log(`✓ Webhook payload contains elapsed_ms (${lastWebhookPayload.elapsed_ms}ms)`);
+    }
 
     // Test reset button
     const resetBtn = await page.$('#contact button:has-text("another message"), #contact button:has-text("ಮತ್ತೊಂದು ಸಂದೇಶ")');

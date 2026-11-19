@@ -93,6 +93,7 @@
     "sending": "Sending...",
     "sent": "Thank you. Your message has been received and logged.",
     "error": "Submission encountered an issue. You can reach us directly at labs@buffaloback.in.",
+    "errorUrls": "Links and URLs (http/https) are not permitted in inquiries.",
     "reset": "Send another message",
     "copyright": "© 2026 Buffalo Back Labs (OPC) Private Limited."
   },

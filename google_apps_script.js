@@ -42,6 +42,14 @@ function isSuspiciousPattern(str) {
   return false;
 }
 
+/**
+ * URL Checker: Identifies any links or protocol strings
+ */
+function containsUrl(str) {
+  if (!str || typeof str !== "string") return false;
+  return /https?:\/\//i.test(str);
+}
+
 function doPost(e) {
   try {
     let data;
@@ -58,14 +66,34 @@ function doPost(e) {
     }
 
     // 1. Honeypot check: silently drop bots if hidden honeypot was filled
-    const honeypot = data.company_website_url || (e.parameter && e.parameter.company_website_url);
+    const honeypot = (data && data.company_website_url) || (e.parameter && e.parameter.company_website_url);
     if (honeypot) {
       return ContentService
         .createTextOutput(JSON.stringify({ status: "success", message: "Inquiry processed." }))
         .setMimeType(ContentService.MimeType.JSON);
     }
 
-    // 2. Anti-spam heuristic
+    // 2. Elapsed time check: silently drop bots submitting in under 1.5 seconds (< 1500ms)
+    const elapsedMs = Number((data && data.elapsed_ms) || (e.parameter && e.parameter.elapsed_ms) || 0);
+    if (elapsedMs > 0 && elapsedMs < 1500) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: "success", message: "Inquiry processed." }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // 3. URL blocking: reject any links/URLs (http:// or https://) in message, name, or org
+    if (
+      containsUrl(data.message) ||
+      containsUrl(data.name) ||
+      containsUrl(data.org) ||
+      containsUrl(data.organization)
+    ) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: "success", message: "Inquiry processed." }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // 4. Anti-spam heuristic
     if (
       isSuspiciousPattern(data.name) ||
       isSuspiciousPattern(data.message) ||
@@ -88,7 +116,8 @@ function doPost(e) {
         "Organization",
         "Email",
         "Topic",
-        "Message"
+        "Message",
+        "Elapsed (ms)"
       ];
       sheet.appendRow(headers);
       sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#003149").setFontColor("#ffffff");
@@ -109,10 +138,11 @@ function doPost(e) {
       org,
       email,
       topic,
-      message
+      message,
+      elapsedMs || "N/A"
     ]);
 
-    // 2. Email alert to weare@buffaloback.in
+    // 2. Email alert to labs@buffaloback.in
     const emailSubject = `[BBL Contact] ${topic}: ${name} (${org})`;
     const htmlBody = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; background: #ffffff;">
@@ -146,7 +176,7 @@ function doPost(e) {
           </table>
 
           <div style="margin-top: 24px; padding: 12px; background-color: #f9fafb; border-radius: 6px; font-size: 11px; color: #6b7280; font-family: monospace;">
-            Timestamp: ${timestamp}
+            Timestamp: ${timestamp} • Interaction Time: ${elapsedMs ? (elapsedMs / 1000).toFixed(1) + "s" : "N/A"}
           </div>
         </div>
 
